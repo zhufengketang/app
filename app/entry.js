@@ -9,7 +9,10 @@ import React, {Component} from 'react'
 
 import {
   View,
-  Text
+  Text,
+  Dimensions,
+  StyleSheet,
+  Alert
 } from 'react-native'
 
 // import ReactNative from 'react-native'    =          var ReactNative = require("react-native")
@@ -17,12 +20,43 @@ import {
 // const Text = ReactNative.Text
 
 
-const flexCenter = {alignItems : 'center', justifyContent : 'center'}
+import {
+  flexCenter,
+} from "basic"
+
+import {
+  ZButton
+} from 'domain/component'
+
 export class Entry extends Component {
   
+  onPress() {
+    
+    this.setState({
+      loading : true
+    })
+    setTimeout( (() => {
+      this.setState({
+        loading : false
+      })
+      Alert.alert("Hello", "world")
+    }).bind(this), 3000)
+    
+  }
+  
+  constructor(){
+    super()
+    
+    this.state = {
+      loading : false  
+    }
+  }
+  
   render() {
+    const {loading} = this.state
+    
     return (
-      <View style={ {flexDirection : 'column', ...flexCenter, flex : 1} }>
+      <View style={styles.container}>
         
         <Text>
           Hi !
@@ -37,8 +71,17 @@ export class Entry extends Component {
           <View style={{flex:2, backgroundColor : "blue"}}></View>
           <View style={{flex:1, backgroundColor : "green"}}></View>
         </View>
+        <ZButton loading={loading} onPress={this.onPress.bind(this)} >登录</ZButton>
+
       </View>
     )
   }
 }
 
+
+const styles = StyleSheet.create({
+  
+  container : {
+    flexDirection : 'column', ...flexCenter, flex : 1 
+  }
+})
