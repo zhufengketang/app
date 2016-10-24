@@ -23,6 +23,7 @@ export class Entry extends Component {
   render() {
     return (
       <View style={ {flexDirection : 'column', ...flexCenter, flex : 1} }>
+        
         <Text>
           Hi !
         </Text>
@@ -30,6 +31,12 @@ export class Entry extends Component {
           Welcome to React Native
         </Text>
 
+        
+        <View style={{height : 50,width : 100, flexDirection : 'row'}}>
+          <View style={{flex:1, backgroundColor : 'red'}}></View>
+          <View style={{flex:2, backgroundColor : "blue"}}></View>
+          <View style={{flex:1, backgroundColor : "green"}}></View>
+        </View>
       </View>
     )
   }
