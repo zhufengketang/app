@@ -60,7 +60,7 @@ export class Entry extends Component {
     return <Navigator
 
       initialRoute={{name : "Example1"}}
-      renderScene={this._renderScene}a   
+      renderScene={this._renderScene}   
       
     />
   }
