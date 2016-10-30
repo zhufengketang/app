@@ -26,17 +26,30 @@ import React, {Component} from 'react'
 
 import {
   View,
-  Navigator
+  Navigator,
+  BackAndroid
 } from 'react-native'
 
 
 import {Example1} from 'domain/page/Example1'
 import {Example2} from 'domain/page/Example2'
+import {Example3} from 'domain/page/Example3'
+
 
 export class Entry extends Component {
   
   constructor(){
     super()
+  }
+  
+  // 组件挂在后
+  componentDidMount(){
+    BackAndroid.addEventListener('hardwareBackPress', (() => {
+      const navigator = this.refs.navigator
+      navigator.pop()
+      return true
+      
+    }).bind(this)); 
   }
 
   _renderScene(route, navigator){
@@ -48,6 +61,8 @@ export class Entry extends Component {
         return <Example1 navigator={navigator} />
       case "Example2" :
         return <Example2 navigator={navigator} />
+      case "Example3" :
+        return <Example3 navigator={navigator} />
     }
 
   }
@@ -58,7 +73,7 @@ export class Entry extends Component {
     // initialRoute 设置第一张页面
     // renderScene 绘制场景 
     return <Navigator
-
+      ref="navigator"
       initialRoute={{name : "Example1"}}
       renderScene={this._renderScene}   
       

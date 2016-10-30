@@ -35,13 +35,23 @@ export class Example2 extends Component{
   _onPress(){
     this.props.navigator.pop()  
   }
+  
+  _onNext(){
+
+    this.props.navigator.push({name : "Example3"})
+  }
   render(){
     
     
     return <View style={{flex : 1, ...flexCenter, backgroundColor : "yellow"}}>
 
       <Text>页面Example2</Text>
+
       <ZButton onPress={this._onPress.bind(this)}>返回Example1</ZButton>
+
+      <View style={{marginTop : 10}}>
+        <ZButton onPress={this._onNext.bind(this)}>Next</ZButton>
+      </View>
     </View>
   }
 }
