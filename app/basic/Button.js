@@ -17,6 +17,9 @@ import {
 import {flexCenter} from "basic/style"
 
 
+/**
+ * 按钮
+ */
 export class Button extends Component{
 
   
@@ -40,16 +43,23 @@ export class Button extends Component{
   
   render(){
 
+    // 从父组件接收属性
     const {height, width, backgroundColor, children, loading, fontSize} = this.props
     // const height = this.props.height
 
     
     let borderRadius = 0
+
+    // 在IOS上给按钮增加5dp的BorderRadius
     if(Platform.OS === 'ios') {
       borderRadius = 5    
     }
+
+    // 在Android 文字会比IOS大一些
     let fSize = Platform.OS === 'android' ? fontSize * 1.2 : fontSize
-    
+
+
+    // Loading效果
     if(loading) {
       return (
         <View

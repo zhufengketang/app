@@ -4,8 +4,6 @@
 
 
 import React, {Component} from 'react'
-// import React from 'react'
-// const Component = React.Component
 
 import {
   View,
@@ -15,11 +13,6 @@ import {
   Alert
 } from 'react-native'
 
-// import ReactNative from 'react-native'    =          var ReactNative = require("react-native")
-// const View = ReactNative.View
-// const Text = ReactNative.Text
-
-
 import {
   flexCenter,
 } from "basic"
@@ -28,7 +21,7 @@ import {
   ZButton
 } from 'domain/component'
 
-export class Entry extends Component {
+export class Example0 extends Component {
   
   onPress() {
     

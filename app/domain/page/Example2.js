@@ -24,19 +24,24 @@
 
 import React, {Component} from 'react'
 
-import {View} from 'react-native'
+import {View, Text} from 'react-native'
 
 import {ZButton} from "domain/component"
 import {flexCenter} from "basic"
 
 
-export class Example1 extends Component{
+export class Example2 extends Component{
+  
+  _onPress(){
+    this.props.navigator.pop()  
+  }
   render(){
     
     
-    return <View style={{flex : 1, ...flexCenter}}>
-      
-      <ZButton>跳转到Example2</ZButton>
+    return <View style={{flex : 1, ...flexCenter, backgroundColor : "yellow"}}>
+
+      <Text>页面Example2</Text>
+      <ZButton onPress={this._onPress.bind(this)}>返回Example1</ZButton>
     </View>
   }
 }

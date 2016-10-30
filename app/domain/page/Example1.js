@@ -21,3 +21,25 @@
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  SOFTWARE.
  */
+
+import React, {Component} from 'react'
+import {View, Text} from 'react-native'
+import {ZButton} from "domain/component"
+import {flexCenter} from "basic"
+
+
+export class Example1 extends Component{
+  
+  _onPress(){
+    this.props.navigator.push({name : "Example2"}) 
+  }
+  render(){
+    
+    
+    return <View style={{flex : 1, ...flexCenter, backgroundColor : "lightgrey"}}>
+
+      <Text>页面Example1</Text>
+      <ZButton onPress={this._onPress.bind(this)}>跳转到Example2</ZButton>
+    </View>
+  }
+}

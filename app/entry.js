@@ -4,84 +4,47 @@
 
 
 import React, {Component} from 'react'
-// import React from 'react'
-// const Component = React.Component
 
 import {
   View,
-  Text,
-  Dimensions,
-  StyleSheet,
-  Alert
+  Navigator
 } from 'react-native'
 
-// import ReactNative from 'react-native'    =          var ReactNative = require("react-native")
-// const View = ReactNative.View
-// const Text = ReactNative.Text
 
-
-import {
-  flexCenter,
-} from "basic"
-
-import {
-  ZButton
-} from 'domain/component'
+import {Example1} from 'domain/page/Example1'
+import {Example2} from 'domain/page/Example2'
 
 export class Entry extends Component {
   
-  onPress() {
-    
-    this.setState({
-      loading : true
-    })
-    setTimeout( (() => {
-      this.setState({
-        loading : false
-      })
-      Alert.alert("Hello", "world")
-    }).bind(this), 3000)
-    
-  }
-  
   constructor(){
     super()
+  }
+
+  _renderScene(route, navigator){
     
-    this.state = {
-      loading : false  
+    console.log(route)
+
+    switch(route.name) {
+      case "Example1" :
+        return <Example1 navigator={navigator} />
+      case "Example2" :
+        return <Example2 navigator={navigator} />
     }
+
   }
   
   render() {
-    const {loading} = this.state
     
-    return (
-      <View style={styles.container}>
-        
-        <Text>
-          Hi !
-        </Text>
-        <Text>
-          Welcome to React Native
-        </Text>
+    
+    // initialRoute 设置第一张页面
+    // renderScene 绘制场景 
+    return <Navigator
 
-        
-        <View style={{height : 50,width : 100, flexDirection : 'row'}}>
-          <View style={{flex:1, backgroundColor : 'red'}}></View>
-          <View style={{flex:2, backgroundColor : "blue"}}></View>
-          <View style={{flex:1, backgroundColor : "green"}}></View>
-        </View>
-        <ZButton loading={loading} onPress={this.onPress.bind(this)} >登录</ZButton>
-
-      </View>
-    )
+      initialRoute={{name : "Example1"}}
+      renderScene={this._renderScene}a   
+      
+    />
   }
 }
 
 
-const styles = StyleSheet.create({
-  
-  container : {
-    flexDirection : 'column', ...flexCenter, flex : 1 
-  }
-})
