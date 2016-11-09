@@ -29,6 +29,8 @@ import {View, Text} from 'react-native'
 import {ZButton} from "domain/component"
 import {flexCenter} from "basic"
 
+import {Routes} from "domain/page"
+
 
 export class Example2 extends Component{
   
@@ -38,7 +40,7 @@ export class Example2 extends Component{
   
   _onNext(){
 
-    this.props.navigator.push({name : "Example3"})
+    this.props.navigator.push(Routes.Example3)
   }
   render(){
     

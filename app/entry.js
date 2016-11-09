@@ -27,13 +27,18 @@ import React, {Component} from 'react'
 import {
   View,
   Navigator,
-  BackAndroid
+  BackAndroid,
+  Text,
+  StatusBar
 } from 'react-native'
 
+import {Button, flexCenter} from "basic"
+import {ZNavBar} from "domain/component"
 
-import {Example1} from 'domain/page/Example1'
-import {Example2} from 'domain/page/Example2'
-import {Example3} from 'domain/page/Example3'
+import {COLOR_NAV_DARK, COLOR_TITLE} from "domain/def"
+
+
+import {Routes} from "domain/page"
 
 
 export class Entry extends Component {
@@ -54,17 +59,46 @@ export class Entry extends Component {
 
   _renderScene(route, navigator){
     
-    console.log(route)
+    const {Component} = route
+    return (
+      <View style={{flex : 1}}>
+        <View style={{ backgroundColor : route.Inverse ? COLOR_NAV_DARK : "white", height : 64}}>
+        </View>
+        <Component navigator={navigator} />
+      </View>
 
-    switch(route.name) {
-      case "Example1" :
-        return <Example1 navigator={navigator} />
-      case "Example2" :
-        return <Example2 navigator={navigator} />
-      case "Example3" :
-        return <Example3 navigator={navigator} />
+    ) 
+  }
+  
+  _renderNavBar(){
+
+    const routeMapper = {
+         LeftButton: (route, navigator, index, navState) =>  {
+           if(index === 0) {
+             return null
+           }
+           return <ZNavBar.Back route={route} navigator={navigator} />
+         },
+         RightButton: (route, navigator, index, navState) => {
+           return null
+         },
+         Title: (route, navigator, index, navState) => {
+           console.log("render title bar", route)
+           return (
+             <View style={{flex : 1, ...flexCenter}}>
+               <Text style={{color : route.Inverse ? "white" : COLOR_TITLE, fontSize : 18}}>{route.Title}</Text>
+             </View>
+           ); 
+         }, 
     }
-
+    
+    
+    
+    return (
+      <Navigator.NavigationBar
+        routeMapper={routeMapper}
+      />
+    )
   }
   
   render() {
@@ -74,8 +108,9 @@ export class Entry extends Component {
     // renderScene 绘制场景 
     return <Navigator
       ref="navigator"
-      initialRoute={{name : "Example1"}}
-      renderScene={this._renderScene}   
+      initialRoute={Routes.Example1}
+      renderScene={this._renderScene}
+      navigationBar={this._renderNavBar()}
       
     />
   }

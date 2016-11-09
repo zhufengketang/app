@@ -29,6 +29,7 @@ import {View, Text} from 'react-native'
 import {ZButton} from "domain/component"
 import {flexCenter} from "basic"
 
+import {Routes} from "domain/page"
 
 export class Example3 extends Component{
   
@@ -63,7 +64,7 @@ export class Example3 extends Component{
     
     //[Example1, Example2, Example3] -> [Example1, Example3] 
     //有性能问题
-    this.props.navigator.immediatelyResetRouteStack([{name : "Example1"}, {name : "Example3"}])
+    this.props.navigator.immediatelyResetRouteStack([Routes.Example1, Routes.Example3])
     
     // 有时序问题
     // 此处在特定机型上可能触发bug,在10ms内 immediatelyResetRouteStack没有执行完成

@@ -1,4 +1,5 @@
 /***********************************************
+ * 
  * MIT License
  *
  * Copyright (c) 2016 珠峰课堂,Ramroll
@@ -22,25 +23,36 @@
  *
  */
 
-import React, {Component} from 'react'
-import {View, Text} from 'react-native'
-import {ZButton} from "domain/component"
-import {flexCenter} from "basic"
+
+// export {Example1} from "./Example1"
+// export {Example2} from "./Example2"
+// export {Example3} from "./Example3"
 
 
-import {Routes} from "domain/page"
-export class Example1 extends Component{
-  
-  _onPress(){
-    this.props.navigator.push(Routes.Example2) 
-  }
-  render(){
-    
-    
-    return <View style={{flex : 1, ...flexCenter, backgroundColor : "white"}}>
+// 路由的元数据
+export const Routes = {
+  Example0 : {
+    name : "Example0",
+    Title : "Example0",
+    // 用了get的语法避免循环引用
+    get Component() {return require("./Example0").Example0}
+  },
+  Example1 : {
+    name : "Example1",
+    Title : "Example1",
+    Inverse : true, // 深色的NavBar
+    get Component() {return require("./Example1").Example1}
+  },
+  Example2 : {
+    name : "Example2",
+    Title : "Example2",
+    get Component() {return require("./Example2").Example2}
+  },
+  Example3 : {
+    name : "Example3",
+    Title : "Example3",
+    get Component() {return require("./Example3").Example3}
+  },
 
-      <Text>页面Example1</Text>
-      <ZButton onPress={this._onPress.bind(this)}>跳转到Example2</ZButton>
-    </View>
-  }
 }
+

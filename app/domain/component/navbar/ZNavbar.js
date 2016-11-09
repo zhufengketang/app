@@ -22,25 +22,42 @@
  *
  */
 
+
+
 import React, {Component} from 'react'
-import {View, Text} from 'react-native'
-import {ZButton} from "domain/component"
-import {flexCenter} from "basic"
 
+import {TouchableOpacity, Image} from "react-native"
 
-import {Routes} from "domain/page"
-export class Example1 extends Component{
+import {flexCenter} from 'basic'
+export class ZNavBar extends Component {
   
-  _onPress(){
-    this.props.navigator.push(Routes.Example2) 
-  }
   render(){
-    
-    
-    return <View style={{flex : 1, ...flexCenter, backgroundColor : "white"}}>
-
-      <Text>页面Example1</Text>
-      <ZButton onPress={this._onPress.bind(this)}>跳转到Example2</ZButton>
-    </View>
+    return null
   }
 }
+
+
+class ZNavBarBackButton extends Component {
+  
+  constructor(){
+    super()
+    this._press = this._press.bind(this)
+  }
+
+  _press(){
+    
+    this.props.navigator.pop()
+  }
+  
+  render() {
+    
+    const {route} = this.props
+    return <TouchableOpacity onPress={this._press} style={{flex : 1, ...flexCenter, paddingLeft : 10, paddingRight : 10}}>
+      <Image source={ route.Inverse ? require("./title-back-inv.png") : require("./title-back.png")} style={{height : 24, width : 24}} />
+    </TouchableOpacity>
+  }
+
+}
+
+
+ZNavBar.Back = ZNavBarBackButton

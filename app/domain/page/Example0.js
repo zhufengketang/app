@@ -97,6 +97,6 @@ export class Example0 extends Component {
 const styles = StyleSheet.create({
   
   container : {
-    flexDirection : 'column', ...flexCenter, flex : 1 
+    flexDirection : 'column', ...flexCenter, flex : 1 ,
   }
 })
