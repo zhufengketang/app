@@ -5,15 +5,14 @@
 
 #### 运行方法
 
-1. 进入项目目录
+STEP1 进入项目目录
 ```
 执行npm install
 ```
-
-2. ios
+STEP2 ios
 用xcode打开ios/zhufengketang.xcodeproj
 
-3. android
+STEP3 android
 在android studio打开android目录作为一个工程
 
 #### 架构相关
