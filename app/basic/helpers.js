@@ -1,4 +1,5 @@
 /***********************************************
+ * 
  * MIT License
  *
  * Copyright (c) 2016 珠峰课堂,Ramroll
@@ -22,6 +23,20 @@
  *
  */
 
-export * from "./Button"
-export * from "./style"
-export * from "./helpers"
+/***
+ * 将数字转换成千分位货币格式
+ * @param value
+ * @returns {string}
+ */
+export const format_currency = (value) => {
+  value = parseFloat(value).toFixed(2).toString()
+
+  const [i, f] = value.split(".")
+  return i
+      .split("")
+      .reverse()
+      .map( (x, i) => (i + 1) % 3 === 0 ? "," + x : x)
+      .reverse()
+      .join("") + "." + f
+
+}
