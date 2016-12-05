@@ -1,21 +1,19 @@
 ### 珠峰课堂
 
-国内第一款开源React Native App
-
+珠峰课堂是珠峰联合业内大牛开发的国内首开源React Native App，并同步珠峰发售开发过程视频。
 
 #### 运行方法
 
-STEP1 进入项目目录
+1. 进入项目目录
 ```
-执行npm install
+npm install
 ```
-STEP2 ios
+
+2. 如果是ios
 用xcode打开ios/zhufengketang.xcodeproj
 
-STEP3 android
+3. 如果是android
 在android studio打开android目录作为一个工程
-
-
 
 
 #### 架构阐述
