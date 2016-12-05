@@ -25,7 +25,6 @@
 
 import React, {Component} from 'react'
 
-
 import {
   View,
   Text,
@@ -34,17 +33,16 @@ import {
   ScrollView,
   ActivityIndicator,
   StyleSheet,
-  RefreshControl,
-  TouchableOpacity
+  RefreshControl
 } from 'react-native'
 
 import {format_currency, flexCenter} from "basic"
 
+
 import {COLOR_TITLE, COLOR_TEXT_LIGHT, COLOR_PRICE} from "domain/def"
 
-import {ListView} from 'basic'
 
-import Swiper from 'react-native-swiper';
+import {ListView} from 'basic'
 
 
 
@@ -60,75 +58,61 @@ const course_gen = () => {
 
 
 export class Home extends Component {
-
+  
 
   constructor(){
     super()
 
-
-
-
-    const courses = [null]
-
+    
+    
+    const courses = []
+    
     for(let i = 0; i < 20; i++) {
-      courses.push(course_gen())
+      courses.push(course_gen())  
     }
 
 
     this.state = {
       courses : courses,
-      loading : false
+      loading : false 
     }
   }
 
-  _pressCourse(course) {
-    console.log(1)
-    return () => {
-      /// TODO 跳转
-    }
-  }
   _renderItem(course, i) {
-    if(!course) {
-
-      return(
-        <View>
-
-          <Swiper height={200}
-                  dot={<View style={{backgroundColor:'rgba(0,0,0,.1)', width: 8, height: 8,borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3,}} />}
-                  activeDot={<View style={{backgroundColor: 'white', width: 8, height: 8, borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3,}} />}
-          >
-            <View style={{flex : 1}}>
-              <Image source={require("./images/slide1.jpg")} style={{height : 200}} resizeMode="stretch" />
-            </View>
-            <View style={{flex : 1}}>
-              <Image source={require("./images/slide2.png")} style={{height : 200}} resizeMode="stretch" />
-            </View>
-          </Swiper>
-          <View style={{height : 10, backgroundColor : "#f2f3f4", width : Dimensions.get("window").width }}></View>
-          <View style={{marginLeft : -10, marginTop : 10}}>
-            <Image source={require("./images/fire-all-course.png")} style={{height : 30}} resizeMode="contain" />
-          </View>
-
-        </View>
-      )
-    }
-    else {
-
-      return (
-        <CourseCard onPress={this._pressCourse(course).bind(this)} {...course}  />
-      )
-
-    }
+    return (
+      <CourseCard {...course}  />
+    )
   }
 
 
   _onScrollToBottom(y){
+    
     this.y = y
+    console.log(y)
+  }
+  
+  _renderBottomIndicator(){
 
+    const indicator = this.y < 100 ? 
+      <ScrollIndicator image={require("./arrow_down.png")}>下拉加载更多</ScrollIndicator> 
+      : <ScrollIndicator image={require("./arrow_up.png")}>释放加载更多</ScrollIndicator>
+     
+    return (
+      <View style={{height : 42, ...flexCenter}}>
+        {this.state.loading ?
+          <ActivityIndicator />
+          :
+          indicator
+        }
+      </View>
+    )
+  }
+  
+  _release(){
+    if(this.y > 100 && !this.state.loading) {
+      this.setState({ loading : true }, (() => {
+      }).bind(this))
 
-    if(this.state.loading) {return}
-
-    this.setState({ loading : true }, (() => {
       setTimeout((() => {
         const courses = []
         for(let i = 0; i < 20; i++) {
@@ -138,46 +122,19 @@ export class Home extends Component {
         this.setState({
           loading : false
         })
-      }).bind(this), 2000)
-    }).bind(this))
+      }).bind(this), 2000) 
+    }
   }
-
-  _renderBottomIndicator(){
-    return (
-      <View style={{height : 42, ...flexCenter}}>
-        <ActivityIndicator />
-      </View>
-    )
-  }
-
-  _release(){
-    /*
-     if(this.y > 100 && !this.state.loading) {
-     this.setState({ loading : true }, (() => {
-     }).bind(this))
-
-     setTimeout((() => {
-     const courses = []
-     for(let i = 0; i < 20; i++) {
-     courses.push(course_gen())
-     }
-     this.refs.listView.append(courses)
-     this.setState({
-     loading : false
-     })
-     }).bind(this), 2000) 
-     */
-  }
-
-
-
+  
+  
+  
   _refresh(){
-
+    
     if(!this.state.loading) {
 
       this.setState({loading : true}, (() => {
         setTimeout((() => {
-          const courses = [null]
+          const courses = []
           for(let i = 0; i < 20; i++) {
             courses.push(course_gen())
           }
@@ -189,27 +146,22 @@ export class Home extends Component {
       }).bind(this))
     }
   }
-
+  
   render(){
 
     const loading = this.state
     return (
-
-
       <View>
-
         <ListView
           ref="listView"
           initialData={this.state.courses}
-          renderItem={this._renderItem.bind(this)}
+          renderItem={this._renderItem}
           onScrollToBottom={this._onScrollToBottom.bind(this)}
           renderBottomIndicator={this._renderBottomIndicator.bind(this)}
           onResponderRelease={this._release.bind(this)}
           refreshControl={
           <RefreshControl refreshing={false} onRefresh={this._refresh.bind(this)} />
-
         }
-          height={Dimensions.get("window").height - 60}
         />
       </View>
     )
@@ -221,10 +173,10 @@ class CourseCard extends Component{
 
   render() {
     const W = Dimensions.get("window").width
-
+    
     const {image, title, author, description, price} = this.props
 
-    return <TouchableOpacity onPress={this.props.onPress} style={courseStyle.cardContainer}>
+    return <View style={courseStyle.cardContainer}>
       <Image
         source={{uri : image}}
         style={{width : W - 20, height : (W - 20) * 0.3}}
@@ -233,29 +185,26 @@ class CourseCard extends Component{
       <Author label="讲师">{author}</Author>
       <Description>{description}</Description>
       <Price>{price}</Price>
-    </TouchableOpacity>
+    </View>
   }
 
 }
 
 const courseStyle = StyleSheet.create({
     cardContainer: {
-      backgroundColor: "white",
-      marginBottom: 0,
-      paddingBottom: 10,
+      marginBottom: 20,
+      paddingBottom: 10, 
       marginLeft: 10,
-      marginRight: 10,
-      marginTop : 10,
-      borderRadius: 5, overflow: "hidden", borderWidth: 1, borderColor: "#c7c8c9",
+      marginRight: 10, borderRadius: 5, overflow: "hidden", borderWidth: 1, borderColor: "#c7c8c9",
     }
   }
 )
 
 const Paragraph = {
-  paddingLeft : 20,
+  paddingLeft : 20,  
   paddingRight : 20,
   marginTop : 10
-
+  
 }
 
 
@@ -280,8 +229,8 @@ const ScrollIndicator = ({children, image}) => {
     <Text>{children}</Text>
     <Image source={image} style={{width : 18, height : 18}} />
   </View>
-
-
+  
+  
 }
 
 

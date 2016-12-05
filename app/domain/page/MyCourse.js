@@ -1,4 +1,5 @@
 /***********************************************
+ * 
  * MIT License
  *
  * Copyright (c) 2016 珠峰课堂,Ramroll
@@ -22,8 +23,20 @@
  *
  */
 
-export * from "./ZButton"
-export * from "./navbar/ZNavBar"
-export * from "./tabbar/Tabbar"
+import React, {Component} from 'react'
 
+import {
+  Text,
+  View
+} from 'react-native'
 
+export class MyCourse extends Component{
+  
+  render(){
+    return (
+      <View>
+        <Text>我的课程</Text>
+      </View>
+    )
+  }
+}

@@ -22,8 +22,36 @@
  *
  */
 
-export * from "./ZButton"
-export * from "./navbar/ZNavBar"
-export * from "./tabbar/Tabbar"
+import React, {Component} from 'react'
+
+import {Tabbar} from 'domain/component'
+
+import {Home} from "./Home"
+import {MyCourse} from "./MyCourse"
+import {UserCenter} from "./UserCenter"
 
 
+export class Tabs extends Component{
+  
+  render(){
+    return (
+      <Tabbar initialActive="home">
+        <Tabbar.Item 
+          name="home"
+          title="首页" activeIcon={require("./images/menu-index.png")} icon={require("./images/menu-index-gray.png")}>
+          <Home />
+        </Tabbar.Item>
+        <Tabbar.Item 
+          name="mycourse"
+          title="我的课程" activeIcon={require("./images/my-course.png")} icon={require("./images/my-course-gray.png")}>
+          <MyCourse />
+        </Tabbar.Item>
+        <Tabbar.Item 
+          name="usercenter"
+          title="个人中心" activeIcon={require("./images/user-center.png")} icon={require("./images/user-center-gray.png")}>
+          <UserCenter />
+        </Tabbar.Item>
+      </Tabbar>
+    )
+  }
+}

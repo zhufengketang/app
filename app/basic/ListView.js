@@ -260,7 +260,9 @@ export class ListView extends Component {
         onScroll={this._scroll.bind(this)} 
         scrollEventThrottle={15}
         refreshControl={this.props.refreshControl}
-       
+        style={{height : this.props.height}}
+        
+
       >
         <View style={{height : H1}}></View>
         {
