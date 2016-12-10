@@ -67,15 +67,17 @@ export class Tabbar extends Component {
             return React.cloneElement(child, {active, key : i})
           })}
         </View>
-        <View style={{height : 60, flexDirection : "row", borderTopWidth : 1, borderColor : "#f2f3f4" }}>
+        <View style={{backgroundColor : "white", height : 48, flexDirection : "row", borderTopWidth : 1, borderColor : "#ccc" }}>
           {children.map((child, i) => {
             
             const {title, name, icon, activeIcon} = child.props
 
             console.log(name, active)
-            return <TouchableOpacity onPress={this._press(name).bind(this)} key={i} style={{flex : 1, height : 60, ...flexCenter}}>
-              <Image source={name == active ? activeIcon : icon} resizeMode="contain"  style={{width : 28, height : 28, marginBottom : 5}} />
-              <Text>{title}</Text>
+            return <TouchableOpacity onPress={this._press(name).bind(this)} key={i} style={{flex : 1, height : 48, ...flexCenter}}>
+              <View style={{...flexCenter}}>
+                <Image source={name == active ? activeIcon : icon} resizeMode="contain"  style={{width : 20, height : 20, marginBottom : 5}} />
+                <Text>{title}</Text>
+              </View>
             </TouchableOpacity>
             
             

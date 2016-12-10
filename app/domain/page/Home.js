@@ -35,7 +35,8 @@ import {
   ActivityIndicator,
   StyleSheet,
   RefreshControl,
-  TouchableOpacity
+  TouchableOpacity,
+  Platform
 } from 'react-native'
 
 import {format_currency, flexCenter} from "basic"
@@ -57,6 +58,10 @@ const course_gen = () => {
     price : Math.random() * 10000 + 5000
   }
 }
+
+const {width, height} = Dimensions.get('window')
+
+const sliderItemStyle = {width, height : width * 0.523}
 
 
 export class Home extends Component {
@@ -93,15 +98,15 @@ export class Home extends Component {
       return(
         <View>
 
-          <Swiper height={200}
+          <Swiper height={Dimensions.get("window").width * 0.523}
                   dot={<View style={{backgroundColor:'rgba(0,0,0,.1)', width: 8, height: 8,borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3,}} />}
                   activeDot={<View style={{backgroundColor: 'white', width: 8, height: 8, borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3,}} />}
           >
             <View style={{flex : 1}}>
-              <Image source={require("./images/slide1.jpg")} style={{height : 200}} resizeMode="stretch" />
+              <Image source={require("./images/slide1.jpg")} style={sliderItemStyle} resizeMode="stretch" />
             </View>
             <View style={{flex : 1}}>
-              <Image source={require("./images/slide2.png")} style={{height : 200}} resizeMode="stretch" />
+              <Image source={require("./images/slide2.jpg")} style={sliderItemStyle} resizeMode="contain" />
             </View>
           </Swiper>
           <View style={{height : 10, backgroundColor : "#f2f3f4", width : Dimensions.get("window").width }}></View>
@@ -209,7 +214,7 @@ export class Home extends Component {
           <RefreshControl refreshing={false} onRefresh={this._refresh.bind(this)} />
 
         }
-          height={Dimensions.get("window").height - 60}
+          height={Dimensions.get("window").height - (Platform.OS === 'ios' ? 49 : 69) }
         />
       </View>
     )
@@ -224,10 +229,11 @@ class CourseCard extends Component{
 
     const {image, title, author, description, price} = this.props
 
-    return <TouchableOpacity onPress={this.props.onPress} style={courseStyle.cardContainer}>
+    return <TouchableOpacity elevation={true}  onPress={this.props.onPress} style={courseStyle.cardContainer}>
+
       <Image
         source={{uri : image}}
-        style={{width : W - 20, height : (W - 20) * 0.3}}
+        style={{width : W - 22, height : (W - 20) * 0.3}}
       />
       <Title>{title}</Title>
       <Author label="讲师">{author}</Author>
@@ -240,13 +246,19 @@ class CourseCard extends Component{
 
 const courseStyle = StyleSheet.create({
     cardContainer: {
+      shadowColor : "grey",
+      shadowRadius : 3,
+      shadowOffset : {width : 0, height : 5},
+      shadowOpacity : 0.5,
       backgroundColor: "white",
       marginBottom: 0,
       paddingBottom: 10,
       marginLeft: 10,
       marginRight: 10,
       marginTop : 10,
-      borderRadius: 5, overflow: "hidden", borderWidth: 1, borderColor: "#c7c8c9",
+      borderRadius: 5, 
+      borderWidth: 1, 
+      borderColor: "#c7c8c9",
     }
   }
 )
