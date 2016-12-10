@@ -50,8 +50,13 @@ import Swiper from 'react-native-swiper';
 
 
 const course_gen = () => {
+  const images = [
+    'http://a1.jikexueyuan.com/home/201506/24/a082/558a11c35f925.jpg',
+    'http://a1.jikexueyuan.com/home/201507/15/8a29/55a5c11d411b5.jpg',
+    'http://photocdn.sohu.com/20150511/mp14262803_1431334812364_1_th.jpeg'
+  ]
   return {
-    image : "http://a.hiphotos.baidu.com/image/h%3D200/sign=af9259bf03082838770ddb148898a964/6159252dd42a2834bc76c4ab5fb5c9ea14cebfba.jpg",
+    image : images[Math.floor(Math.random() * 3)],
     title : "顶级大神教你写node.js",
     author : "张仁阳",
     description : "国内顶尖大神教你写node.js.从零开始,循序渐进.......",
