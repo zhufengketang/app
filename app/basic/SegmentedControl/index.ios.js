@@ -22,11 +22,4 @@
  *
  */
 
-export * from "./Button"
-export * from "./style"
-export * from "./helpers"
-export * from "./ListView"
-
-export {FormConnector} from "./form/FormConnector"
-export let ValidateMethods = require("./form/validate")
-export let SegmentedControl = require("./SegmentedControl")
+module.exports = require("react-native").SegmentedControlIOS

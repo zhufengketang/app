@@ -39,7 +39,7 @@ export class Tabs extends Component{
         <Tabbar.Item 
           name="home"
           title="首页" activeIcon={require("./images/menu-index.png")} icon={require("./images/menu-index-gray.png")}>
-          <Home />
+          <Home navigator={this.props.navigator} route={this.props.route} />
         </Tabbar.Item>
         <Tabbar.Item 
           name="mycourse"

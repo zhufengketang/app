@@ -54,12 +54,32 @@ export const Routes = {
     get Component() {return require("./Example3").Example3}
   },
 
+  /* 首页 */
   Tabs : {
     name : "Tabs",
     noTitleBar : true,
     Inverse : true,
     get Component() {return require("./Tabs").Tabs}
+  },
+  
+  
+  /* 课程详情 */
+  Course : {
+    
+    name : "Course",
+    Inverse : true,
+    Title : "课程详情",
+    get Component() { return require("./Course").Course}
+    
+  },
+  
+  FormExample : {
+    name : "FormExample",
+    Inverse : true,
+    Title : "表单例子",
+    get Component() { return require("./FormExample").FormExample}
   }
+  
 
 }
 

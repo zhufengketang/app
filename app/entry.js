@@ -29,7 +29,9 @@ import {
   Navigator,
   BackAndroid,
   Text,
-  StatusBar
+  StatusBar,
+  Platform,
+  Dimensions
 } from 'react-native'
 
 import {Button, flexCenter} from "basic"
@@ -67,10 +69,10 @@ export class Entry extends Component {
         />
 
         {!noTitleBar &&
-        <View style={{ backgroundColor : route.Inverse ? COLOR_NAV_DARK : "white", height : 64}}>
+        <View style={{ backgroundColor : route.Inverse ? COLOR_NAV_DARK : "white", height : Platform.OS === 'ios' ? 64 : 56}}>
         </View>
         }
-        <Component navigator={navigator} />
+        <Component navigator={navigator} route={route} />
       </View>
 
     ) 
@@ -78,6 +80,10 @@ export class Entry extends Component {
   
   _renderNavBar(){
 
+    const titleStyle = {
+      flex : 1, ...flexCenter
+    }
+    
     const routeMapper = {
          LeftButton: (route, navigator, index, navState) =>  {
            if(index === 0) {
@@ -90,8 +96,13 @@ export class Entry extends Component {
          },
          Title: (route, navigator, index, navState) => {
            console.log("render title bar", route)
+           const t_style = {...titleStyle}
+           if(Platform.OS === 'android') {
+
+             t_style.width = Dimensions.get("window").width  - 148 
+           }
            return (
-             <View style={{flex : 1, ...flexCenter}}>
+             <View style={{...t_style}}>
                <Text style={{color : route.Inverse ? "white" : COLOR_TITLE, fontSize : 18}}>{route.Title}</Text>
              </View>
            ); 
@@ -114,7 +125,7 @@ export class Entry extends Component {
     // renderScene 绘制场景 
     return <Navigator
       ref="navigator"
-      initialRoute={Routes.Tabs}
+      initialRoute={Routes.FormExample}
       renderScene={this._renderScene}
       navigationBar={this._renderNavBar()}
       

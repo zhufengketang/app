@@ -47,6 +47,8 @@ import {ListView} from 'basic'
 
 import Swiper from 'react-native-swiper';
 
+import {Routes} from "domain/page"
+
 
 
 const course_gen = () => {
@@ -60,7 +62,8 @@ const course_gen = () => {
     title : "顶级大神教你写node.js",
     author : "张仁阳",
     description : "国内顶尖大神教你写node.js.从零开始,循序渐进.......",
-    price : Math.random() * 10000 + 5000
+    price : Math.random() * 10000 + 5000,
+    start : "2016-10-30"
   }
 }
 
@@ -94,6 +97,7 @@ export class Home extends Component {
   _pressCourse(course) {
     console.log(1)
     return () => {
+      this.props.navigator.push({...Routes.Course, course})
       /// TODO 跳转
     }
   }
@@ -252,9 +256,9 @@ class CourseCard extends Component{
 const courseStyle = StyleSheet.create({
     cardContainer: {
       shadowColor : "grey",
+      shadowOpacity : 0.5,
       shadowRadius : 3,
       shadowOffset : {width : 0, height : 5},
-      shadowOpacity : 0.5,
       backgroundColor: "white",
       marginBottom: 0,
       paddingBottom: 10,
