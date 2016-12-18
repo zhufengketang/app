@@ -134,6 +134,35 @@ course_id:课程ID
 }
 ```
 
+#### GET /order
+接口定义: 订单列表
+
+返回用户所有已选课程
+
+**成功返回**
+```
+{
+
+    code : 1000,
+    data : {
+        total : 2,
+        orders : [{
+            id : 100, //订单ID
+            title : "顶级大神教你写node.js",
+            author : "张仁阳",
+            description : "国内顶尖大神教你写node.js.从零开始,循序渐进.......",
+            price : 3000.00,
+            start : "2016-10-30",
+            address : "珠峰"
+            image :  "http://a1.jikexueyuan.com/home/201506/24/a082/558a11c35f925.jpg",     
+        }, {
+            ...与上一条相同
+        }]
+        
+    }
+    
+}
+```
 
 #### POST /user/token
 接口定义:获取用户TOKEN
