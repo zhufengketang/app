@@ -53,11 +53,11 @@
 #### TOKEN
 为了让APP和服务端保持状态同步,需要服务端生成一个TOKEN
 流程如下:
-- 任何一个APP接口发生请求时,如果Headers里没有token,都会进入2
-- 服务端验证通过生成一个16位的TOKEN,伴随接口的headers返回,客户端接进行缓存
-- 每一个请求,客户端都会在HTTP_HEADERS中增加{token : "1fawefawf234aAWi322o"}
-- 服务器接收到客户端的请求,如果发现TOKEN有效,则正常返回数据, 如果发现TOKEN无效,则返回code=201
-- 客户端看到code=201后,清除本地缓存token并跳转到登录页
+1.任何一个APP接口发生请求时,如果Headers里没有token,都会进入2
+2.服务端验证通过生成一个16位的TOKEN,伴随接口的headers返回,客户端接进行缓存
+3.每一个请求,客户端都会在HTTP_HEADERS中增加{token : "1fawefawf234aAWi322o"}
+4.服务器接收到客户端的请求,如果发现TOKEN有效,则正常返回数据, 如果发现TOKEN无效,则返回code=201
+5.客户端看到code=201后,清除本地缓存token并跳转到登录页
 
 
 
