@@ -50,6 +50,7 @@ export class Course extends Component {
       price : Math.random() * 10000 + 5000,
       start : "2016-10-30",
       image : "http://a1.jikexueyuan.com/home/201506/24/a082/558a11c35f925.jpg",
+      hours : "21小时",
       address : "珠峰",
       contents : [
         "第1课: XXXXXXX",

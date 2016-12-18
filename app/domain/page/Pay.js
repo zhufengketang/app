@@ -26,6 +26,7 @@
 
 import React, {Component} from 'react'
 import {View, Text, Image, ScrollView, Dimensions} from 'react-native'
+import {CourseCardSmall} from "domain/component"
 
 export class Pay extends Component {
 
@@ -42,6 +43,7 @@ export class Pay extends Component {
       start : "2016-10-30",
       image : "http://a1.jikexueyuan.com/home/201506/24/a082/558a11c35f925.jpg",
       address : "珠峰",
+      hours : "21小时",
       contents : [
         "第1课: XXXXXXX",
         "第2课: XXXXXXX",
@@ -57,6 +59,7 @@ export class Pay extends Component {
     
     return (
       <View>
+        <CourseCardSmall {...course} />
       </View>
     )
   }
