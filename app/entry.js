@@ -63,7 +63,7 @@ export class Entry extends Component {
     
     const {Component, noTitleBar} = route
     return (
-      <View style={{flex : 1}}>
+      <View style={{flex : 1, backgroundColor : 'white'}}>
         <StatusBar
           barStyle={route.Inverse ? "light-content" : "default"}
         />
@@ -125,7 +125,7 @@ export class Entry extends Component {
     // renderScene 绘制场景 
     return <Navigator
       ref="navigator"
-      initialRoute={Routes.Course}
+      initialRoute={Routes.Tabs}
       renderScene={this._renderScene}
       navigationBar={this._renderNavBar()}
       

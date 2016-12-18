@@ -26,5 +26,6 @@ export * from "./ZButton"
 export * from "./navbar/ZNavBar"
 export * from "./tabbar/Tabbar"
 export * from "./ZBottomButton"
+export * from "./CourseCardBig"
 
 

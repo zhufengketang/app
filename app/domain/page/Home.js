@@ -39,15 +39,13 @@ import {
   Platform
 } from 'react-native'
 
-import {format_currency, flexCenter} from "basic"
 
-import {COLOR_TITLE, COLOR_TEXT_LIGHT, COLOR_PRICE} from "domain/def"
-
-import {ListView} from 'basic'
-
+import {ListView, flexCenter} from 'basic'
 import Swiper from 'react-native-swiper';
-
 import {Routes} from "domain/page"
+
+import {CourseCardBig} from "domain/component"
+
 
 
 
@@ -130,7 +128,7 @@ export class Home extends Component {
     else {
 
       return (
-        <CourseCard onPress={this._pressCourse(course).bind(this)} {...course}  />
+        <CourseCardBig onPress={this._pressCourse(course).bind(this)} {...course}  />
       )
 
     }
@@ -232,95 +230,3 @@ export class Home extends Component {
 
 }
 
-class CourseCard extends Component{
-
-  render() {
-    const W = Dimensions.get("window").width
-
-    const {image, title, author, description, price} = this.props
-
-    return <TouchableOpacity elevation={true}  onPress={this.props.onPress} style={courseStyle.cardContainer}>
-
-      <Image
-        source={{uri : image}}
-        style={{width : W - 22, height : (W - 20) * 0.3}}
-      />
-      <Title>{title}</Title>
-      <Author label="讲师">{author}</Author>
-      <Description>{description}</Description>
-      <Price>{price}</Price>
-    </TouchableOpacity>
-  }
-
-}
-
-const courseStyle = StyleSheet.create({
-    cardContainer: {
-      shadowColor : "grey",
-      shadowOpacity : 0.5,
-      shadowRadius : 3,
-      shadowOffset : {width : 0, height : 5},
-      backgroundColor: "white",
-      marginBottom: 0,
-      paddingBottom: 10,
-      marginLeft: 10,
-      marginRight: 10,
-      marginTop : 10,
-      borderRadius: 5, 
-      borderWidth: 1, 
-      borderColor: "#c7c8c9",
-    }
-  }
-)
-
-const Paragraph = {
-  paddingLeft : 20,
-  paddingRight : 20,
-  marginTop : 10
-
-}
-
-
-
-const Title = ({children}) => {
-  return <Text style={{...Paragraph, color : COLOR_TITLE, fontSize : 18, fontWeight : 'bold'}}>{children}</Text>
-
-}
-/**
- * 等同于
- * class Title extends Component {
- *    render() {
- *      const {children} = this.props
- *      ....
- *    }
- * }
- *
- */
-
-const ScrollIndicator = ({children, image}) => {
-  return <View style={{flexDirection : 'row', ...flexCenter}}>
-    <Text>{children}</Text>
-    <Image source={image} style={{width : 18, height : 18}} />
-  </View>
-
-
-}
-
-
-const Author = ({label, children}) => {
-  return <Text style={{...Paragraph, color : COLOR_TEXT_LIGHT}}>{label}:{children}</Text>
-}
-
-
-const Description = ({children}) => {
-  return <Text style={{...Paragraph, color : COLOR_TEXT_LIGHT}}>{children}</Text>
-}
-
-// 1000 => 1,000.00
-// 1000.000 => 1,000.00
-
-
-
-const Price = ({children}) => {
-  return <Text style={{...Paragraph, color : COLOR_PRICE,fontSize : 18, fontWeight : 'bold'}}>￥{format_currency(children)}</Text>
-}
