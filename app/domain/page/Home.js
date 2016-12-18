@@ -61,6 +61,7 @@ const course_gen = () => {
     image : images[Math.floor(Math.random() * 3)],
     title : "顶级大神教你写node.js",
     author : "张仁阳",
+    author_profile : "XXX老师来自于XXX公司,离职后一直从事前端领域教育",
     description : "国内顶尖大神教你写node.js.从零开始,循序渐进.......",
     price : Math.random() * 10000 + 5000,
     start : "2016-10-30"

@@ -22,9 +22,35 @@
  *
  */
 
-export * from "./ZButton"
-export * from "./navbar/ZNavBar"
-export * from "./tabbar/Tabbar"
-export * from "./ZBottomButton"
+import React, {Component} from 'react'
 
 
+import {
+  Dimensions
+} from 'react-native'
+
+import {
+  Button 
+} from 'basic'
+
+import {
+  COLOR_PRIMARY 
+} from "domain/def"
+
+
+export class ZBottomButton extends Component {
+  
+  render(){
+    
+    return (
+
+      <Button
+        style={{flex : 1, width : null, height : null}}
+              fontSize={14}
+              backgroundColor={COLOR_PRIMARY}
+        {...this.props}
+      />
+
+    )
+  }
+}

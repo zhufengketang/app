@@ -90,7 +90,7 @@ export class Button extends Component{
     return(
       <TouchableOpacity 
         onPress={this.onPress.bind(this)}
-        style={{backgroundColor, width,  height, ...flexCenter, borderRadius}}>
+        style={{backgroundColor, width,  height, ...flexCenter, borderRadius, ...this.props.style}}>
         <Text style={{color : 'white', fontSize : fSize, fontWeight : Platform.OS === 'android' ? "bold" : "normal"}}>{children}</Text>
       </TouchableOpacity>
     )

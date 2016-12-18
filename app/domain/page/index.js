@@ -78,6 +78,14 @@ export const Routes = {
     Inverse : true,
     Title : "表单例子",
     get Component() { return require("./FormExample").FormExample}
+  },
+  
+  Pay : {
+    name : "Pay",
+    Inverse : true,
+    Title : "课程支付",
+    get Component() { return require("./Pay").Pay } 
+    
   }
   
 
