@@ -53,11 +53,11 @@
 #### TOKEN
 为了让APP和服务端保持状态同步,需要服务端生成一个TOKEN
 流程如下:
-1. 首次登陆时, APP发送用户名/密码给服务端
-2. 服务端验证通过生成一个16位的TOKEN,客户端进行缓存
-3. 以后每一个请求,客户端都会在HTTP_HEADERS中增加{token : "1fawefawf234aAWi322o"}的一个TOKEN 
+1. 任何一个APP接口发生请求时,如果Headers里没有token,都会进入2
+2. 服务端验证通过生成一个16位的TOKEN,伴随接口的headers返回,客户端接进行缓存
+3. 每一个请求,客户端都会在HTTP_HEADERS中增加{token : "1fawefawf234aAWi322o"}
 4. 服务器接收到客户端的请求,如果发现TOKEN有效,则正常返回数据, 如果发现TOKEN无效,则返回code=201
-5. 客户端看到code=201后,清楚本地缓存token并跳转到登录页
+5. 客户端看到code=201后,清除本地缓存token并跳转到登录页
 
 
 
@@ -164,8 +164,8 @@ course_id:课程ID
 }
 ```
 
-#### POST /user/token
-接口定义:获取用户TOKEN
+#### GET /user/identity
+接口定义:用户登录
 
 **URL参数说明**
 ```
@@ -179,10 +179,15 @@ course_id:课程ID
 **成功返回**
 ```
 {
-    code : 0,
-    data : {
-        token : "1fawefawf234aAWi322o"
-    }
+    code : 0
+}
+```
+
+**失败返回**
+```
+{
+    code : 1000,
+    errorMessage : "用户名或密码错误"
 }
 ```
 
@@ -232,4 +237,15 @@ type=forget忘记密码验证码
 }
 
 ```
+
+
+### 图片验证码
+GET /imgcode
+
+
+每次请求返回一张6位数字的图片,服务端大致流程如下
+1. 客户端提交请求 GET /imgcode 和 HEADERS={token : "XXXXXXXXX" }
+2. 服务器接受请求,然后生成图片, 将验证码结果和token绑定, 存储成为一条记录, 加上过期时间
+3. 任何需要验证图片的地方从数据库中进行校验
+
 
