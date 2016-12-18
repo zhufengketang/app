@@ -1,0 +1,206 @@
+### 接口文档
+### 通用定义
+
+#### 请求方式(HTTP_METHOD)
+按照Restful规范, GET用于请求/查询数据, POST用于新增, PUT用于修改,DELETE用于删除
+
+
+
+#### 资源命名
+主要分成几类资源,所有资源都用单数结尾
+1. /course 课程
+2. /user 用户
+3. /order 支付
+
+
+
+#### 接口返回格式
+
+为了简化,此处和严格的Restful接口定义略有不同, 请求无论成功失败都返回200的状态码
+注: 严格按照restful规范请求成功返回 200 - 299 的状态码,请求失败返回 400 - 599 的状态码
+
+一次请求会返回一个JSON对象, 对于从逻辑上成功的请求, 如登录成功/获取数据成功/查询成功等
+返回code : 0, errorMessage : "", data : {...数据}
+
+**逻辑成功调用的示例:**
+```
+{
+    code : 0,
+    errorMessage : "",
+    data : ... //返回的数据,如果不需要返回数据的接口, data = null 
+}
+```
+
+**逻辑失败的调用示例**
+```
+{
+
+    code : 201,
+    errorMessage : "请登录",
+    data : null
+}
+```
+
+
+#### code定义
+为了简化需求, 目前定义3个code
+
+0 : 成功
+201 : 用户授权失败(需要登录)
+1000 : 其他错误
+
+
+#### TOKEN
+为了让APP和服务端保持状态同步,需要服务端生成一个TOKEN
+流程如下:
+1. 首次登陆时, APP发送用户名/密码给服务端
+2. 服务端验证通过生成一个16位的TOKEN,客户端进行缓存
+3. 以后每一个请求,客户端都会在HTTP_HEADERS中增加{token : "1fawefawf234aAWi322o"}的一个TOKEN 
+4. 服务器接收到客户端的请求,如果发现TOKEN有效,则正常返回数据, 如果发现TOKEN无效,则返回code=201
+5. 客户端看到code=201后,清楚本地缓存token并跳转到登录页
+
+
+
+### 接口定义
+#### GET /course
+接口定义:获取课程列表2
+
+**URL参数说明**
+start : 获取课程开始的位置
+take : 总共获取多少个课程
+
+**成功返回结果示例**
+请求 GET /course?start=0&take=5
+```
+{
+    code : 0,
+    data : {
+        courses : [{
+            id : 100,
+            title : "顶级大神教你写node.js",
+            author : "张仁阳",
+            description : "国内顶尖大神教你写node.js.从零开始,循序渐进.......",
+            price : 3000.00,
+            start : "2016-10-30",
+            address : "珠峰"
+            image :  "http://a1.jikexueyuan.com/home/201506/24/a082/558a11c35f925.jpg",
+            contents : [
+                "第一个小例子,实现request.queryString",
+                "第二个小例子,实现request.queryString",
+                "第三个小例子,实现request.queryString",
+                "第四个小例子,实现request.queryString",
+                "第五个小例子,实现request.queryString",
+            ]}, {
+                ...重复4次
+            }
+        ],
+        total : 205 //课程总数
+        
+    }
+}
+```
+
+**没有更多数据的返回示例**
+请求 GET /course?start=10000&take=20
+```
+{
+    code : 0,
+    data : {
+        courses : null, 
+        total : 205
+    }
+}
+```
+
+#### POST /order/{course_id}
+接口定义 : 下单/报名
+
+**URL参数说明**
+course_id:课程ID
+
+**成功返回**
+```
+{
+    code : 0
+}
+```
+
+**失败**
+如: 课程已经订满/已经预定过此课程等
+```
+{
+    code : 1000,
+    errorMessage : "抱歉!课程已经订满!"
+}
+```
+
+
+#### POST /user/token
+接口定义:获取用户TOKEN
+
+**URL参数说明**
+```
+{
+    mobile : "18611223345",
+    password : "abcdefg"
+}
+```
+
+
+**成功返回**
+```
+{
+    code : 0,
+    data : {
+        token : "1fawefawf234aAWi322o"
+    }
+}
+```
+
+
+#### POST /user
+接口定义: 注册
+
+
+**URL参数说明**
+```
+{
+    name : "张老师", // 真实姓名
+    password : "abcdefg",
+    mobile : "18611223344",
+    vcode : "123456" //验证码
+}
+```
+
+**成功返回**
+```
+{
+    code : 0,
+    data : null 
+}
+```
+
+
+#### GET /user/vcode
+接口定义: 获取短信验证码
+
+
+**URL参数说明**
+mobile : 手机号
+type : register或者forget
+img_code : 图片验证码
+
+type=register代表注册验证码
+type=forget忘记密码验证码
+
+
+**成功返回**
+请求: /user/vcode?mobile=18611223344&type=register&img_code=123456
+```
+{
+    code : 0,
+    data : null
+}
+
+```
+

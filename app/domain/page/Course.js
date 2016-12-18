@@ -38,7 +38,6 @@ export class Course extends Component {
 
     super()
  
-    console.log(props.route)
     
     props.route.course = {
       title : "顶级大神教你写node.js",
@@ -46,7 +45,8 @@ export class Course extends Component {
       description : "国内顶尖大神教你写node.js.从零开始,循序渐进.......",
       price : Math.random() * 10000 + 5000,
       start : "2016-10-30",
-      address : "珠峰"
+      address : "珠峰",
+
     }
     
   }
