@@ -27,16 +27,43 @@ import React, {Component} from 'react'
 
 import {
   Text,
-  View
+  View,
+  Image,
+  ScrollView,
+  TouchableOpacity
 } from 'react-native'
 
 export class UserCenter extends Component{
   
   render(){
     return (
-      <View>
-        <Text>个人中心</Text>
-      </View>
+      <ScrollView>
+        <View>
+          <Image source={require("./usercenter.png")}>
+            <View>
+              <Text>登录</Text>
+            </View>
+          </Image>
+        </View>
+
+        <View>
+          <StripedButton icon={require("./images/uc/question.png")}>常见问题</StripedButton>
+          <StripedButton icon={require("./images/uc/user.png")}>关于我们</StripedButton>
+          <StripedButton icon={require("./images/uc/password.png")}>修改密码</StripedButton>
+        </View>
+      </ScrollView>
     )
   }
 }
+
+const StripedButton = ({icon, chilren, onPress}) => {
+
+  return <TouchableOpacity onPress={onPress}>
+    <Image source={icon} />
+    <Text>{children}</Text>
+    <Image source={require("./images/right-arrow.png")}></Image>
+  </TouchableOpacity>
+}
+
+
+

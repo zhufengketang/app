@@ -78,6 +78,8 @@ take : 总共获取多少个课程
             id : 100,
             title : "顶级大神教你写node.js",
             author : "张仁阳",
+            author_profile : "教师简介...", // 较长
+            hours : "24", //课时 
             description : "国内顶尖大神教你写node.js.从零开始,循序渐进.......",
             price : 3000.00,
             start : "2016-10-30",
