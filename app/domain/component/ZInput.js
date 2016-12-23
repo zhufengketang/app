@@ -25,45 +25,11 @@
 
 import React, {Component} from 'react'
 
-import {
-  Text,
-  View,
-  Image,
-  ScrollView,
-  TouchableOpacity
-} from 'react-native'
+import {TextInput} from 'react-native' 
 
-export class UserCenter extends Component{
+class ZInput extends Component{
   
   render(){
-    return (
-      <ScrollView>
-        <View>
-          <Image source={require("./images/usercenter.png")}>
-            <View>
-              <Text>登录</Text>
-            </View>
-          </Image>
-        </View>
-
-        <View>
-          <StripedButton icon={require("./images/uc/question.png")}>常见问题</StripedButton>
-          <StripedButton icon={require("./images/uc/user.png")}>关于我们</StripedButton>
-          <StripedButton icon={require("./images/uc/password.png")}>修改密码</StripedButton>
-        </View>
-      </ScrollView>
-    )
+    return <TextInput />
   }
 }
-
-const StripedButton = ({icon, children, onPress}) => {
-
-  return <TouchableOpacity onPress={onPress}>
-    <Image source={icon} />
-    <Text>{children}</Text>
-    <Image source={require("./images/right-arrow.png")}></Image>
-  </TouchableOpacity>
-}
-
-
-

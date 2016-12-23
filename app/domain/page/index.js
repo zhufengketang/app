@@ -53,6 +53,12 @@ export const Routes = {
     Title : "Example3",
     get Component() {return require("./Example3").Example3}
   },
+  Example4 : {
+    name : "Example4" , 
+    Title : "Example4",
+    get Component() {return require("./Example4").Example4}
+    
+  },
 
   /* 首页 */
   Tabs : {
