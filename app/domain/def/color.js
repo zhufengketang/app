@@ -12,6 +12,9 @@ export const COLOR_TITLE = "#222"
 
 export const COLOR_TEXT_LIGHT = "#777"
 
+
 export const COLOR_PRICE = "#ee4339"
 
 export const COLOR_INFO = '#3596e2'
+
+export const COLOR_LIGHT_BLUE = '#d8edfe'

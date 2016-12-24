@@ -32,25 +32,22 @@ import {
   TextInput,
   StyleSheet,
   Alert,
-  Switch,
   Picker
 
 
 } from 'react-native'
 
-import {FormConnector, ValidateMethods} from 'basic'
-import {ZButton} from "domain/component"
+import {FormConnector, ValidateMethods, flexCenter} from 'basic'
+import {ZButton, ZInput, ZSwitch, ZVCode} from "domain/component"
 
 
 
 export class FormExample extends Component {
-
   
   render(){
     return (
       <View>
-
-        <FormConnector ref="fc" fields={fields} validate={validate}>
+        <FormConnector ref="fc" data={{agree : true}} fields={fields} validate={validate}>
           <LoginForm />
         </FormConnector>
       </View>
@@ -85,31 +82,17 @@ class LoginForm extends Component{
     console.log(user_name)
     return (
       <View>
-        <View>
-          <Text>手机号:</Text>
-          <TextInput {...user_name} style={styles.textInput} keyboardType="phone-pad"/>
-          <Text>{user_name.error}</Text>
-        </View>
 
-        <View>
-          <Text>密码:</Text>
-          <TextInput
-            {...password}
-            secureTextEntry={true}  style={styles.textInput}/>
-        </View>
-        <View>
-          <Text>同意注册协议:</Text>
-          <Switch  />
+        <ZInput placeholder="姓名" {...user_name} />
+        <ZInput placeholder="手机号" {...user_name} />
+        <ZInput placeholder="密码" {...password} secureTextEntry={true} />
+        <ZVCode />
+        <ZSwitch label="同意注册协议" {...agree} />
           
+        <View style={{...flexCenter, marginTop : 20}}>
+          <ZButton onPress={this.submit.bind(this)}>提交</ZButton>
         </View>
-
-        <Picker
-        >
-          <Picker.Item label="Java" value="java" />
-          <Picker.Item label="JavaScript" value="js" />
-        </Picker>
-        <TextInput {...age} style={styles.textInput}/>
-        <ZButton onPress={this.submit.bind(this)}>提交</ZButton>
+        
       </View>
     )
 
@@ -125,7 +108,7 @@ const validate = (assert, fields) => {
 
 
 
-const fields = ["user_name" , "password", "age", "agree"]
+const fields = ["user_name" , "password",  "agree"]
 
 
 const styles = StyleSheet.create({

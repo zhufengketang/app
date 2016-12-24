@@ -15,8 +15,12 @@ export class FormConnector extends Component{
   constructor(props){
     super()
     this.form = new Form(props.validate, props.submit)
+    
     this.state = {
       fields : this.form.createFields(props.fields)
+    }
+    if(props.data) {
+      this.form.setData(props.data)
     }
   }
 

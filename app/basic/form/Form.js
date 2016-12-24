@@ -215,7 +215,6 @@ export class Form {
     }
 
 
-    obj.onChangeText = this._change(name).bind(this)
     obj.onChange = this._change(name).bind(this)
     obj.onFocus = this._focus(name).bind(this)
     obj.onBlur = this._blur(name).bind(this)

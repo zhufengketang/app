@@ -25,11 +25,32 @@
 
 import React, {Component} from 'react'
 
-import {TextInput} from 'react-native' 
+import {TextInput, StyleSheet, View, Text} from 'react-native' 
 
-class ZInput extends Component{
+import {COLOR_TEXT_LIGHT} from "domain/def"
+
+export class ZInput extends Component{
   
   render(){
-    return <TextInput />
+    const {error, ...others} = this.props
+    return  <View>
+      <TextInput style={styles.input} {...others}  />
+    </View>
   }
 }
+
+const styles = StyleSheet.create({
+  input : {
+    borderWidth : 1,
+    borderRadius : 5,
+    borderColor : "#eee",
+    paddingLeft : 20,
+    paddingRight : 20,
+    height : 42,
+    marginLeft : 20,
+    marginRight : 20,
+    color : COLOR_TEXT_LIGHT,
+    marginTop : 20
+    
+  }  
+})

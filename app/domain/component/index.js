@@ -28,5 +28,8 @@ export * from "./tabbar/Tabbar"
 export * from "./ZBottomButton"
 export * from "./CourseCardBig"
 export * from "./CourseCardSmall"
+export * from "./ZInput"
+export * from "./ZSwitch"
+export * from "./ZVCode"
 
 
