@@ -220,7 +220,6 @@ export class Form {
     obj.onBlur = this._blur(name).bind(this)
     obj.onEnter = this._enter(name).bind(this)
 
-    console.log(obj)
     this.fields[name] = obj
   }
 

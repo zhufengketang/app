@@ -57,7 +57,6 @@ export const Routes = {
     name : "Example4" , 
     Title : "Example4",
     get Component() {return require("./Example4").Example4}
-    
   },
 
   /* 首页 */
@@ -92,6 +91,13 @@ export const Routes = {
     Title : "课程支付",
     get Component() { return require("./Pay").Pay } 
     
+  },
+  /** 注册 **/
+  Register : {
+    name : "Register",
+    Inverse : true,
+    Title : "注册",
+    get Component() { return require("./Register").Register}
   }
   
 

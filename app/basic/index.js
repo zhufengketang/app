@@ -30,3 +30,4 @@ export * from "./ListView"
 export {FormConnector} from "./form/FormConnector"
 export let ValidateMethods = require("./form/validate")
 export let SegmentedControl = require("./SegmentedControl")
+export * from "./FormScrollView"

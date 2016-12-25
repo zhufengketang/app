@@ -125,7 +125,7 @@ export class Entry extends Component {
     // renderScene 绘制场景 
     return <Navigator
       ref="navigator"
-      initialRoute={Routes.FormExample}
+      initialRoute={Routes.Register}
       renderScene={this._renderScene}
       navigationBar={this._renderNavBar()}
       

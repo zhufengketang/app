@@ -69,12 +69,20 @@ export class FormConnector extends Component{
   getForm(){
     return this.form
   }
+  
 
+  _submit(){
+    
+    const errors  = this.form.getErrors()
+    const data = this.form.getData()
+    
+    this.props.submit && this.props.submit(data, errors)
+  }
 
   render() {
     const {children, ...others} = this.props
     const {fields} = this.state
-    return React.cloneElement(children, {...others, fields, form : this.form})
+    return React.cloneElement(children, {...others, fields, form : this.form, submit : this._submit.bind(this)})
   }
 
 

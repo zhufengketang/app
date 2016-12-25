@@ -31,10 +31,14 @@ import {COLOR_TEXT_LIGHT} from "domain/def"
 
 export class ZInput extends Component{
   
+  _change(value){
+    this.props.onChange(value)  
+  }
   render(){
+    
     const {error, ...others} = this.props
     return  <View>
-      <TextInput style={styles.input} {...others}  />
+      <TextInput onChangeText={this._change.bind(this)} style={styles.input} {...others}  />
     </View>
   }
 }
