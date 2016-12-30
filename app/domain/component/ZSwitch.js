@@ -1,4 +1,5 @@
 /***********************************************
+ * 
  * MIT License
  *
  * Copyright (c) 2016 珠峰课堂,Ramroll
@@ -22,15 +23,50 @@
  *
  */
 
-export * from "./ZButton"
-export * from "./navbar/ZNavBar"
-export * from "./tabbar/Tabbar"
-export * from "./ZBottomButton"
-export * from "./CourseCardBig"
-export * from "./CourseCardSmall"
-export * from "./ZInput"
-export * from "./ZSwitch"
-export * from "./ZVCode"
-export * from "./ZImgCode"
+import React, {Component} from 'react'
 
+import {TextInput, StyleSheet, View, Text, Switch, TouchableOpacity, Keyboard} from 'react-native' 
 
+import {COLOR_TEXT_LIGHT, COLOR_PRIMARY} from "domain/def"
+
+export class ZSwitch extends Component{
+  
+  
+  _change(value){
+    this.props.onChange(value)
+
+    console.log(Keyboard)
+    Keyboard.dismiss()
+  }
+  
+  _press(){
+    
+    this.props.onPress && this.props.onPress()
+  }
+  render(){
+    const {error, value, label, ...others} = this.props
+    return  <View style={styles.container}>
+
+      <TouchableOpacity onPress={this._press.bind(this)}>
+        <Text style={{color : COLOR_PRIMARY}}>{label}</Text>
+      </TouchableOpacity>
+      <Switch 
+        onValueChange={this._change.bind(this)}
+        value={value}
+        style={styles.switch}
+      />
+    </View>
+  }
+}
+
+const styles = StyleSheet.create({
+  container : {
+    flexDirection : "row",  
+    alignItems : "center",
+    marginLeft : 20,
+    marginTop : 20
+  },
+  switch : {
+    marginLeft : 10 ,  
+  }
+})

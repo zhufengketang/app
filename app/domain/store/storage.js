@@ -1,4 +1,5 @@
 /***********************************************
+ *
  * MIT License
  *
  * Copyright (c) 2016 珠峰课堂,Ramroll
@@ -22,15 +23,17 @@
  *
  */
 
-export * from "./ZButton"
-export * from "./navbar/ZNavBar"
-export * from "./tabbar/Tabbar"
-export * from "./ZBottomButton"
-export * from "./CourseCardBig"
-export * from "./CourseCardSmall"
-export * from "./ZInput"
-export * from "./ZSwitch"
-export * from "./ZVCode"
-export * from "./ZImgCode"
+import {AsyncStorage} from 'react-native'
+
+export const get_local_token = async () => {
+  return AsyncStorage.getItem("token")
+}
 
 
+export const set_local_token = async (token) => {
+  return AsyncStorage.setItem("token", token)  
+}
+
+export const clear_local_token = async () => {
+  await AsyncStorage.removeItem("token")
+}

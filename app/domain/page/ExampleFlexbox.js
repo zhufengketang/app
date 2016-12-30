@@ -1,4 +1,5 @@
 /***********************************************
+ * 
  * MIT License
  *
  * Copyright (c) 2016 珠峰课堂,Ramroll
@@ -22,15 +23,32 @@
  *
  */
 
-export * from "./ZButton"
-export * from "./navbar/ZNavBar"
-export * from "./tabbar/Tabbar"
-export * from "./ZBottomButton"
-export * from "./CourseCardBig"
-export * from "./CourseCardSmall"
-export * from "./ZInput"
-export * from "./ZSwitch"
-export * from "./ZVCode"
-export * from "./ZImgCode"
+import React, {Component} from 'react'  
+import {View, Text, StyleSheet} from 'react-native' 
+export class ExampleFlexbox extends Component {
+  
+  render(){
+    
+    return (
+      <View style={{
+        flexDirection : "row", 
+        justifyContent : "flex-start", 
+        alignItems : "center",
+        height : 600, backgroundColor : "grey"
+        }}>
+        <View style={{backgroundColor : "red",  height : 40, flex : 2}}><Text style={styles.text}>A</Text></View>
 
+        <View style={{backgroundColor : "yellow",height : 40, flex : 1}}><Text style={styles.text}>B</Text></View>
+        <View style={{backgroundColor : "blue", height : 40, flex : 1}}><Text style={styles.text}>C</Text></View>
+        <View style={{backgroundColor : "green",  height : 40, flex : 1}}><Text style={styles.text}>D</Text></View>
+      </View>
+    )
+  }
+}
 
+const styles = StyleSheet.create({
+  
+  text : {
+    fontSize : 30 
+  }
+})

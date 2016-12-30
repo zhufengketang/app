@@ -1,4 +1,5 @@
 /***********************************************
+ *
  * MIT License
  *
  * Copyright (c) 2016 珠峰课堂,Ramroll
@@ -22,15 +23,28 @@
  *
  */
 
-export * from "./ZButton"
-export * from "./navbar/ZNavBar"
-export * from "./tabbar/Tabbar"
-export * from "./ZBottomButton"
-export * from "./CourseCardBig"
-export * from "./CourseCardSmall"
-export * from "./ZInput"
-export * from "./ZSwitch"
-export * from "./ZVCode"
-export * from "./ZImgCode"
+import React, {Component} from 'react'
 
+import {View, ScrollView, TouchableWithoutFeedback, Keyboard} from 'react-native'
+export class FormScrollView extends Component {
+  _press(){
+    Keyboard.dismiss()
+  }
+  
+  componentWillUnmount(){
 
+    Keyboard.dismiss()
+  }
+  render(){
+    return (
+      <ScrollView keyboardShouldPersistTaps={true}>
+        <TouchableWithoutFeedback onPress={this._press}>
+          <View>
+            {this.props.children}
+          </View>
+        </TouchableWithoutFeedback>
+      </ScrollView>
+    )
+
+  }
+}

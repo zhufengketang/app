@@ -59,6 +59,15 @@ export const Routes = {
     get Component() {return require("./Example4").Example4}
   },
 
+  /** Flexbox 示例 **/
+  ExampleFlexbox : {
+
+    name : "ExampleFlexbox",
+    Title : "Flexbox示例",
+    get Component() { return require("./ExampleFlexbox").ExampleFlexbox}
+
+  },
+
   /* 首页 */
   Tabs : {
     name : "Tabs",

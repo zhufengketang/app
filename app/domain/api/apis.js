@@ -1,4 +1,5 @@
 /***********************************************
+ * 
  * MIT License
  *
  * Copyright (c) 2016 珠峰课堂,Ramroll
@@ -22,15 +23,47 @@
  *
  */
 
-export * from "./ZButton"
-export * from "./navbar/ZNavBar"
-export * from "./tabbar/Tabbar"
-export * from "./ZBottomButton"
-export * from "./CourseCardBig"
-export * from "./CourseCardSmall"
-export * from "./ZInput"
-export * from "./ZSwitch"
-export * from "./ZVCode"
-export * from "./ZImgCode"
 
+import {http_get, http_post, http_put, url_mapper} from "domain/api/http"
 
+import {get_local_token} from "domain/store/storage"
+
+/**
+ * 请求获取token,并缓存在本地
+ */
+export const get_token = async () => {
+  const local_token =  await get_local_token()
+  if(local_token) {
+    console.log("local-token found:" + local_token)
+    return    
+  }
+  const result = await http_get("/token")
+  console.log(result)
+  
+}
+
+/**
+ * 获取验证码图片
+ */
+export const get_image = async () => {
+  
+  
+  const url = url_mapper("/imgcode")
+  const token = await get_local_token()
+  
+  const options = {
+    headers : {
+      token
+    }
+  }
+  
+  const result = await fetch(url, options)
+  if(result.status > 400) {
+    console.error('404')
+    return
+  }
+  // const img = URL.createObjectURL(blob);
+  // return img
+  
+  
+}

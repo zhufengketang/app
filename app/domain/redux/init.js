@@ -1,4 +1,5 @@
 /***********************************************
+ *
  * MIT License
  *
  * Copyright (c) 2016 珠峰课堂,Ramroll
@@ -22,15 +23,54 @@
  *
  */
 
-export * from "./ZButton"
-export * from "./navbar/ZNavBar"
-export * from "./tabbar/Tabbar"
-export * from "./ZBottomButton"
-export * from "./CourseCardBig"
-export * from "./CourseCardSmall"
-export * from "./ZInput"
-export * from "./ZSwitch"
-export * from "./ZVCode"
-export * from "./ZImgCode"
+
+import {
+  compose,
+  applyMiddleware, 
+  createStore, 
+  combineReducers
+} from 'redux'
+
+import thunk from 'redux-thunk'
+import {persistStore, autoRehydrate} from 'redux-persist'
+
+/** 引入 Reducer **/
+import {user} from "domain/redux/reducers/user"
+
+import {AsyncStorage} from "react-native"
+
+/**
+ * 创建Redux-Store
+ * @returns {*}
+ */
+export const init = async () => {
+  // 合并Reducer
+  const reducers = {
+    user
+  }
+  
+  const reducer = combineReducers(reducers);
+  
+  // 创建Store
+  // compose函数是将多个函数组合起来
+  // 这里是将所有的redux enhancer组合起来
+  const store = compose(
+    autoRehydrate(),
+    applyMiddleware(thunk)
+  )(createStore)(reducer)
 
 
+  return new Promise ( (resolve, reject) => {
+    const blackList = []
+    
+    // 使用ReactNative的AysncStorage作为redux-persist的storage
+    const storage = AsyncStorage
+    
+    persistStore(store, {blackList, storage}, () => {
+
+      console.log("rehydration complete")
+      resolve(store)
+    })
+  })
+  
+}
