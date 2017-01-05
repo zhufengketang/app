@@ -22,18 +22,18 @@
  * SOFTWARE.
  *
  */
+import {Alert} from 'react-native'
 
-import {AsyncStorage} from 'react-native'
+/**
+ * 注册一些全局函数
+ */
 
-export const get_local_token = () => {
-  return store.getState().user.token
+function assert_request(json) {
+  if (json.code !== 0) {
+    Alert.alert(json.data)
+    return false
+  }
+  return true
 }
 
-
-export const set_local_token = async (token) => {
-  store.dispatch({type : "SET_TOKEN", token})
-}
-
-export const clear_local_token = async () => {
-  // await AsyncStorage.removeItem("token")
-}
+global.assert_request = assert_request

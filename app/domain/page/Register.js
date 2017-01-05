@@ -32,15 +32,17 @@ import {
   Image,
   TextInput,
   StyleSheet,
-  Alert,
   ScrollView,
-  TouchableWithoutFeedback
+  TouchableWithoutFeedback,
+  Alert
 
 
 } from 'react-native'
 
 import {FormScrollView, FormConnector, ValidateMethods, flexCenter} from 'basic'
 import {ZButton, ZInput, ZSwitch, ZVCode, ZImgCode} from "domain/component"
+
+import {get_user_vcode} from "domain/api/apis"
 
 
 const fields = ["user_name" , "password", "mobile",  "agree", "vcode", "imgcode"]
@@ -94,23 +96,41 @@ export class Register extends Component {
  */
 const RegisterForm = ({form, fields, submit}) => {
 
+
   const {user_name, mobile, password, vcode, agree, imgcode} = fields
   console.log(user_name)
+  const send = async () => {
+    console.log("@send @RegisterForm")
+    const mobileNumber = mobile.value
+    if(!(mobileNumber && mobileNumber.length === 11 )){
+      Alert.alert("错误", "请输入手机号")  
+      return false
+    }
+    
+    if(!imgcode.value) {
+      Alert.alert("错误", "请输入图片验证码")  
+      return false 
+    }
+    /// TODO 发送请求
+     const result = await get_user_vcode("register", mobileNumber, imgcode.value)
+    // console.log("@send after")
+    // if(!assert_request(result)){
+    //   return false
+    // }
+
+    return true
+  }
   return (
     <View>
-
       <ZInput placeholder="姓名" {...user_name} />
       <ZInput placeholder="手机号" keyboardType="phone-pad" {...mobile} />
       <ZInput placeholder="密码"  {...password} secureTextEntry={true} />
-
-      <ZImgCode {...imgcode} />
-      <ZVCode {...vcode} />
+      <ZImgCode {...imgcode} send={send.bind(this)} />
+      <ZVCode {...vcode} send={send}  />
       <ZSwitch label="同意注册协议" {...agree} />
-
       <View style={{...flexCenter, marginTop : 20}}>
         <ZButton onPress={submit}>提交</ZButton>
       </View>
-
     </View>
   )
 }

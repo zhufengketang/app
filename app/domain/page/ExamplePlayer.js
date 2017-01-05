@@ -23,17 +23,34 @@
  *
  */
 
-import {AsyncStorage} from 'react-native'
 
-export const get_local_token = () => {
-  return store.getState().user.token
-}
+import React, {Component} from 'react'
+import {NativeModules, View, Dimensions, PanResponder, Text, Animated} from 'react-native'
 
 
-export const set_local_token = async (token) => {
-  store.dispatch({type : "SET_TOKEN", token})
-}
+import RCTPlayer from "domain/native/Player"
 
-export const clear_local_token = async () => {
-  // await AsyncStorage.removeItem("token")
+
+
+
+export class ExamplePlayer extends Component {
+
+
+  constructor(){
+    super()
+
+  }
+
+  componentWillMount(){
+    console.log(NativeModules)
+    // NativeModules.PlayerManager.play("1")
+  }
+
+  render(){
+
+    return <View>
+
+    </View>
+  }
+
 }

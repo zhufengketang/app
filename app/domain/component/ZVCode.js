@@ -39,21 +39,25 @@ export class ZVCode extends Component{
     }
   }
 
-  _send(){
-    
+  async _send(){
+
     if(this.state.tick != 0){
       return
     }
+
+    const pass = await this.props.send()
     
-    this.props.send && this.props.send()
-    
-    this.setState({
-      tick : 60
-    }, () => {
-      this.I = setInterval(this._tick.bind(this), 1000)
-    })
+    if(pass) {
+      this.setState({
+        tick : 60
+      }, () => {
+        this.I = setInterval(this._tick.bind(this), 1000)
+      })
+    }
+
+
   }
-  
+
   _change(value){
     this.props.onChange(value)
   }
@@ -82,7 +86,6 @@ export class ZVCode extends Component{
   render(){
     const {error, ...others} = this.props
     const {tick} = this.state
-
 
     return  <View style={styles.container}>
       <TextInput style={styles.input}  keyboardType="phone-pad" onChangeText={this._change.bind(this)} {...others} placeholder="验证码"  />

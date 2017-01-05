@@ -1,5 +1,4 @@
 /***********************************************
- *
  * MIT License
  *
  * Copyright (c) 2016 珠峰课堂,Ramroll
@@ -23,17 +22,7 @@
  *
  */
 
-import {AsyncStorage} from 'react-native'
 
-export const get_local_token = () => {
-  return store.getState().user.token
-}
+import { requireNativeComponent } from 'react-native';
 
-
-export const set_local_token = async (token) => {
-  store.dispatch({type : "SET_TOKEN", token})
-}
-
-export const clear_local_token = async () => {
-  // await AsyncStorage.removeItem("token")
-}
+module.exports = requireNativeComponent('RCTPlayer', null);

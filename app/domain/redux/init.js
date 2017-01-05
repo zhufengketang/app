@@ -31,13 +31,17 @@ import {
   combineReducers
 } from 'redux'
 
-import thunk from 'redux-thunk'
 import {persistStore, autoRehydrate} from 'redux-persist'
 
 /** 引入 Reducer **/
 import {user} from "domain/redux/reducers/user"
 
 import {AsyncStorage} from "react-native"
+
+/** 引入 middleware **/
+
+import thunk from 'redux-thunk'
+import promise from "domain/redux/middlewares/promise"
 
 /**
  * 创建Redux-Store
@@ -56,7 +60,7 @@ export const init = async () => {
   // 这里是将所有的redux enhancer组合起来
   const store = compose(
     autoRehydrate(),
-    applyMiddleware(thunk)
+    applyMiddleware(thunk, promise)
   )(createStore)(reducer)
 
 

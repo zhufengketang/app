@@ -28,6 +28,10 @@ const initialState = {
 }
 export const user = (state = initialState, action) => {
   
+  switch(action.type) {
+    case "SET_TOKEN" : 
+      return {token : action.token}
+  }
   return state
   
 }

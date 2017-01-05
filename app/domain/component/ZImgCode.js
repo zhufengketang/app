@@ -58,13 +58,15 @@ export class ZImgCode extends Component{
   }
   
   componentDidMount(){
-
     this._load()
-    
   }
 
   _change(value){
     this.props.onChange(value)
+  }
+  
+  _changeImage(){
+    this._load()
   }
 
   render(){
@@ -75,11 +77,14 @@ export class ZImgCode extends Component{
     return  <View style={styles.container}>
       <TextInput style={styles.input}  keyboardType="phone-pad" onChangeText={this._change.bind(this)} {...others} placeholder="图片验证码"  />
 
-      {img &&
-      <View style={{...styles.btn, ...styles.btnDisabled}}>
-        <Image style={{width : 100, height :42}} source={{uri : img }}/>
-      </View>
-      }
+      <TouchableOpacity onPress={this._changeImage.bind(this)}>
+        {img &&
+        <View style={{...styles.btn, ...styles.btnDisabled}}>
+          <Image style={{width : 100, height :42}} source={{uri : img }}/>
+        </View>
+
+        }
+      </TouchableOpacity>
     </View>
   }
 }
@@ -106,20 +111,15 @@ const styles = {
 
   } ,
   btn : {
-    borderRadius : 5,
-    borderColor : COLOR_PRIMARY,
-    borderWidth : 1,
     height : 42,
     paddingLeft : 20,
     paddingRight : 20,
     marginLeft : 10,
-    backgroundColor : COLOR_LIGHT_BLUE,
     ...flexCenter
 
 
   },
   btnDisabled : {
-    backgroundColor : "#f2f3f4",
     borderColor : "#eee"
   },
   btnText: {

@@ -36,12 +36,15 @@ import {get_local_token, set_local_token} from "domain/store/storage"
  */
 const http_factory = (method) => {
   return async (url, params) => {
+    console.log("@http_factory")
     url = url_mapper(url)
 
     // 获取TOKEN
-    let token = await get_local_token() 
+    let token = await get_local_token()
+
+    console.log("@http_factory after get_local_token" )
     
-    
+
     // 生成Fetch的请求选项
     const requestOptions = {
       method,
@@ -50,6 +53,7 @@ const http_factory = (method) => {
         token
       },
     }
+
 
     if(method == "GET") {
       const queryString = qs.stringify(params)
@@ -64,16 +68,27 @@ const http_factory = (method) => {
      * 发送http请求
      * @returns {*}
      */
-    async function send_request(){
-      return fetch(url)
+    const send_request = () => {
+      return fetch(url, requestOptions)
     }
-    
+
+
     try{
+      console.log("@http_factory before sending")
       const http_result = await send_request()
+      console.log("@http_factory send request to " + url + " with params ")
+      console.log(params)
+      console.log("and options")
+      console.log(requestOptions)
       const json = await http_result.json()
-      set_local_token(json.token)
+
+      console.log("get json result")
+      console.log(json)
+      if(json.token) {
+        set_local_token(json.token)
+      }
+      // return {type : "HTTP_RESULT", url : "url",  json}
       return json
-      
     }
     catch (e) {
       console.error(e + ":" + url)
@@ -88,7 +103,9 @@ const http_factory = (method) => {
  * @param url
  */
 export const url_mapper = (url) => {
-  return SERVICE_BASE.replace(/\/$/, '') + "/" + url.replace(/^\//, '')
+  const fullUrl = SERVICE_BASE.replace(/\/$/, '') + "/" + url.replace(/^\//, '')
+  console.log("@at url_maper :" + fullUrl)
+  return fullUrl
   
 }
 

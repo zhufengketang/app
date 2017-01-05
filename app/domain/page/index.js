@@ -68,6 +68,14 @@ export const Routes = {
 
   },
 
+  /** 视频播放示例 **/
+  ExamplePlayer : {
+    name : "ExamplePlayer",
+    Title : "视频播放示例",
+    get Component() {return require("./ExamplePlayer").ExamplePlayer}
+  },
+
+
   /* 首页 */
   Tabs : {
     name : "Tabs",

@@ -27,23 +27,70 @@ import React, {Component} from 'react'
 
 import {View, ScrollView, TouchableWithoutFeedback, Keyboard} from 'react-native'
 export class FormScrollView extends Component {
+
+  constructor(){
+    super()
+    this.state = {
+      height : null
+    }
+  }
+
+
+
   _press(){
     Keyboard.dismiss()
   }
-  
+
+
+  _layout({nativeEvent : {layout : {x, y, width, height}}}){
+    
+    if(!this.height)
+      this.height = height
+  }
+
+
+  componentDidMount(){
+    this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', this._keyboardDidShow.bind(this));
+    this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', this._keyboardDidHide.bind(this));
+  }
+
   componentWillUnmount(){
 
     Keyboard.dismiss()
+    this.keyboardDidShowListener.remove();
+    this.keyboardDidHideListener.remove();
   }
+
+  _keyboardDidShow (e) {
+    const h = e.endCoordinates.height
+    this.setState({
+      height : this.height - h + 20
+    })
+  }
+
+  _keyboardDidHide () {
+    this.setState({
+      height :this.height 
+    })
+  }
+
   render(){
+    const {height} = this.state
+    const style = {}
+    if(height) {
+      style.height = height
+    }
+    console.log(style)
     return (
-      <ScrollView keyboardShouldPersistTaps={true}>
-        <TouchableWithoutFeedback onPress={this._press}>
-          <View>
-            {this.props.children}
-          </View>
-        </TouchableWithoutFeedback>
-      </ScrollView>
+      <View style={style} onLayout={this._layout.bind(this)}>
+        <ScrollView keyboardShouldPersistTaps={true} >
+          <TouchableWithoutFeedback onPress={this._press}>
+            <View>
+              {this.props.children}
+            </View>
+          </TouchableWithoutFeedback>
+        </ScrollView>
+      </View>
     )
 
   }

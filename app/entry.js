@@ -47,6 +47,9 @@ import {get_token} from "domain/api/apis"
 import {Provider} from 'react-redux'
 import {init} from "domain/redux/init"
 
+// 定义全局函数
+import "domain/def/global.function.def"
+
 
 
 export class Entry extends Component {
@@ -73,16 +76,17 @@ export class Entry extends Component {
        * 项目中使用
        */
       global.store = __store
-      
-      store.dispatch({type : "GET_TOKEN"})
-      
-      
+
       /**
        * 从服务端获取token,然后缓存在本地
        */
       get_token()
+        .then( (() => {
+          this.setState({store : __store})
+        }).bind(this))
       
-      this.setState({store : __store})
+      
+
     }).bind(this))
 
     
@@ -164,7 +168,7 @@ export class Entry extends Component {
     return <Provider store={store}>
       <Navigator
         ref="navigator"
-        initialRoute={Routes.Tabs}
+        initialRoute={Routes.Register}
         renderScene={this._renderScene}
         navigationBar={this._renderNavBar()}
       />
