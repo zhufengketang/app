@@ -7,9 +7,11 @@
     "test": "jest"
   },
   "dependencies": {
+    "@remobile/react-native-toast": "^1.0.5",
     "ramda": "^0.22.1",
     "react": "15.3.2",
     "react-native": "^0.39.2",
+    "react-native-fetch-blob": "^0.10.2-beta.1",
     "react-native-swiper": "^1.5.4",
     "react-redux": "^5.0.1",
     "redux": "^3.6.0",

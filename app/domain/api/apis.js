@@ -24,8 +24,10 @@
  */
 
 
+
 import {http_get, http_post, http_put, url_mapper} from "domain/api/http"
 
+import RNFetchBlob from 'react-native-fetch-blob'
 import {get_local_token} from "domain/store/storage"
 
 /**
@@ -52,28 +54,27 @@ function _arrayBufferToBase64( buffer ) {
 
 /**
  * 获取验证码图片
+ * @return 图片base64字符串
  */
 export const get_image = async () => {
 
 
+  console.log("@get_image[图片验证码] with token " + token)
+
+  // 获取实际的请求地址
   const url = url_mapper("/imgcode")
+
+  // 从AnsycStorage中取得token
   const token = await get_local_token()
 
-  console.log("@get_image[图片验证码] with token " + token)
-  const options = {
-    headers : {
-      token
-    }
-  }
-  const result = await fetch(url, options)
-  if(result.status > 400) {
-    console.error('404')
-    return
-  }
+  const result = await RNFetchBlob.fetch('GET', url, {
+    token
+  })
+
+  const base64String = result.base64()
   
-  const arrayBuffer = await result.arrayBuffer()
-  const base64Str = await _arrayBufferToBase64(arrayBuffer)
-  return "data:image/png;base64," + base64Str
+  
+  return "data:image/png;base64," + base64String
 
 }
 
@@ -81,6 +82,15 @@ export const get_image = async () => {
  * 获取用户注册码
  */
 export const get_user_vcode = (type, mobile, imgcode) => {
-  console.log("@get user vcode")
+  console.log("@get_user_vcode")
   return http_get("/user/vcode", {type, mobile, "img_code" : imgcode})
+}
+
+
+/**
+ * 用户注册
+ */
+export const register = (data) => {
+  console.log("@register")  
+  return http_post("/user", data)
 }

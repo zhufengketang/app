@@ -36,4 +36,10 @@ function assert_request(json) {
   return true
 }
 
+
+function alert (text) {
+  Alert.alert(text)
+}
+
 global.assert_request = assert_request
+global.alert = alert

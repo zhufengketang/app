@@ -42,13 +42,13 @@ import {
 import {FormScrollView, FormConnector, ValidateMethods, flexCenter} from 'basic'
 import {ZButton, ZInput, ZSwitch, ZVCode, ZImgCode} from "domain/component"
 
-import {get_user_vcode} from "domain/api/apis"
+import {get_user_vcode, register} from "domain/api/apis"
 
 
-const fields = ["user_name" , "password", "mobile",  "agree", "vcode", "imgcode"]
+const fields = ["name" , "password", "mobile",  "agree", "vcode", "imgcode"]
 
 const validate = (assert, fields) => {
-  assert("user_name", ValidateMethods.required(), '请输入用户名')
+  assert("name", ValidateMethods.required(), '请输入用户名')
   assert("mobile", ValidateMethods.required(), '请输入手机号')
   assert("mobile", ValidateMethods.length(11), '手机号格式不正确')
   assert("password", ValidateMethods.required(), '请输入密码')
@@ -57,11 +57,18 @@ const validate = (assert, fields) => {
 
 
 export class Register extends Component {
-  _submit(data, errors){
+  async _submit(data, errors){
+    
+    if(errors.length > 0) {
+      Alert.alert(errors[0])
+      return
+    }
+
+    
     
     /// TODO 处理表单提交
-    console.log(data)
-    console.log(errors)
+    const result = await register(data)
+
   }
 
   render(){
@@ -97,8 +104,7 @@ export class Register extends Component {
 const RegisterForm = ({form, fields, submit}) => {
 
 
-  const {user_name, mobile, password, vcode, agree, imgcode} = fields
-  console.log(user_name)
+  const {name, mobile, password, vcode, agree, imgcode} = fields
   const send = async () => {
     console.log("@send @RegisterForm")
     const mobileNumber = mobile.value
@@ -122,7 +128,7 @@ const RegisterForm = ({form, fields, submit}) => {
   }
   return (
     <View>
-      <ZInput placeholder="姓名" {...user_name} />
+      <ZInput placeholder="姓名" {...name} />
       <ZInput placeholder="手机号" keyboardType="phone-pad" {...mobile} />
       <ZInput placeholder="密码"  {...password} secureTextEntry={true} />
       <ZImgCode {...imgcode} send={send.bind(this)} />

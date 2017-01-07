@@ -26,6 +26,13 @@
 import React, {Component} from 'react'
 
 import {View, ScrollView, TouchableWithoutFeedback, Keyboard} from 'react-native'
+
+/**
+ * 集中处理键盘问题:
+ * 1. 通过监听键盘状态来决定屏幕高低,从而避免被键盘遮挡
+ * 2. 点击所有非输入框区域, 将键盘收起
+ * 
+ */
 export class FormScrollView extends Component {
 
   constructor(){
@@ -34,7 +41,6 @@ export class FormScrollView extends Component {
       height : null
     }
   }
-
 
 
   _press(){
@@ -80,7 +86,6 @@ export class FormScrollView extends Component {
     if(height) {
       style.height = height
     }
-    console.log(style)
     return (
       <View style={style} onLayout={this._layout.bind(this)}>
         <ScrollView keyboardShouldPersistTaps={true} >

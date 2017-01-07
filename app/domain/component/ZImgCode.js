@@ -48,16 +48,16 @@ export class ZImgCode extends Component{
   
   
   async _load(){
-
-    const token = await get_local_token()
+  
     const img = await get_image()
     this.setState({
-      img
+      img : {uri : img}
     })
-    
+  
   }
   
   componentDidMount(){
+    
     this._load()
   }
 
@@ -75,12 +75,13 @@ export class ZImgCode extends Component{
 
 
     return  <View style={styles.container}>
+
       <TextInput style={styles.input}  keyboardType="phone-pad" onChangeText={this._change.bind(this)} {...others} placeholder="图片验证码"  />
 
       <TouchableOpacity onPress={this._changeImage.bind(this)}>
         {img &&
         <View style={{...styles.btn, ...styles.btnDisabled}}>
-          <Image style={{width : 100, height :42}} source={{uri : img }}/>
+          <Image style={{width : 100, height :42}} source={img}/>
         </View>
 
         }

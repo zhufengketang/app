@@ -28,10 +28,6 @@ import React, {Component} from 'react'
 import {NativeModules, View, Dimensions, PanResponder, Text, Animated} from 'react-native'
 
 
-import RCTPlayer from "domain/native/Player"
-
-
-
 
 export class ExamplePlayer extends Component {
 
