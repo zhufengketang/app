@@ -58,9 +58,10 @@ const validate = (assert, fields) => {
 
 export class Register extends Component {
   async _submit(data, errors){
-    
+
+
     if(errors.length > 0) {
-      Alert.alert(errors[0])
+      alert(errors[0])
       return
     }
 
@@ -75,9 +76,11 @@ export class Register extends Component {
     return (
       <FormScrollView>
 
+        {/*
         <View style={{...flexCenter, height : 160}} >
           <Image source={require("./images/register.png")} style={{width : 60, height : 60}} />
         </View>
+        */}
         
         <FormConnector
           data={{agree : true}}
@@ -134,7 +137,8 @@ const RegisterForm = ({form, fields, submit}) => {
       <ZImgCode {...imgcode} send={send.bind(this)} />
       <ZVCode {...vcode} send={send}  />
       <ZSwitch label="同意注册协议" {...agree} />
-      <View style={{...flexCenter, marginTop : 20}}>
+
+      <View style={{flex : 1, alignItems : 'center', marginTop : 20, height : 150}}>
         <ZButton onPress={submit}>提交</ZButton>
       </View>
     </View>

@@ -23,6 +23,7 @@
  *
  */
 import {Alert} from 'react-native'
+var Toast = require('@remobile/react-native-toast');
 
 /**
  * 注册一些全局函数
@@ -30,7 +31,7 @@ import {Alert} from 'react-native'
 
 function assert_request(json) {
   if (json.code !== 0) {
-    Alert.alert(json.data)
+    Toast.show(json.data)
     return false
   }
   return true
@@ -38,7 +39,7 @@ function assert_request(json) {
 
 
 function alert (text) {
-  Alert.alert(text)
+  Toast.show(text)
 }
 
 global.assert_request = assert_request

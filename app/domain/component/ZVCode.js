@@ -88,7 +88,10 @@ export class ZVCode extends Component{
     const {tick} = this.state
 
     return  <View style={styles.container}>
-      <TextInput style={styles.input}  keyboardType="phone-pad" onChangeText={this._change.bind(this)} {...others} placeholder="验证码"  />
+      <TextInput
+        style={styles.input}  keyboardType="phone-pad" onChangeText={this._change.bind(this)} {...others} placeholder="验证码"
+        underlineColorAndroid={"rgba(0,0,0,0)"}
+      />
       {tick == 0 ?
         <TouchableOpacity onPress={this._send.bind(this)}>
           <View style={styles.btn}>

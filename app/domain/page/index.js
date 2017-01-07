@@ -115,7 +115,16 @@ export const Routes = {
     Inverse : true,
     Title : "注册",
     get Component() { return require("./Register").Register}
+  },
+  
+  /** 登录 **/
+  Login : {
+    name : "Login",  
+    Inverse : true,
+    Title : "登录",
+    get Component() { return require("./Login").Login}
   }
+  
   
 
 }

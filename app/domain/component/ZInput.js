@@ -38,7 +38,10 @@ export class ZInput extends Component{
     
     const {error, ...others} = this.props
     return  <View>
-      <TextInput onChangeText={this._change.bind(this)} style={styles.input} {...others}  />
+      <TextInput
+        onChangeText={this._change.bind(this)} style={styles.input} {...others}
+        underlineColorAndroid={"rgba(0,0,0,0)"}
+      />
     </View>
   }
 }

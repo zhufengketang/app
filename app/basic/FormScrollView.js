@@ -25,7 +25,7 @@
 
 import React, {Component} from 'react'
 
-import {View, ScrollView, TouchableWithoutFeedback, Keyboard} from 'react-native'
+import {View, ScrollView, TouchableWithoutFeedback, Keyboard, Dimensions} from 'react-native'
 
 /**
  * 集中处理键盘问题:
@@ -49,7 +49,8 @@ export class FormScrollView extends Component {
 
 
   _layout({nativeEvent : {layout : {x, y, width, height}}}){
-    
+
+    console.log(height)
     if(!this.height)
       this.height = height
   }
@@ -70,7 +71,7 @@ export class FormScrollView extends Component {
   _keyboardDidShow (e) {
     const h = e.endCoordinates.height
     this.setState({
-      height : this.height - h + 20
+      height : Dimensions.get('window').height - h + 20
     })
   }
 
