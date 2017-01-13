@@ -33,6 +33,7 @@ import {
   TextInput,
   StyleSheet,
   ScrollView,
+  TouchableOpacity,
   TouchableWithoutFeedback,
   Alert
 
@@ -42,13 +43,15 @@ import {
 import {FormScrollView, FormConnector, ValidateMethods, flexCenter} from 'basic'
 import {ZButton, ZInput, ZSwitch, ZVCode, ZImgCode} from "domain/component"
 
-import {get_user_vcode, register} from "domain/api/apis"
+import {get_user_vcode, login} from "domain/api/apis"
+
+import {COLOR_PRIMARY} from 'domain/def'
 
 
-const fields = ["name" , "password", "mobile",  "agree", "vcode", "imgcode"]
+import {Routes} from "domain/page"
+const fields = ["mobile", "password"]
 
 const validate = (assert, fields) => {
-  assert("name", ValidateMethods.required(), '请输入用户名')
   assert("mobile", ValidateMethods.required(), '请输入手机号')
   assert("mobile", ValidateMethods.length(11), '手机号格式不正确')
   assert("password", ValidateMethods.required(), '请输入密码')
@@ -56,44 +59,45 @@ const validate = (assert, fields) => {
 
 
 
-export class Register extends Component {
-  
+export class Login extends Component {
   constructor(){
     super()
     this.state = {
-      busy : false 
+      busy : false // 处理中
     }
+    
+    store.dispatch({type : "NETWORK_RETRY"})
+    
   }
+ 
   async _submit(data, errors){
-
-
+    
     if(errors.length > 0) {
       alert(errors[0])
       return
     }
-    this.setState({busy : true})
     
-    const result = await register(data)
+    this.setState({busy : true})
+    const {mobile,password} = data
+    const result = await login({mobile, password})
     this.setState({busy : false})
-
+    alert("登录成功")
   }
 
   render(){
+    const {busy} = this.state
     return (
       <FormScrollView>
 
-        {/*
-        <View style={{...flexCenter, height : 160}} >
-          <Image source={require("./images/register.png")} style={{width : 60, height : 60}} />
+        <View style={{...flexCenter, height : 120}} >
+          <Image source={require("./images/login.png")} style={{width : 60, height : 60}} />
         </View>
-        */}
         
         <FormConnector
-          data={{agree : true}}
           fields={fields}
           validate={validate}
-          submit={this._submit}>
-          <RegisterForm busy={this.state.busy} />
+          submit={this._submit.bind(this)}>
+          <LoginForm busy={busy} navigator={this.props.navigator} />
         </FormConnector>
 
       </FormScrollView>
@@ -110,42 +114,21 @@ export class Register extends Component {
  * @returns {XML}
  * @constructor
  */
-const RegisterForm = ({form, fields, submit, busy}) => {
+const LoginForm = ({form, fields, submit, busy, navigator}) => {
 
 
-  const {name, mobile, password, vcode, agree, imgcode} = fields
-  const send = async () => {
-    console.log("@send @RegisterForm")
-    const mobileNumber = mobile.value
-    if(!(mobileNumber && mobileNumber.length === 11 )){
-      Alert.alert("错误", "请输入手机号")  
-      return false
-    }
-    
-    if(!imgcode.value) {
-      Alert.alert("错误", "请输入图片验证码")  
-      return false 
-    }
-    /// TODO 发送请求
-     const result = await get_user_vcode("register", mobileNumber, imgcode.value)
-    // console.log("@send after")
-    // if(!assert_request(result)){
-    //   return false
-    // }
-
-    return true
-  }
+  const {mobile, password} = fields
   return (
     <View>
-      <ZInput placeholder="姓名" {...name} />
       <ZInput placeholder="手机号" keyboardType="phone-pad" {...mobile} />
       <ZInput placeholder="密码"  {...password} secureTextEntry={true} />
-      <ZImgCode {...imgcode} send={send.bind(this)} />
-      <ZVCode {...vcode} send={send}  />
-      <ZSwitch label="同意注册协议" {...agree} />
-
-      <View style={{flex : 1, alignItems : 'center', marginTop : 20, height : 150}}>
-        <ZButton onPress={submit} loading={busy}>提交</ZButton>
+      <TouchableOpacity 
+        onPress={() => navigator.push({...Routes.Register})}
+        style={{paddingLeft : 20}}>
+        <Text style={{color : COLOR_PRIMARY, marginTop : 10}}>没有账号?马上注册</Text>
+      </TouchableOpacity>
+      <View style={{...flexCenter, marginTop : 20}}>
+        <ZButton onPress={submit} loading={busy}>登录</ZButton>
       </View>
     </View>
   )

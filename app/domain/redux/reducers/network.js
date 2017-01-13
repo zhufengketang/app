@@ -22,16 +22,18 @@
  *
  */
 
-export * from "./ZButton"
-export * from "./navbar/ZNavBar"
-export * from "./tabbar/Tabbar"
-export * from "./ZBottomButton"
-export * from "./NetworkError"
-export * from "./CourseCardBig"
-export * from "./CourseCardSmall"
-export * from "./ZInput"
-export * from "./ZSwitch"
-export * from "./ZVCode"
-export * from "./ZImgCode"
+const initial = {
+  error : false
+}
 
-
+export const network = (state = initial, action) => {
+  
+  switch (action.type) {
+    case "NETWORK_ERROR" :
+      return {error : true, cache : action.cache}
+    case "NETWORK_RETRY" :
+      return {error : false}
+  }
+  
+  return state
+}

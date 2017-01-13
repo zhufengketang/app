@@ -45,15 +45,17 @@ export class Tabbar extends Component {
     }
   }
 
+  switch_to(name){
+    this.setState({
+      active : name
+    })
+  }
+
   _press(name){
     
-    return () => {
-      this.setState({
-        active : name
-      })  
-    }
-    
-    
+    return (() => {
+      this.switch_to(name)
+    }).bind(this)
   }
 
   render() {
@@ -64,7 +66,7 @@ export class Tabbar extends Component {
       <View style={{flex : 1}}>
         <View style={{flex : 1}}>
           {children.map((child, i) => {
-            return React.cloneElement(child, {active, key : i})
+            return React.cloneElement(child, {active, key : i, switch_to : this.switch_to.bind(this)})
           })}
         </View>
         <View style={{backgroundColor : "white", height : 48, flexDirection : "row", borderTopWidth : 1, borderColor : "#ccc" }}>
@@ -95,13 +97,13 @@ class TabbarItem extends Component{
 
   render(){
 
-    const {children, name, active} = this.props
+    const {children, name, active, switch_to} = this.props
     const style = {overflow : 'hidden'}
     if(active != name) {
       style.height = 0
     }
     return <View style={style}>
-      {children}
+      {React.cloneElement(children, {switch_to})}
     </View>
     
   }

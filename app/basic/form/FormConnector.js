@@ -5,6 +5,7 @@
 
 import React, {Component} from 'react'
 
+import {Keyboard} from "react-native"
 import {Form} from "./Form"
 
 import {form_connector} from "./form_connector"
@@ -41,6 +42,7 @@ export class FormConnector extends Component{
     this.form.removeResetEventHandler(this._resetHandler.bind(this))
     this.form.removeErrorHandler(this._errorHandler.bind(this))
   }
+  
    _resetHandler(fields) {
     this.setState({
       children : this.nextChildren(this.props.children, fields)
@@ -73,8 +75,10 @@ export class FormConnector extends Component{
 
   _submit(){
     
+    this.form.validate()
     const errors  = this.form.getErrors()
     const data = this.form.getData()
+    Keyboard.dismiss()
     
     this.props.submit && this.props.submit(data, errors)
   }

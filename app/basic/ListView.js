@@ -24,7 +24,7 @@
 
 import React, {Component} from 'react'
 
-import {View, ScrollView,Dimensions, ActivityIndicator, RefreshControl} from 'react-native'
+import {View, Text, ScrollView,Dimensions, ActivityIndicator, RefreshControl} from 'react-native'
 import {flexCenter} from 'basic'
 
 /**
@@ -37,17 +37,23 @@ import {flexCenter} from 'basic'
  */
 const nextReplaceScrollState = (cards, itemHeights, H,  S,  y ) => {
   
+  const sTop = Math.floor(S / 2)
+  const sBottom = Math.floor(S / 2)
   
   // p : 开始的卡片  第一个top大于(y - H)的卡片
   let sum = 0
-  let p = -1 
+  let p = 0 
   
   for(let i = 0; i < cards.length; i++) {
-    if(sum > y - H) {
+    if(sum > y - H ) {
       p = cards[i].id
       break
     }
     sum += itemHeights[cards[i].id]
+  }
+  p = p - sTop
+  if(p < 0) {
+    p = 0
   }
   
   // 结束的卡片  (q = p + S)
@@ -82,8 +88,11 @@ const nextReplaceScrollState = (cards, itemHeights, H,  S,  y ) => {
 
 export class ListView extends Component {
   
+  static propTypes = {
+  }
   static defaultProps = {
-    displaySize : 10,  //默认同时渲染10张卡片,
+    displaySize : 20,  //默认同时渲染10张卡片,
+    initialData : [],
     renderBottomIndicator : () => {
       return (
         <View style={{height : 42, ...flexCenter}}>
@@ -172,7 +181,7 @@ export class ListView extends Component {
           newlyAdded : []
         }) 
       }
-    }).bind(this), 1000)
+    }).bind(this), 100)
     
     this.setState({
       // 将新卡片append在底部
@@ -215,6 +224,7 @@ export class ListView extends Component {
   }
   
   _renderItem({item, id}){
+    
     return <View key={id} onLayout={this._itemLayout(id).bind(this)}>
       {this.props.renderItem(item, id)}
     </View>
@@ -248,8 +258,6 @@ export class ListView extends Component {
         ...newlyAdded.filter(x => !visibleData.find(t => t.id === x.id))
       ]
     }
-
-    
 
 
 

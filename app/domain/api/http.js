@@ -1,5 +1,5 @@
 /***********************************************
- * 
+ *
  * MIT License
  *
  * Copyright (c) 2016 珠峰课堂,Ramroll
@@ -43,7 +43,7 @@ const http_factory = (method) => {
     let token = await get_local_token()
 
     console.log("@http_factory after get_local_token" )
-    
+
 
     // 生成Fetch的请求选项
     const requestOptions = {
@@ -57,10 +57,10 @@ const http_factory = (method) => {
 
     if(method == "GET") {
       const queryString = qs.stringify(params)
-      url = `${url}${queryString && "?"+queryString}` 
+      url = `${url}${queryString && "?"+queryString}`
     } else {
       requestOptions.headers = {...requestOptions.headers, 'Content-Type': 'application/json'}
-      requestOptions.body = JSON.stringify(params) 
+      requestOptions.body = JSON.stringify(params)
     }
 
 
@@ -69,7 +69,33 @@ const http_factory = (method) => {
      * @returns {*}
      */
     const send_request = () => {
-      return fetch(url, requestOptions)
+      const _fecthCache = {
+        url,
+        requestOptions
+      }
+
+      return new Promise( (resolve,reject ) => {
+
+        fetch(url, requestOptions)
+          .then(response => {
+            resolve(response)
+          })
+          .catch(e => {
+            store.dispatch({
+              type : "NETWORK_ERROR",
+              cache : {
+                url,
+                requestOptions,
+                resolve  
+              }
+              
+            })
+
+          })
+
+      })
+
+
     }
 
 
@@ -93,7 +119,7 @@ const http_factory = (method) => {
     catch (e) {
       console.error(e + ":" + url)
     }
-    
+
   }
 }
 
@@ -106,7 +132,7 @@ export const url_mapper = (url) => {
   const fullUrl = SERVICE_BASE.replace(/\/$/, '') + "/" + url.replace(/^\//, '')
   console.log("@at url_maper :" + fullUrl)
   return fullUrl
-  
+
 }
 
 

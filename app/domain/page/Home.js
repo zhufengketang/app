@@ -36,6 +36,7 @@ import {
   StyleSheet,
   RefreshControl,
   TouchableOpacity,
+  TouchableWithoutFeedback,
   Platform
 } from 'react-native'
 
@@ -46,27 +47,9 @@ import {Routes} from "domain/page"
 
 import {CourseCardBig} from "domain/component"
 
+import {get_courses} from "domain/api/apis"
 
 
-
-const course_gen = () => {
-  const images = [
-    'http://a1.jikexueyuan.com/home/201506/24/a082/558a11c35f925.jpg',
-    'http://a1.jikexueyuan.com/home/201507/15/8a29/55a5c11d411b5.jpg',
-    'http://photocdn.sohu.com/20150511/mp14262803_1431334812364_1_th.jpeg'
-  ]
-  return {
-    image : images[Math.floor(Math.random() * 3)],
-    title : "顶级大神教你写node.js",
-    author : "张仁阳",
-    author_profile : "XXX老师来自于XXX公司,离职后一直从事前端领域教育",
-    address : "珠峰",
-    hours : "21小时",
-    description : "国内顶尖大神教你写node.js.从零开始,循序渐进.......",
-    price : Math.random() * 10000 + 5000,
-    start : "2016-10-30"
-  }
-}
 
 const {width, height} = Dimensions.get('window')
 
@@ -79,27 +62,55 @@ export class Home extends Component {
   constructor(){
     super()
 
-
-
-
-    const courses = [null]
-
-    for(let i = 0; i < 20; i++) {
-      courses.push(course_gen())
-    }
-
-
     this.state = {
-      courses : courses,
-      loading : false
+      initialized : false
     }
+
   }
 
+  componentDidMount(){
+
+    this.start = 0
+    this.take = 5 
+    this.hasMore = false
+
+    // 第一个填另一个占位符
+    // 因为轮播图也在listview中
+    this.courses = [null]
+
+    this.load_course()
+  }
+  
+  
+  async load_course () {
+    // 因为轮播图等也放在了listView中
+
+    if(this.loading) return
+
+    try {
+      this.loading = true
+      const data = await get_courses(this.start, this.take)
+      this.courses = [...this.courses, ...data.data.courses]
+      this.start = this.start + data.data.courses.length
+      this.hasMore = this.courses.length < data.data.total
+      this.setState({
+        initialized : true
+      }, (() => {
+
+        this.refs.listView.append(data.data.courses)
+      }).bind(this))
+    }
+    catch(e) {
+    }
+    finally{
+      this.loading = false
+    }
+  }
+  
+
   _pressCourse(course) {
-    console.log(1)
     return () => {
       this.props.navigator.push({...Routes.Course, course})
-      /// TODO 跳转
     }
   }
   _renderItem(course, i) {
@@ -139,90 +150,64 @@ export class Home extends Component {
 
   _onScrollToBottom(y){
     this.y = y
+    this.load_course()
 
-
-    if(this.state.loading) {return}
-
-    this.setState({ loading : true }, (() => {
-      setTimeout((() => {
-        const courses = []
-        for(let i = 0; i < 20; i++) {
-          courses.push(course_gen())
-        }
-        this.refs.listView.append(courses)
-        this.setState({
-          loading : false
-        })
-      }).bind(this), 2000)
-    }).bind(this))
   }
 
   _renderBottomIndicator(){
+    if(!this.state.initialized) {
+      return false
+    }
+    if(!this.hasMore) {
+      return <View style={{height : 42, ...flexCenter}}>
+        <Text>没有更多了</Text>
+      </View>  
+    }
     return (
       <View style={{height : 42, ...flexCenter}}>
-        <ActivityIndicator />
+        {this.loading ?
+
+          <Text>正在加载...</Text>
+            :
+          <ActivityIndicator />
+        }
       </View>
     )
   }
 
-  _release(){
-    /*
-     if(this.y > 100 && !this.state.loading) {
-     this.setState({ loading : true }, (() => {
-     }).bind(this))
-
-     setTimeout((() => {
-     const courses = []
-     for(let i = 0; i < 20; i++) {
-     courses.push(course_gen())
-     }
-     this.refs.listView.append(courses)
-     this.setState({
-     loading : false
-     })
-     }).bind(this), 2000) 
-     */
-  }
-
-
 
   _refresh(){
 
-    if(!this.state.loading) {
-
-      this.setState({loading : true}, (() => {
-        setTimeout((() => {
-          const courses = [null]
-          for(let i = 0; i < 20; i++) {
-            courses.push(course_gen())
-          }
-          this.refs.listView.reset(courses)
-          this.setState({
-            loading : false
-          })
-        }).bind(this), 2000)
-      }).bind(this))
-    }
+    this.start = 0
+    this.hasMore = false
+    this.courses = [null]
+    this.refs.listView.reset(this.courses)
+    this.load_course();
   }
 
   render(){
 
-    const loading = this.state
-    return (
+    const {initialized} = this.state
 
+    if(!initialized) {
+      return <View style={{ ...flexCenter, height : Dimensions.get("window").height}}>
+        <ActivityIndicator />
+      </View>
+    }
+
+    return (
+      
 
       <View>
-
+        
         <ListView
           ref="listView"
-          initialData={this.state.courses}
+          initialData={[null]}
           renderItem={this._renderItem.bind(this)}
           onScrollToBottom={this._onScrollToBottom.bind(this)}
           renderBottomIndicator={this._renderBottomIndicator.bind(this)}
-          onResponderRelease={this._release.bind(this)}
           refreshControl={
           <RefreshControl refreshing={false} onRefresh={this._refresh.bind(this)} />
-
         }
           height={Dimensions.get("window").height - (Platform.OS === 'ios' ? 49 : 69) }
         />

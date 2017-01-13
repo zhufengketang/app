@@ -26,12 +26,10 @@ import React, {Component} from 'react'
 
 import {
   View,
-  Navigator,
   BackAndroid,
   Text,
   StatusBar,
-  Platform,
-  Dimensions
+  Platform
 } from 'react-native'
 
 import {Button, flexCenter} from "basic"
@@ -49,6 +47,8 @@ import {init} from "domain/redux/init"
 
 // 定义全局函数
 import "domain/def/global.function.def"
+
+import {App} from "./app"
 
 
 
@@ -80,12 +80,13 @@ export class Entry extends Component {
       /**
        * 从服务端获取token,然后缓存在本地
        */
+      
       get_token()
         .then( (() => {
-          this.setState({store : __store})
+          setTimeout( (() => {
+            this.setState({store : __store})
+          }).bind(this), 0)
         }).bind(this))
-      
-      
 
     }).bind(this))
 
@@ -98,64 +99,7 @@ export class Entry extends Component {
     }).bind(this));
   }
 
-  _renderScene(route, navigator){
-
-    const {Component, noTitleBar} = route
-    return (
-      <View style={{flex : 1, backgroundColor : 'white'}}>
-        <StatusBar
-          barStyle={route.Inverse ? "light-content" : "default"}
-        />
-
-        {!noTitleBar &&
-        <View style={{ backgroundColor : route.Inverse ? COLOR_NAV_DARK : "white", height : Platform.OS === 'ios' ? 64 : 56}}>
-        </View>
-        }
-        <Component navigator={navigator} route={route} />
-      </View>
-
-    )
-  }
-
-  _renderNavBar(){
-
-    const titleStyle = {
-      flex : 1, ...flexCenter
-    }
-
-    const routeMapper = {
-      LeftButton: (route, navigator, index, navState) =>  {
-        if(index === 0) {
-          return null
-        }
-        return <ZNavBar.Back route={route} navigator={navigator} />
-      },
-      RightButton: (route, navigator, index, navState) => {
-        return null
-      },
-      Title: (route, navigator, index, navState) => {
-        console.log("render title bar", route)
-        const t_style = {...titleStyle}
-        if(Platform.OS === 'android') {
-
-          t_style.width = Dimensions.get("window").width  - 148
-        }
-        return (
-          <View style={{...t_style}}>
-            <Text style={{color : route.Inverse ? "white" : COLOR_TITLE, fontSize : 18}}>{route.Title}</Text>
-          </View>
-        );
-      },
-    }
-
-
-
-    return (
-      <Navigator.NavigationBar
-        routeMapper={routeMapper}
-      />
-    )
-  }
+ 
 
   render() {
     const {store} = this.state
@@ -163,17 +107,15 @@ export class Entry extends Component {
       return null
     }
 
-    // initialRoute 设置第一张页面
-    // renderScene 绘制场景 
     return <Provider store={store}>
-      <Navigator
-        ref="navigator"
-        initialRoute={Routes.Register}
-        renderScene={this._renderScene}
-        navigationBar={this._renderNavBar()}
-      />
+      <App /> 
     </Provider>
   }
 }
+
+
+
+
+
 
 

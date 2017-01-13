@@ -123,9 +123,16 @@ export const Routes = {
     Inverse : true,
     Title : "登录",
     get Component() { return require("./Login").Login}
+  },
+
+  /** 重置密码 **/
+  ResetPassword : {
+    name : "ResetPassword",
+    Inverse : true,
+    Title : "忘记密码",
+
+    get Component() { return require("./ResetPassword").ResetPassword}
   }
-  
-  
 
 }
 

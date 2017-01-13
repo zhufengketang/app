@@ -27,15 +27,52 @@ import React, {Component} from 'react'
 
 import {
   Text,
-  View
+  View,
+  Image,
+  Dimensions
 } from 'react-native'
+
+import {ZButton} from 'domain/component'
+import {get_orders} from "domain/api/apis"
+import {flexCenter} from "basic"
 
 export class MyCourse extends Component{
   
+  constructor(){
+    super()
+    this.state = {
+      orders : []
+    }
+  }
+  componentDidMount(){
+    
+    this.loading_data()
+    
+  }
+  
+  async loading_data() {
+    const data = await get_orders(0, 20)
+    if(data) {
+      // this.setState({
+      //   orders : data.orders
+      // })  
+    }
+    
+  }
+  
+  _switch_home(){
+    this.props.switch_to("home")
+  }
+  
   render(){
+    
     return (
-      <View>
-        <Text>我的课程</Text>
+      <View style={{height : Dimensions.get("window").height - 64, ...flexCenter}}>
+        <View style={{ ...flexCenter}}>
+          <Image source={require("./images/laugh_face.png")} style={{width : 84, height : 84}} />
+          <Text style={{marginTop : 10, marginBottom : 10}}>您还没有选课,快去选课吧!</Text>
+          <ZButton onPress={this._switch_home.bind(this)}>去发现</ZButton>
+        </View>
       </View>
     )
   }

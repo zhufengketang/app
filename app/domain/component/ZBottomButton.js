@@ -45,7 +45,7 @@ export class ZBottomButton extends Component {
     return (
 
       <Button
-        style={{flex : 1, width : null, height : null}}
+        style={{flex : 1, width : null, height : null, borderRadius : 0}}
               fontSize={14}
               backgroundColor={COLOR_PRIMARY}
         {...this.props}

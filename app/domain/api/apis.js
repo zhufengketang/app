@@ -34,10 +34,11 @@ import {get_local_token} from "domain/store/storage"
  * 请求获取token,并缓存在本地
  */
 export const get_token = async () => {
-  // if(store.getState().user.token) {
-  //   store.dispatch({type : "LOCAL_TOKEN_FOUND", token : store.getState().user.token})
-  //   return
-  // }
+
+  if(store.getState().user.token) {
+    return
+  }
+  
   return await http_get("/token")
 }
 
@@ -93,4 +94,38 @@ export const get_user_vcode = (type, mobile, imgcode) => {
 export const register = (data) => {
   console.log("@register")  
   return http_post("/user", data)
+}
+
+
+/**
+ * 重置密码
+ */
+export const reset = (data) => {
+  console.log("@reset password")
+}
+
+/**
+ * 登录
+ */
+export const login = (data) => {
+
+  console.log("@login")
+  return http_get("/user/identity", data)
+}
+
+/**
+ * 获取课程
+ */
+export const get_courses = (start, take) => {
+  console.log("@get_courses")
+  return http_get("/course", {start, take})
+}
+ 
+
+/**
+ * 获取订单
+ */
+export const get_orders = (start, take) => {
+  console.log("@get_ourder")  
+  return http_get("/order", {start, take})
 }

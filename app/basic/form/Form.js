@@ -259,7 +259,6 @@ export class Form {
         }
       } else {
         if(this.submitHandler) {
-          debugger
           this.submitHandler(this)
         }
       }

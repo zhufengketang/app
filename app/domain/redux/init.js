@@ -35,6 +35,7 @@ import {persistStore, autoRehydrate} from 'redux-persist'
 
 /** 引入 Reducer **/
 import {user} from "domain/redux/reducers/user"
+import {network} from "domain/redux/reducers/network"
 
 import {AsyncStorage} from "react-native"
 
@@ -50,7 +51,8 @@ import promise from "domain/redux/middlewares/promise"
 export const init = async () => {
   // 合并Reducer
   const reducers = {
-    user
+    user,
+    network
   }
   
   const reducer = combineReducers(reducers);
@@ -65,7 +67,7 @@ export const init = async () => {
 
 
   return new Promise ( (resolve, reject) => {
-    const blackList = []
+    const blackList = ['network']
     
     // 使用ReactNative的AysncStorage作为redux-persist的storage
     const storage = AsyncStorage

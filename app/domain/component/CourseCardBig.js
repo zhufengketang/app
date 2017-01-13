@@ -23,27 +23,27 @@
  *
  */
 import React, {Component} from 'react'  
-import {View, Dimensions, TouchableOpacity, Image, StyleSheet, Text} from 'react-native'
+import {View, Dimensions,TouchableOpacity, TouchableWithoutFeedback, Image, StyleSheet, Text} from 'react-native'
 import {format_currency, flexCenter} from "basic"
 import {COLOR_TITLE, COLOR_TEXT_LIGHT, COLOR_PRICE} from "domain/def"
 export class CourseCardBig extends Component{
 
   render() {
     const W = Dimensions.get("window").width
-
     const {image, title, author, description, price} = this.props
+    return <TouchableWithoutFeedback elevation={true}  onPress={this.props.onPress}>
 
-    return <TouchableOpacity elevation={true}  onPress={this.props.onPress} style={courseStyle.cardContainer}>
-
-      <Image
-        source={{uri : image}}
-        style={{width : W - 22, height : (W - 20) * 0.3}}
-      />
-      <Title>{title}</Title>
-      <Author label="讲师">{author}</Author>
-      <Description>{description}</Description>
-      <Price>{price}</Price>
-    </TouchableOpacity>
+      <View  style={courseStyle.cardContainer}>
+        <Image
+          source={{uri : image}}
+          style={{width : W - 22, height : (W - 20) * 0.3}}
+        />
+        <Title>{title}</Title>
+        <Author label="讲师">{author}</Author>
+        <Description>{description}</Description>
+        <Price>{price}</Price>
+      </View>
+    </TouchableWithoutFeedback>
   }
 
 }
@@ -52,24 +52,12 @@ const Title = ({children}) => {
   return <Text style={{...Paragraph, color : COLOR_TITLE, fontSize : 18, fontWeight : 'bold'}}>{children}</Text>
 
 }
-/**
- * 等同于
- * class Title extends Component {
- *    render() {
- *      const {children} = this.props
- *      ....
- *    }
- * }
- *
- */
 
 const ScrollIndicator = ({children, image}) => {
   return <View style={{flexDirection : 'row', ...flexCenter}}>
     <Text>{children}</Text>
     <Image source={image} style={{width : 18, height : 18}} />
   </View>
-
-
 }
 
 
@@ -97,10 +85,6 @@ const Paragraph = {
   marginTop : 10
 
 }
-
-
-
-
 
 
 const courseStyle = StyleSheet.create({
