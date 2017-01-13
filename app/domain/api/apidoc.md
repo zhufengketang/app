@@ -165,6 +165,53 @@ course_id:课程ID
 }
 ```
 
+#### GET /order/sign/alipay
+接口定义,获取调转到支付宝接口的签名, 大致过程如下:
+
+1. 服务端根据以下参数拼接成一个订单描述， 用'&'连接
+outTradeNO 流水号（珠峰课堂的系统为此笔交易生成的号码,注意不是订单号）
+subject 商品标题
+body 商品描述
+totalFee 商品价格
+notifyURL 回调地址
+service="mobile.securitypay.pay" 固定
+paymentType = "1"; 固定
+inputCharset = "utf-8"; 固定
+itBPay = "30m"; 固定
+showURL = "m.alipay.com"; 固定
+
+
+得到如下一个字符串(orderSpec)
+```
+partner="2088221872110871"&seller_id="1144709265@qq.com"&out_trade_no="W6ZXRT4F24EUHIV"&subject="1"&body="我是测试数据"&total_fee="0.02"&notify_url="http://www.xxx.com"&service="mobile.securitypay.pay"&payment_type="1"&_input_charset="utf-8"&it_b_pay="30m"&show_url="m.alipay.com
+```
+
+
+
+2. 服务端将orderSpec用RSA算法签名
+
+用上传给支付宝的私钥签名上述订单描述，得到签名sign
+
+
+3. 服务端将{sign,orderSpec}返回给客户端
+
+4. 客户端调用AlipaySDK的payOrder方法跳转
+
+** 成功返回 **
+```
+{
+
+    code : 1000,
+    data : {
+        orderSpec : 'partner="2088221872110871"&seller_id="1144709265@qq.com"&out_trade_no="W6ZXRT4F24EUHIV"&subject="1"&body="我是测试数据"&total_fee="0.02"&notify_url="http://www.xxx.com"&service="mobile.securitypay.pay"&payment_type="1"&_input_charset="utf-8"&it_b_pay="30m"&show_url="m.alipay.com' ,
+        sign : //RSA算法签名 
+        
+    }
+    
+}
+```
+
+
 #### GET /user/identity
 接口定义:用户登录
 
