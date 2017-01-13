@@ -116,13 +116,15 @@ take : 总共获取多少个课程
 #### POST /order/{course_id}
 接口定义 : 下单/报名
 
+
 **URL参数说明**
 course_id:课程ID
 
 **成功返回**
 ```
 {
-    code : 0
+    code : 0,
+    data : af23412123123a23 // 订单编号 
 }
 ```
 
@@ -196,6 +198,9 @@ partner="2088221872110871"&seller_id="1144709265@qq.com"&out_trade_no="W6ZXRT4F2
 3. 服务端将{sign,orderSpec}返回给客户端
 
 4. 客户端调用AlipaySDK的payOrder方法跳转
+
+** 传入参数 **
+orderId : 订单编号
 
 ** 成功返回 **
 ```
