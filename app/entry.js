@@ -92,11 +92,7 @@ export class Entry extends Component {
 
     
 
-    BackAndroid.addEventListener('hardwareBackPress', (() => {
-      const navigator = this.refs.navigator
-      navigator.pop()
-      return true
-    }).bind(this));
+  
   }
 
  
@@ -108,8 +104,9 @@ export class Entry extends Component {
     }
 
     return <Provider store={store}>
-      <App /> 
+        <App />
     </Provider>
+    
   }
 }
 

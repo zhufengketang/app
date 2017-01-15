@@ -1,6 +1,7 @@
 package com.zhufengketang;
 
 import android.app.Application;
+import android.graphics.Color;
 import android.util.Log;
 
 import com.facebook.react.ReactApplication;
@@ -14,6 +15,7 @@ import com.facebook.soloader.SoLoader;
 import java.util.Arrays;
 import java.util.List;
 import com.remobile.toast.RCTToastPackage;
+import com.remobile.splashscreen.RCTSplashScreenPackage;
 
 public class MainApplication extends Application implements ReactApplication {
 
@@ -28,7 +30,9 @@ public class MainApplication extends Application implements ReactApplication {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
               new RNFetchBlobPackage(),
-              new RCTToastPackage()
+              new RCTToastPackage(),
+              MainActivity.activity.getRCTSplashScreenPackage(),
+              new PayPackage()
       );
     }
   };

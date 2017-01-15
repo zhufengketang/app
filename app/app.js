@@ -47,10 +47,45 @@ import {NetworkError} from "domain/component"
 import {connect} from "react-redux"
 
 
-
+var SplashScreen = require('@remobile/react-native-splashscreen');
 
 class _App extends Component {
 
+  constructor(){
+    super()
+    
+    this.nextTimeExit = false
+  }
+  componentDidMount(){
+    SplashScreen.hide()
+
+    BackAndroid.addEventListener('hardwareBackPress', (() => {
+      const navigator = this.refs.navigator
+      if(!navigator) {
+        return false
+      }
+      const routes = navigator.getCurrentRoutes()
+      if(routes.length === 1) {
+        
+        if(this.nextTimeExit) {
+          return false
+        } else {
+          this.nextTimeExit = true
+          alert("再按一次回退键退出珠峰课堂")
+          setTimeout( (() => {
+            this.nextTimeExit = false   
+          }).bind(this), 5000)
+          return false 
+        }
+        
+        return 
+      } else if(routes.length > 1) {
+        navigator.pop()
+        return true
+      }
+      
+    }).bind(this));
+  }
 
   
   _renderScene(route, navigator){

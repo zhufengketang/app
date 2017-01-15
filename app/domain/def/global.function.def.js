@@ -23,17 +23,31 @@
  *
  */
 import {Alert} from 'react-native'
+import {Routes} from "domain/page"
 var Toast = require('@remobile/react-native-toast');
+
+import {get_token} from "domain/api/apis"
 
 /**
  * 注册一些全局函数
  */
 
 function assert_request(json) {
-  if (json.code !== 0) {
+  if (json.code == 1000) {
     Toast.show(json.data)
     return false
   }
+ 
+  return true
+}
+
+async function login_check(json, navigator, route) {
+  if(json.code === 201) {
+    Toast.show("请登录")
+    await get_token(true)
+    navigator.push({...Routes.Login, from : route})
+    return false
+  } 
   return true
 }
 
@@ -43,4 +57,5 @@ function alert (text) {
 }
 
 global.assert_request = assert_request
+global.login_check = login_check
 global.alert = alert

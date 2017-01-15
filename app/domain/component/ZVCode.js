@@ -41,6 +41,7 @@ export class ZVCode extends Component{
 
   async _send(){
 
+    
     if(this.state.tick != 0){
       return
     }
@@ -51,11 +52,19 @@ export class ZVCode extends Component{
       this.setState({
         tick : 60
       }, () => {
+        if(this.I) {
+          clearInterval(this.I)
+        }
         this.I = setInterval(this._tick.bind(this), 1000)
       })
     }
 
 
+    
+  }
+  
+  componentWillUnmount(){
+    clearInterval(this.I)
   }
 
   _change(value){

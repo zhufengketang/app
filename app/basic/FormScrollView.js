@@ -51,7 +51,7 @@ export class FormScrollView extends Component {
   _layout({nativeEvent : {layout : {x, y, width, height}}}){
 
    
-    console.log('@FormScrollView @layout height : ' + height)
+    // console.log('@FormScrollView @layout height : ' + height)
     if(!this.height)
       this.height = height
   }
@@ -73,7 +73,7 @@ export class FormScrollView extends Component {
   _keyboardDidShow (e) {
     const h = e.endCoordinates.height
     const newH = Dimensions.get('window').height - h - 64 
-    console.log("@FormScrollView @keyboardDidShow next-h:", newH)
+    // console.log("@FormScrollView @keyboardDidShow next-h:", newH)
     this.setState({
       height : newH 
     })
@@ -91,7 +91,7 @@ export class FormScrollView extends Component {
     if(height) {
       style.height = height
     }
-    console.log(style)
+    // console.log(style)
     return (
       <View style={style} onLayout={this._layout.bind(this)}>
         <ScrollView keyboardShouldPersistTaps={true} >

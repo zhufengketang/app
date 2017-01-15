@@ -18,7 +18,7 @@
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
  * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * OUT OF OR IN CONNCTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  *
  */
@@ -30,19 +30,21 @@ import {
   View,
   Image,
   ScrollView,
-  TouchableOpacity
+  TouchableOpacity,
+  Dimensions,
+  StyleSheet
 } from 'react-native'
 
+const {width, height} = Dimensions.get('window')
+const sliderItemStyle = {width, height : width * 0.6}
 export class UserCenter extends Component{
+
   
   render(){
     return (
       <ScrollView>
         <View>
-          <Image source={require("./images/usercenter.png")}>
-            <View>
-              <Text>登录</Text>
-            </View>
+          <Image source={require("./images/usercenter.png")} style={sliderItemStyle} >
           </Image>
         </View>
 
@@ -58,8 +60,8 @@ export class UserCenter extends Component{
 
 const StripedButton = ({icon, children, onPress}) => {
 
-  return <TouchableOpacity onPress={onPress}>
-    <Image source={icon} />
+  return <TouchableOpacity onPress={onPress} style={styles.stripedButton}>
+    <Image source={icon} style={styles.icon} />
     <Text>{children}</Text>
     <Image source={require("./images/right-arrow.png")}></Image>
   </TouchableOpacity>
@@ -67,3 +69,16 @@ const StripedButton = ({icon, children, onPress}) => {
 
 
 
+
+const styles = StyleSheet.create({
+  stripedButton : {
+    flexDirection : 'row',
+    height : 40,
+    alignItems : 'center'
+  },
+  icon : {
+    width : 20,
+    height : 20
+    
+  }
+})

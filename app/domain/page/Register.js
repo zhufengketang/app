@@ -74,7 +74,11 @@ export class Register extends Component {
     this.setState({busy : true})
     
     const result = await register(data)
-    this.setState({busy : false})
+    this.setState({busy : false}, (() => {
+      
+      this.props.navigator.pop()
+    }).bind(this))
+    
 
   }
 
@@ -92,7 +96,7 @@ export class Register extends Component {
           data={{agree : true}}
           fields={fields}
           validate={validate}
-          submit={this._submit}>
+          submit={this._submit.bind(this)}>
           <RegisterForm busy={this.state.busy} />
         </FormConnector>
 

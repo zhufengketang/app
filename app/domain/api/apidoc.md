@@ -255,6 +255,28 @@ orderId : 订单编号
     name : "张老师", // 真实姓名
     password : "abcdefg",
     mobile : "18611223344",
+    vcode : "123456" //验证码,
+    imgcode : "123456" //图片校验码
+}
+```
+
+**成功返回**
+```
+{
+    code : 0,
+    data : null 
+}
+```
+
+#### PUT /user
+接口定义:修改密码 
+
+**URL参数说明**
+```
+{
+    mobile : "18611223344",
+    password : "abcdefg",
+    imgcode : "123456", //图片校验码
     vcode : "123456" //验证码
 }
 ```
@@ -266,6 +288,7 @@ orderId : 订单编号
     data : null 
 }
 ```
+
 
 
 #### GET /user/vcode

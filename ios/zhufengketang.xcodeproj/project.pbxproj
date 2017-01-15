@@ -16,14 +16,28 @@
 		139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139105C11AF99BAD00B5F7CC /* libRCTSettings.a */; };
 		139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139FDEF41B06529B00C62182 /* libRCTWebSocket.a */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
-		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		3C0A5DB032B34B3A9C347840 /* libRNFetchBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 01A916DB155F47E385B73734 /* libRNFetchBlob.a */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
+		6B40ECD31E2B6AD900985FA6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BEF32571E2B6528003724E3 /* UIKit.framework */; };
 		6B68BCFD1E17F88600CD301B /* AVViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B68BCFC1E17F88600CD301B /* AVViewController.m */; };
 		6B857D591E1631A7007B566A /* RCTPlayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B857D581E1631A7007B566A /* RCTPlayerManager.m */; };
+		6BEF323A1E2A3815003724E3 /* libRCTSplashScreen.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BEF32301E2A3800003724E3 /* libRCTSplashScreen.a */; };
+		6BEF324B1E2B6362003724E3 /* RCTPay.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BEF324A1E2B6362003724E3 /* RCTPay.m */; };
+		6BEF324E1E2B64FC003724E3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BEF324D1E2B64FC003724E3 /* SystemConfiguration.framework */; };
+		6BEF32501E2B6508003724E3 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BEF324F1E2B6508003724E3 /* CoreTelephony.framework */; };
+		6BEF32521E2B650F003724E3 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BEF32511E2B650F003724E3 /* QuartzCore.framework */; };
+		6BEF32541E2B6516003724E3 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BEF32531E2B6516003724E3 /* CoreText.framework */; };
+		6BEF32561E2B651E003724E3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BEF32551E2B651E003724E3 /* CoreGraphics.framework */; };
+		6BEF325A1E2B652E003724E3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BEF32591E2B652E003724E3 /* Foundation.framework */; };
+		6BEF325C1E2B6533003724E3 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BEF325B1E2B6533003724E3 /* CFNetwork.framework */; };
+		6BEF325E1E2B653B003724E3 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BEF325D1E2B653B003724E3 /* CoreMotion.framework */; };
+		6BEF32601E2B6561003724E3 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BEF325F1E2B6561003724E3 /* libc++.tbd */; };
+		6BEF32621E2B656A003724E3 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BEF32611E2B656A003724E3 /* libz.tbd */; };
+		6BEF32641E2B67DB003724E3 /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6BEF32631E2B67DB003724E3 /* AlipaySDK.bundle */; };
+		6BEF32661E2B67E2003724E3 /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BEF32651E2B67E2003724E3 /* AlipaySDK.framework */; };
 		6BF402681E20DF2500F9FC9C /* libRCTToast.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BF402671E20DED700F9FC9C /* libRCTToast.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 /* End PBXBuildFile section */
@@ -148,6 +162,13 @@
 			remoteGlobalIDString = 2D2A28131D9B038B00D4039D;
 			remoteInfo = "React-tvOS";
 		};
+		6BEF322F1E2A3800003724E3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6BEF321F1E2A3800003724E3 /* RCTSplashScreen.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3245CDED1BFEE35C00EABF68;
+			remoteInfo = RCTSplashScreen;
+		};
 		6BF402601E20D9E700F9FC9C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = C2EC4CF21A754CADBCD26A3E /* RNFetchBlob.xcodeproj */;
@@ -191,7 +212,6 @@
 		13B07F961A680F5B00A75B9A /* zhufengketang.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = zhufengketang.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = zhufengketang/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = zhufengketang/AppDelegate.m; sourceTree = "<group>"; };
-		13B07FB21A68108700A75B9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = zhufengketang/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = zhufengketang/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = zhufengketang/main.m; sourceTree = "<group>"; };
@@ -200,6 +220,22 @@
 		6B68BCFB1E17F88600CD301B /* AVViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AVViewController.h; path = zhufengketang/AVViewController.h; sourceTree = "<group>"; };
 		6B68BCFC1E17F88600CD301B /* AVViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AVViewController.m; path = zhufengketang/AVViewController.m; sourceTree = "<group>"; };
 		6B857D581E1631A7007B566A /* RCTPlayerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RCTPlayerManager.m; path = zhufengketang/RCTPlayerManager.m; sourceTree = "<group>"; };
+		6BEF321F1E2A3800003724E3 /* RCTSplashScreen.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSplashScreen.xcodeproj; path = "../node_modules/@remobile/react-native-splashscreen/ios/RCTSplashScreen.xcodeproj"; sourceTree = "<group>"; };
+		6BEF32491E2B6312003724E3 /* RCTPay.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RCTPay.h; path = zhufengketang/RCTPay.h; sourceTree = "<group>"; };
+		6BEF324A1E2B6362003724E3 /* RCTPay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RCTPay.m; path = zhufengketang/RCTPay.m; sourceTree = "<group>"; };
+		6BEF324D1E2B64FC003724E3 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		6BEF324F1E2B6508003724E3 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		6BEF32511E2B650F003724E3 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		6BEF32531E2B6516003724E3 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		6BEF32551E2B651E003724E3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		6BEF32571E2B6528003724E3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		6BEF32591E2B652E003724E3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		6BEF325B1E2B6533003724E3 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		6BEF325D1E2B653B003724E3 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		6BEF325F1E2B6561003724E3 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		6BEF32611E2B656A003724E3 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		6BEF32631E2B67DB003724E3 /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = AlipaySDK.bundle; path = zhufengketang/AlipaySDK.bundle; sourceTree = "<group>"; };
+		6BEF32651E2B67E2003724E3 /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlipaySDK.framework; path = zhufengketang/AlipaySDK.framework; sourceTree = "<group>"; };
 		6BF402621E20DED700F9FC9C /* RCTToast.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTToast.xcodeproj; path = "../node_modules/@remobile/react-native-toast/ios/RCTToast.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
@@ -211,6 +247,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B40ECD31E2B6AD900985FA6 /* UIKit.framework in Frameworks */,
+				6BEF32621E2B656A003724E3 /* libz.tbd in Frameworks */,
+				6BEF32601E2B6561003724E3 /* libc++.tbd in Frameworks */,
+				6BEF325E1E2B653B003724E3 /* CoreMotion.framework in Frameworks */,
+				6BEF325C1E2B6533003724E3 /* CFNetwork.framework in Frameworks */,
+				6BEF325A1E2B652E003724E3 /* Foundation.framework in Frameworks */,
+				6BEF32561E2B651E003724E3 /* CoreGraphics.framework in Frameworks */,
+				6BEF32541E2B6516003724E3 /* CoreText.framework in Frameworks */,
+				6BEF32521E2B650F003724E3 /* QuartzCore.framework in Frameworks */,
+				6BEF32501E2B6508003724E3 /* CoreTelephony.framework in Frameworks */,
+				6BEF324E1E2B64FC003724E3 /* SystemConfiguration.framework in Frameworks */,
 				5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
 				00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */,
@@ -218,10 +265,12 @@
 				00C302E81ABCBA2D00DB3ED1 /* libRCTImage.a in Frameworks */,
 				133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */,
 				00C302E91ABCBA2D00DB3ED1 /* libRCTNetwork.a in Frameworks */,
+				6BEF323A1E2A3815003724E3 /* libRCTSplashScreen.a in Frameworks */,
 				139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */,
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
 				6BF402681E20DF2500F9FC9C /* libRCTToast.a in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
+				6BEF32661E2B67E2003724E3 /* AlipaySDK.framework in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				3C0A5DB032B34B3A9C347840 /* libRNFetchBlob.a in Frameworks */,
 			);
@@ -293,14 +342,16 @@
 		13B07FAE1A68108700A75B9A /* zhufengketang */ = {
 			isa = PBXGroup;
 			children = (
+				6BEF32631E2B67DB003724E3 /* AlipaySDK.bundle */,
 				6B857D301E162F92007B566A /* player */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
-				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
+				6BEF32491E2B6312003724E3 /* RCTPay.h */,
+				6BEF324A1E2B6362003724E3 /* RCTPay.m */,
 			);
 			name = zhufengketang;
 			sourceTree = "<group>";
@@ -333,6 +384,33 @@
 			name = player;
 			sourceTree = "<group>";
 		};
+		6BEF32201E2A3800003724E3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6BEF32301E2A3800003724E3 /* libRCTSplashScreen.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6BEF324C1E2B64FC003724E3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6BEF32651E2B67E2003724E3 /* AlipaySDK.framework */,
+				6BEF32611E2B656A003724E3 /* libz.tbd */,
+				6BEF325F1E2B6561003724E3 /* libc++.tbd */,
+				6BEF325D1E2B653B003724E3 /* CoreMotion.framework */,
+				6BEF325B1E2B6533003724E3 /* CFNetwork.framework */,
+				6BEF32591E2B652E003724E3 /* Foundation.framework */,
+				6BEF32571E2B6528003724E3 /* UIKit.framework */,
+				6BEF32551E2B651E003724E3 /* CoreGraphics.framework */,
+				6BEF32531E2B6516003724E3 /* CoreText.framework */,
+				6BEF32511E2B650F003724E3 /* QuartzCore.framework */,
+				6BEF324F1E2B6508003724E3 /* CoreTelephony.framework */,
+				6BEF324D1E2B64FC003724E3 /* SystemConfiguration.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		6BF4024A1E20D9E700F9FC9C /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -361,6 +439,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				6BEF321F1E2A3800003724E3 /* RCTSplashScreen.xcodeproj */,
 				6BF402621E20DED700F9FC9C /* RCTToast.xcodeproj */,
 				5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
@@ -393,6 +472,7 @@
 				13B07FAE1A68108700A75B9A /* zhufengketang */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				83CBBA001A601CBA00E9B192 /* Products */,
+				6BEF324C1E2B64FC003724E3 /* Frameworks */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -480,6 +560,10 @@
 				{
 					ProductGroup = 139105B71AF99BAD00B5F7CC /* Products */;
 					ProjectRef = 139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */;
+				},
+				{
+					ProductGroup = 6BEF32201E2A3800003724E3 /* Products */;
+					ProjectRef = 6BEF321F1E2A3800003724E3 /* RCTSplashScreen.xcodeproj */;
 				},
 				{
 					ProductGroup = 832341B11AAA6A8300B99B32 /* Products */;
@@ -633,6 +717,13 @@
 			remoteRef = 6B857D501E162F92007B566A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		6BEF32301E2A3800003724E3 /* libRCTSplashScreen.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRCTSplashScreen.a;
+			remoteRef = 6BEF322F1E2A3800003724E3 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		6BF402611E20D9E700F9FC9C /* libRNFetchBlob.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -668,8 +759,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6BEF32641E2B67DB003724E3 /* AlipaySDK.bundle in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -698,6 +789,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				6BEF324B1E2B6362003724E3 /* RCTPay.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 				6B857D591E1631A7007B566A /* RCTPlayerManager.m in Sources */,
 				6B68BCFD1E17F88600CD301B /* AVViewController.m in Sources */,
@@ -706,26 +798,19 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXVariantGroup section */
-		13B07FB11A68108700A75B9A /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				13B07FB21A68108700A75B9A /* Base */,
-			);
-			name = LaunchScreen.xib;
-			path = zhufengketang;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = D9D59BE76S;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/zhufengketang",
+				);
 				INFOPLIST_FILE = zhufengketang/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -746,8 +831,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = D9D59BE76S;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/zhufengketang",
+				);
 				INFOPLIST_FILE = zhufengketang/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -802,6 +892,7 @@
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native/React/**",
 					"$(SRCROOT)/../node_modules/react-native/ReactCommon/**",
+					"$(SRCROOT)/../node_modules/@remobile/react-native-splashscreen/ios/RCTSplashScreen",
 					"$(SRCROOT)/../node_modules/react-native-fetch-blob/ios/**",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -843,6 +934,7 @@
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native/React/**",
 					"$(SRCROOT)/../node_modules/react-native/ReactCommon/**",
+					"$(SRCROOT)/../node_modules/@remobile/react-native-splashscreen/ios/RCTSplashScreen",
 					"$(SRCROOT)/../node_modules/react-native-fetch-blob/ios/**",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;

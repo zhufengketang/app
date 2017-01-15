@@ -23,4 +23,4 @@
  *
  */
 
-export const SERVICE_BASE = "http://ketang.zhufengpeixun.cn"
+export const SERVICE_BASE = "https://ketang.zhufengpeixun.cn"

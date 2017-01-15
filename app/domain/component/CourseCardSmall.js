@@ -33,9 +33,10 @@ export class CourseCardSmall extends Component{
   render() {
     const W = Dimensions.get("window").width
 
-    const {image, title, start, hours, author, description, price, address} = this.props
+    const {image, title, start, hours, author, description, price, address, onPress} = this.props
 
-    return <View elevation={true}>
+
+    return <View elevation={1}>
       <Title>{title}</Title>
 
       <View style={{flexDirection: 'row'}}>
@@ -46,19 +47,19 @@ export class CourseCardSmall extends Component{
           />
         </View>
         <View style={{paddingLeft : 10}}>
-          <LabelValue label="开课时间">{start}</LabelValue>
+          <LabelValue label="开课时间">{start.substring(0, 10)}</LabelValue>
           <LabelValue label="上课地点">{address}</LabelValue>
-          <LabelValue label="时长">{hours}</LabelValue>
+          <LabelValue label="时长">{hours}课时</LabelValue>
         </View>
       </View>
 
       <View style={{borderBottomWidth : 1, borderColor : '#ccc', margin: 20}}></View>
       <View style={{alignItems : 'flex-end', paddingRight : 20}}>
-        <Price label="现金金额">{price}</Price>
+        <Price label="">{price}</Price>
       </View>
 
       <View style={{...flexCenter, marginTop : 20 }}>
-        <ZButton>支付</ZButton>
+        <ZButton onPress={onPress}>支付</ZButton>
       </View>
         
     </View>
@@ -78,8 +79,8 @@ const Label = ({children, style}) => {
 
 const LabelValue = ({children, label}) => {
 
-  return <View style={{marginTop : 5, flexDirection : 'row'}}>
-    <Label style={{marginRight : 20}}>{label}</Label>
+  return <View style={{marginTop : 5, flexDirection : 'row', alignItems : 'center'}}>
+    <Label style={{marginRight : 10}}>{label}</Label>
     <Text style={{color : COLOR_TEXT_LIGHT}}>{children}</Text>
   </View>
 }

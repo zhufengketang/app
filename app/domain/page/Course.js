@@ -31,6 +31,10 @@ const {width, height} = Dimensions.get('window')
 const sliderItemStyle = {width, height : width * 0.523}
 import {ZBottomButton} from "domain/component"
 
+import {Routes} from "domain/page"
+import {post_order} from "domain/api/apis"
+
+
 export class Course extends Component {
 
   constructor(props){
@@ -53,6 +57,22 @@ export class Course extends Component {
       tabIndex: event.nativeEvent.selectedSegmentIndex
     })
   }
+  
+  async _buy(){
+    const result = await post_order(this.props.route.course.id)    
+    if(assert_request(result)){
+      if(login_check(result, this.props.navigator, this.props.route)) {
+        /// TODO
+        const orderId = result.data
+        const course = this.props.route.course
+        const route = {...Routes.Pay, orderId, course}
+        
+        this.props.navigator.push(route)
+      }
+    }
+    
+  }
+
   render(){
 
     const {tabIndex} = this.state
@@ -62,12 +82,12 @@ export class Course extends Component {
       <ScrollView style={{flex : 1}}>
         <Image source={{uri : course.image}} style={sliderItemStyle} />
 
-        <View style={{...flexCenter}}>
+        <View style={{...flexCenter, marginTop : 20}}>
           <SegmentedControl
             selectedIndex={tabIndex}
             values={['课程介绍', '课程目录']}
             onChange={this._change.bind(this)}
-            style={{width : 200, marginTop : 20}}
+            style={{width : 200}}
           />
         </View>
 
@@ -121,7 +141,7 @@ export class Course extends Component {
       </ScrollView>
 
       <View style={{height : 42}}>
-        <ZBottomButton>购买</ZBottomButton>
+        <ZBottomButton onPress={this._buy.bind(this)}>购买</ZBottomButton>
       </View>
     </View>
   }

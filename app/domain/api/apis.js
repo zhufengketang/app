@@ -33,12 +33,10 @@ import {get_local_token} from "domain/store/storage"
 /**
  * 请求获取token,并缓存在本地
  */
-export const get_token = async () => {
-
-  if(store.getState().user.token) {
+export const get_token = async (force) => {
+  if(!force && store.getState().user.token) {
     return
   }
-  
   return await http_get("/token")
 }
 
@@ -52,6 +50,13 @@ function _arrayBufferToBase64( buffer ) {
   return window.btoa( binary );
 }
 
+/**
+ *  去支付宝拿签名
+ */
+
+export const get_sign_alipay = (orderId) => {
+  return http_get('/order/sign/alipay', {orderId})
+}
 
 /**
  * 获取验证码图片
@@ -128,4 +133,11 @@ export const get_courses = (start, take) => {
 export const get_orders = (start, take) => {
   console.log("@get_ourder")  
   return http_get("/order", {start, take})
+}
+
+
+export const post_order = (courseId) => {
+  console.log("@post_order")
+  return http_post(`/order/${courseId}`)
+  
 }

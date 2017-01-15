@@ -81,7 +81,10 @@ export class Login extends Component {
     const {mobile,password} = data
     const result = await login({mobile, password})
     this.setState({busy : false})
-    alert("登录成功")
+
+    if(this.props.route.from) {
+      this.props.navigator.pop()
+    }
   }
 
   render(){

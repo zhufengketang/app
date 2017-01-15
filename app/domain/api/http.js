@@ -108,7 +108,7 @@ const http_factory = (method) => {
       console.log(requestOptions)
       const json = await http_result.json()
 
-      console.log("get json result")
+      console.log("get json result with token:" + json.token)
       console.log(json)
       if(json.token) {
         set_local_token(json.token)

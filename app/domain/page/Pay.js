@@ -27,39 +27,54 @@
 import React, {Component} from 'react'
 import {View, Text, Image, ScrollView, Dimensions} from 'react-native'
 import {CourseCardSmall} from "domain/component"
+import { NativeModules } from 'react-native';
+import {get_sign_alipay} from "domain/api/apis"
 
 export class Pay extends Component {
 
   constructor(props){
     super()  
-    
-    // mock数据
-    props.route.course = {
-      title : "顶级大神教你写node.js",
-      author : "张仁阳",
-      author_profile : "XXX老师来自于XXX公司,离职后一直从事前端领域教育",
-      description : "国内顶尖大神教你写node.js.从零开始,循序渐进.......",
-      price : Math.random() * 10000 + 5000,
-      start : "2016-10-30",
-      image : "http://a1.jikexueyuan.com/home/201506/24/a082/558a11c35f925.jpg",
-      address : "珠峰",
-      hours : "21小时",
-      contents : [
-        "第1课: XXXXXXX",
-        "第2课: XXXXXXX",
-        "第3课: XXXXXXX",
-        "第4课: XXXXXXX",
-      ]
-    }
   }
-  
-  render(){
 
+  componentDidMount(){
+  }
+
+  
+  async _press(){
+    // RCTPay
+
+    const result = await get_sign_alipay(this.props.route.orderId)
+
+    const {orderSpec, sign} = result.data
+    let orderString = `${orderSpec}&sign="${sign}"&sign_type="RSA"`
+    console.log(orderString)
+    const obj = await NativeModules.Pay.alipay(
+      orderString
+    )
+
+
+    switch(obj.resultStatus) {
+      case "9000":
+      case "8000":
+      case "6004":
+        /// TODO
+        break;
+
+      case "4000":
+      case "6001":
+      case "6002":
+        alert("支付没有成功")
+        break;
+
+    }
+    console.log("@Pay After alipay result", obj)
+  }
+  render(){
     const {course} = this.props.route
     
     return (
       <View>
-        <CourseCardSmall {...course} />
+        <CourseCardSmall {...course} onPress={this._press.bind(this)} />
       </View>
     )
   }
