@@ -59,15 +59,18 @@ export class Course extends Component {
   }
   
   async _buy(){
-    const result = await post_order(this.props.route.course.id)    
+    const result = await post_order(this.props.route.course.id)
     if(assert_request(result)){
-      if(login_check(result, this.props.navigator, this.props.route)) {
+      const logined = await login_check(result, this.props.navigator, this.props.route)
+      if(logined) {
+
         /// TODO
         const orderId = result.data
         const course = this.props.route.course
         const route = {...Routes.Pay, orderId, course}
-        
+
         this.props.navigator.push(route)
+
       }
     }
     

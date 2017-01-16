@@ -42,7 +42,7 @@ export class UserCenter extends Component{
   
   render(){
     return (
-      <ScrollView>
+      <ScrollView style={{flex : 1, backgroundColor : "white"}}>
         <View>
           <Image source={require("./images/usercenter.png")} style={sliderItemStyle} >
           </Image>

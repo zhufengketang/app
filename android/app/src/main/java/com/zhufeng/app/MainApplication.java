@@ -1,12 +1,9 @@
-package com.zhufengketang;
+package com.zhufeng.app;
 
 import android.app.Application;
-import android.graphics.Color;
-import android.util.Log;
 
 import com.facebook.react.ReactApplication;
 import com.RNFetchBlob.RNFetchBlobPackage;
-import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
@@ -15,7 +12,6 @@ import com.facebook.soloader.SoLoader;
 import java.util.Arrays;
 import java.util.List;
 import com.remobile.toast.RCTToastPackage;
-import com.remobile.splashscreen.RCTSplashScreenPackage;
 
 public class MainApplication extends Application implements ReactApplication {
 

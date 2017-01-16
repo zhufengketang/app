@@ -16,7 +16,6 @@
 		139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139105C11AF99BAD00B5F7CC /* libRCTSettings.a */; };
 		139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139FDEF41B06529B00C62182 /* libRCTWebSocket.a */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
-		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		3C0A5DB032B34B3A9C347840 /* libRNFetchBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 01A916DB155F47E385B73734 /* libRNFetchBlob.a */; };
@@ -24,6 +23,7 @@
 		6B40ECD31E2B6AD900985FA6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BEF32571E2B6528003724E3 /* UIKit.framework */; };
 		6B68BCFD1E17F88600CD301B /* AVViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B68BCFC1E17F88600CD301B /* AVViewController.m */; };
 		6B857D591E1631A7007B566A /* RCTPlayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B857D581E1631A7007B566A /* RCTPlayerManager.m */; };
+		6BBED1D41E2D21F8003BBCE6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6BBED1D31E2D21F8003BBCE6 /* Images.xcassets */; };
 		6BEF323A1E2A3815003724E3 /* libRCTSplashScreen.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BEF32301E2A3800003724E3 /* libRCTSplashScreen.a */; };
 		6BEF324B1E2B6362003724E3 /* RCTPay.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BEF324A1E2B6362003724E3 /* RCTPay.m */; };
 		6BEF324E1E2B64FC003724E3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BEF324D1E2B64FC003724E3 /* SystemConfiguration.framework */; };
@@ -212,7 +212,6 @@
 		13B07F961A680F5B00A75B9A /* zhufengketang.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = zhufengketang.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = zhufengketang/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = zhufengketang/AppDelegate.m; sourceTree = "<group>"; };
-		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = zhufengketang/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = zhufengketang/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = zhufengketang/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
@@ -220,6 +219,7 @@
 		6B68BCFB1E17F88600CD301B /* AVViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AVViewController.h; path = zhufengketang/AVViewController.h; sourceTree = "<group>"; };
 		6B68BCFC1E17F88600CD301B /* AVViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AVViewController.m; path = zhufengketang/AVViewController.m; sourceTree = "<group>"; };
 		6B857D581E1631A7007B566A /* RCTPlayerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RCTPlayerManager.m; path = zhufengketang/RCTPlayerManager.m; sourceTree = "<group>"; };
+		6BBED1D31E2D21F8003BBCE6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = zhufengketang/Images.xcassets; sourceTree = "<group>"; };
 		6BEF321F1E2A3800003724E3 /* RCTSplashScreen.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSplashScreen.xcodeproj; path = "../node_modules/@remobile/react-native-splashscreen/ios/RCTSplashScreen.xcodeproj"; sourceTree = "<group>"; };
 		6BEF32491E2B6312003724E3 /* RCTPay.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RCTPay.h; path = zhufengketang/RCTPay.h; sourceTree = "<group>"; };
 		6BEF324A1E2B6362003724E3 /* RCTPay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RCTPay.m; path = zhufengketang/RCTPay.m; sourceTree = "<group>"; };
@@ -342,12 +342,12 @@
 		13B07FAE1A68108700A75B9A /* zhufengketang */ = {
 			isa = PBXGroup;
 			children = (
+				6BBED1D31E2D21F8003BBCE6 /* Images.xcassets */,
 				6BEF32631E2B67DB003724E3 /* AlipaySDK.bundle */,
 				6B857D301E162F92007B566A /* player */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
-				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB71A68108700A75B9A /* main.m */,
 				6BEF32491E2B6312003724E3 /* RCTPay.h */,
@@ -760,7 +760,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6BEF32641E2B67DB003724E3 /* AlipaySDK.bundle in Resources */,
-				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				6BBED1D41E2D21F8003BBCE6 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -803,7 +803,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = splash;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = D9D59BE76S;
@@ -831,7 +831,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = splash;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = D9D59BE76S;
 				FRAMEWORK_SEARCH_PATHS = (

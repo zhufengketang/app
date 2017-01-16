@@ -1,13 +1,10 @@
-package com.zhufengketang;
+package com.zhufeng.app;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 
 import com.facebook.react.CustomReactActivity;
-import com.facebook.react.ReactActivity;
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.WritableMap;
 
