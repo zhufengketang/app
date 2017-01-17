@@ -80,8 +80,13 @@ export class Login extends Component {
     this.setState({busy : true})
     const {mobile,password} = data
     const result = await login({mobile, password})
-    this.setState({busy : false})
 
+    this.setState({busy : false})
+    
+    store.dispatch({
+      type : "LOGIN_SUCCESS",
+      name : result.name 
+    })
     if(this.props.route.from) {
       this.props.navigator.pop()
     }
@@ -125,11 +130,18 @@ const LoginForm = ({form, fields, submit, busy, navigator}) => {
     <View>
       <ZInput placeholder="手机号" keyboardType="phone-pad" {...mobile} />
       <ZInput placeholder="密码"  {...password} secureTextEntry={true} />
-      <TouchableOpacity 
-        onPress={() => navigator.push({...Routes.Register})}
-        style={{paddingLeft : 20}}>
-        <Text style={{color : COLOR_PRIMARY, marginTop : 10}}>没有账号?马上注册</Text>
-      </TouchableOpacity>
+      <View style={{justifyContent : "space-between", flexDirection : 'row'}}>
+        <TouchableOpacity
+          onPress={() => navigator.push({...Routes.Register})}
+          style={{paddingLeft : 20}}>
+          <Text style={{color : COLOR_PRIMARY, marginTop : 10}}>没有账号?马上注册</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => navigator.push({...Routes.ResetPassword})}
+          style={{paddingRight : 20}}>
+          <Text style={{color : COLOR_PRIMARY, marginTop : 10}}>忘记密码</Text>
+        </TouchableOpacity>
+      </View>
       <View style={{...flexCenter, marginTop : 20}}>
         <ZButton onPress={submit} loading={busy}>登录</ZButton>
       </View>

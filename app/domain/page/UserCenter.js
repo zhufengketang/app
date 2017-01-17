@@ -39,11 +39,25 @@ const {width, height} = Dimensions.get('window')
 const sliderItemStyle = {width, height : width * 0.6}
 
 import {Routes} from "domain/page"
-export class UserCenter extends Component{
+import {connect} from 'react-redux'
+class _UserCenter extends Component{
 
   _about(){
     this.props.navigator.push({...Routes.About})
   }
+  
+  _reset(){
+    this.props.navigator.push({...Routes.ResetPassword})
+  }
+  
+  _logout(){
+    
+    store.dispatch({type : "LOGOUT"})
+    
+    this.props.switch_to("home")
+  }
+  
+  
   
   render(){
     return (
@@ -51,13 +65,16 @@ export class UserCenter extends Component{
         <View>
           <Image source={require("./images/usercenter.png")} style={sliderItemStyle} >
           </Image>
+          <View style={{position : "absolute", top : sliderItemStyle.height * 0.7, backgroundColor: "rgba(0,0,0,0)", width : Dimensions.get("window").width, alignItems : 'center'}}>
+            <Text style={{color : 'white', fontSize : 16}}>{this.props.name}</Text>
+          </View>
         </View>
 
         <View style={{marginTop : 10}}>
           {/*<StripedButton icon={require("./images/uc/question.png")}>常见问题</StripedButton>*/}
           <StripedButton onPress={this._about.bind(this)} icon={require("./images/uc/user.png")}>关于《珠峰课堂》</StripedButton>
-          <StripedButton icon={require("./images/uc/password.png")}>修改密码</StripedButton>
-          <StripedButton icon={require("./images/uc/password.png")}>登出</StripedButton>
+          <StripedButton onPress={this._reset.bind(this)} icon={require("./images/uc/password.png")}>修改密码</StripedButton>
+          <StripedButton onPress={this._logout.bind(this)} icon={require("./images/uc/password.png")}>登出</StripedButton>
         </View>
       </ScrollView>
     )
@@ -98,3 +115,13 @@ const styles = StyleSheet.create({
   }
   
 })
+
+const map = (state) => {
+  
+  return {
+    name : state.user.name
+  }
+  
+}
+
+export let UserCenter = connect(map)(_UserCenter)

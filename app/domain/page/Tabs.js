@@ -44,12 +44,12 @@ export class Tabs extends Component{
         <Tabbar.Item 
           name="mycourse"
           title="我的课程" activeIcon={require("./images/my-course.png")} icon={require("./images/my-course-gray.png")}>
-          <MyCourse />
+          <MyCourse  navigator={this.props.navigator} route={this.props.route} />
         </Tabbar.Item>
         <Tabbar.Item 
           name="usercenter"
           title="个人中心" activeIcon={require("./images/user-center.png")} icon={require("./images/user-center-gray.png")}>
-          <UserCenter />
+          <UserCenter  navigator={this.props.navigator} route={this.props.route} />
         </Tabbar.Item>
       </Tabbar>
     )
