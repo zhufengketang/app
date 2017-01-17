@@ -136,8 +136,18 @@ export const get_orders = (start, take) => {
 }
 
 
+/**
+ * 创建订单
+ * @param courseId
+ */
 export const post_order = (courseId) => {
   console.log("@post_order")
   return http_post(`/order/${courseId}`)
-  
+
+}
+
+
+export const put_user = (data) => {
+  console.log("@put_user")
+  return http_put(`/user`, data)
 }

@@ -40,7 +40,7 @@ import {
 import {FormScrollView, FormConnector, ValidateMethods, flexCenter} from 'basic'
 import {ZButton, ZInput, ZSwitch, ZVCode, ZImgCode} from "domain/component"
 
-import {get_user_vcode, reset} from "domain/api/apis"
+import {put_user, get_user_vcode} from "domain/api/apis"
 
 
 const fields = ["password", "mobile", 'imgcode', 'vcode']
@@ -73,9 +73,9 @@ export class ResetPassword extends Component {
     
     this.setState({busy : true})
     const {mobile,password, imgcode, vcode} = data
-    const result = await login({mobile, password})
+    const result = await put_user({mobile, password})
     this.setState({busy : false})
-    alert("登录成功")
+    alert("修改成功")
   }
 
   render(){
@@ -136,7 +136,7 @@ const ResetPasswordForm = ({form, fields, submit, busy}) => {
       <ZInput placeholder="手机号" keyboardType="phone-pad" {...mobile} />
       <ZInput placeholder="密码"  {...password} secureTextEntry={true} />
       <ZImgCode {...imgcode} />
-      <ZVCode {...vcode} />
+      <ZVCode {...vcode} send={send} />
       <View style={{...flexCenter, marginTop : 20}}>
         <ZButton onPress={submit} loading={busy}>登录</ZButton>
       </View>

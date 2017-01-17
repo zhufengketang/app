@@ -37,21 +37,27 @@ import {
 
 const {width, height} = Dimensions.get('window')
 const sliderItemStyle = {width, height : width * 0.6}
+
+import {Routes} from "domain/page"
 export class UserCenter extends Component{
 
+  _about(){
+    this.props.navigator.push({...Routes.About})
+  }
   
   render(){
     return (
-      <ScrollView style={{flex : 1, backgroundColor : "white"}}>
+      <ScrollView style={{backgroundColor : "white"}}>
         <View>
           <Image source={require("./images/usercenter.png")} style={sliderItemStyle} >
           </Image>
         </View>
 
-        <View>
-          <StripedButton icon={require("./images/uc/question.png")}>常见问题</StripedButton>
-          <StripedButton icon={require("./images/uc/user.png")}>关于我们</StripedButton>
+        <View style={{marginTop : 10}}>
+          {/*<StripedButton icon={require("./images/uc/question.png")}>常见问题</StripedButton>*/}
+          <StripedButton onPress={this._about.bind(this)} icon={require("./images/uc/user.png")}>关于《珠峰课堂》</StripedButton>
           <StripedButton icon={require("./images/uc/password.png")}>修改密码</StripedButton>
+          <StripedButton icon={require("./images/uc/password.png")}>登出</StripedButton>
         </View>
       </ScrollView>
     )
@@ -62,8 +68,10 @@ const StripedButton = ({icon, children, onPress}) => {
 
   return <TouchableOpacity onPress={onPress} style={styles.stripedButton}>
     <Image source={icon} style={styles.icon} />
-    <Text>{children}</Text>
-    <Image source={require("./images/right-arrow.png")}></Image>
+    <View style={{flex : 1, marginLeft : 10}}>
+      <Text>{children}</Text>
+    </View>
+    <Image style={styles.iconR} source={require("./images/right-arrow.png")}></Image>
   </TouchableOpacity>
 }
 
@@ -74,11 +82,19 @@ const styles = StyleSheet.create({
   stripedButton : {
     flexDirection : 'row',
     height : 40,
-    alignItems : 'center'
+    alignItems : 'center',
+    borderBottomWidth : 1,
+    borderBottomColor : '#f2f3f4'
   },
   icon : {
-    width : 20,
-    height : 20
-    
+    width : 18,
+    height : 18,
+    marginLeft : 20
+  },
+  iconR : {
+    width : 12,
+    height : 12,
+    marginRight : 20
   }
+  
 })

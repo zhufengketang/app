@@ -67,12 +67,12 @@ export const init = async () => {
 
 
   return new Promise ( (resolve, reject) => {
-    const blackList = ['network']
+    const blacklist = ['network']
     
     // 使用ReactNative的AysncStorage作为redux-persist的storage
     const storage = AsyncStorage
     
-    persistStore(store, {blackList, storage}, () => {
+    persistStore(store, {blacklist, storage}, () => {
 
       console.log("rehydration complete")
       resolve(store)

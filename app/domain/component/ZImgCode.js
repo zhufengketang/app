@@ -84,7 +84,7 @@ export class ZImgCode extends Component{
       <TouchableOpacity onPress={this._changeImage.bind(this)}>
         {img &&
         <View style={{...styles.btn, ...styles.btnDisabled}}>
-          <Image style={{width : 100, height :42}} source={img}/>
+          <Image style={{width : 100, height :42}} source={img} resizeMode="contain"/>
         </View>
 
         }

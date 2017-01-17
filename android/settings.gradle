@@ -1,9 +1,9 @@
 rootProject.name = 'zhufengketang'
+include ':react-native-splash-screen'
+project(':react-native-splash-screen').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-splash-screen/android')
 include ':react-native-fetch-blob'
 project(':react-native-fetch-blob').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-fetch-blob/android')
+include ':@remobile/react-native-toast'
+project(':@remobile/react-native-toast').projectDir = new File(rootProject.projectDir, '../node_modules/@remobile/react-native-toast/android')
 
-
-include ':react-native-toast'
-project(':react-native-toast').projectDir = new File(settingsDir, '../node_modules/@remobile/react-native-toast/android')
 include ':app'
-

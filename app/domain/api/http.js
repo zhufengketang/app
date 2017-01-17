@@ -106,7 +106,8 @@ const http_factory = (method) => {
       console.log(params)
       console.log("and options")
       console.log(requestOptions)
-      const json = await http_result.json()
+      const text = await http_result.text()
+      const json = JSON.parse(text) 
 
       console.log("get json result with token:" + json.token)
       console.log(json)

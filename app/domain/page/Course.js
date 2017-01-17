@@ -99,7 +99,7 @@ export class Course extends Component {
           <Block>
             <Title>{course.title}</Title>
             <LabelValue label="开课时间">
-              <Description>{course.start}</Description>
+              <Description>{course.start.substring(0, 10)}</Description>
             </LabelValue>
             <LabelValue label="上课地点">
               <Description>{course.address}</Description>

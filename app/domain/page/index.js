@@ -132,7 +132,16 @@ export const Routes = {
     Title : "忘记密码",
 
     get Component() { return require("./ResetPassword").ResetPassword}
+  },
+  /** 关于珠峰 **/
+  About: {
+    name : "About",
+    Inverse : true,
+    Title : "关于我们",
+
+    get Component() { return require("./About").About}
   }
+  
 
 }
 

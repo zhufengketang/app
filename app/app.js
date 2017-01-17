@@ -47,7 +47,7 @@ import {NetworkError} from "domain/component"
 import {connect} from "react-redux"
 
 
-var SplashScreen = require('@remobile/react-native-splashscreen');
+import SplashScreen from 'react-native-splash-screen'
 
 class _App extends Component {
 

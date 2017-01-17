@@ -2,7 +2,11 @@ package com.zhufeng.app;
 
 import android.app.Application;
 
+import com.cboy.rn.splashscreen.SplashScreen;
 import com.facebook.react.ReactApplication;
+import com.cboy.rn.splashscreen.SplashScreenReactPackage;
+import com.RNFetchBlob.RNFetchBlobPackage;
+import com.cboy.rn.splashscreen.SplashScreenReactPackage;
 import com.RNFetchBlob.RNFetchBlobPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
@@ -25,9 +29,9 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+              new SplashScreenReactPackage(),
               new RNFetchBlobPackage(),
               new RCTToastPackage(),
-              MainActivity.activity.getRCTSplashScreenPackage(),
               new PayPackage()
       );
     }

@@ -94,7 +94,7 @@ export class FormScrollView extends Component {
     // console.log(style)
     return (
       <View style={style} onLayout={this._layout.bind(this)}>
-        <ScrollView keyboardShouldPersistTaps={true} >
+        <ScrollView keyboardShouldPersistTaps="always" >
           <TouchableWithoutFeedback onPress={this._press}>
             <View>
               {this.props.children}
