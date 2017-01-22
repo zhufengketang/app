@@ -1,4 +1,4 @@
-package com.zhufeng.app;
+package com.zhufeng.ketang;
 
 import com.facebook.react.ReactPackage;
 import com.facebook.react.bridge.JavaScriptModule;
