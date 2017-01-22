@@ -49,7 +49,10 @@ class SegmentedControlAndroid  extends Component{
 
         this.setState({
           selectedIndex : i
-        })
+        }, (() => {
+          
+          this.props.onChange({nativeEvent : {selectedSegmentIndex : i}})
+        }).bind(this))
       }
     }
     
