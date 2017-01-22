@@ -1,8 +1,8 @@
-### 珠峰课堂
+## 珠峰课堂
 
-珠峰课堂是珠峰联合业内大牛开发的国内首开源React Native App，并同步发售开发过程视频。
+由珠峰开源的一款React Native APP，目前正在内侧阶段，预计春节前发布。 一开始的目的是开发一款简单的APP供学员学习用， 后来开发小组变得兴趣浓厚决定继续开发下去，为珠峰课堂增加更多功能，将它做成一个先进的开源在线教育直播平台。 并配合[Blackboard](https://www.github.com/ramroll/blackboard) 一起作为新一代的教学工具。 
 
-#### 运行方法
+### 运行方法
 
 1. 进入项目目录
 ```
@@ -10,22 +10,54 @@ npm install
 ```
 
 2. 如果是ios
-用xcode打开ios/zhufengketang.xcodeproj
-
+用xcode打开ios/zhufengketang.xcodeproj或
+```
+react-native run-ios
+```
 3. 如果是android
 在android studio打开android目录作为一个工程
+或
+```
+react-native run-android
+```
+### 开发计划
+#### 2017.2 v1.0发布
+支持注册、登录、课程浏览、支付功能。 线上支付，线下开课。 
+
+主要覆盖知识点
+* LOGO
+* 启动页
+* 瀑布路（课程浏览）
+* TabsView
+* 表单组件
+* SDK对接（支付宝）
+* 接口联调
 
 
-#### 架构阐述
+#### 2017.3 v1.1 开发计划 
 
-##### 依赖关系
-目前分成两层basic和domain。 domain目录中本次项目相关的组件、服务、配置参数和Helper函数，basic目录是本次开发过程中的额外产出的通用组件、方法等
-- domain依赖于basic, 但basic不依赖于domain
-- domain和basic之间的关系是单向的依赖
+1. 增加微信支付
+2. 增加微信登录
+3. 增加微信分享
+4. 增加视频课程播放
 
-##### 路由
-目前使用的是React Native 自带的Navigator， 增加一个页面请遵循以下步骤：
-- 在domain/page目录下增加一个组件*
-- 在路由元数据文件domain/pages/index.js中增加描述
+#### 2017.4 v1.2 开发计划
+1. 增加视频直播（在线答疑、连线）
+ 
+ 
+#### 2017.5 v1.3 开发计划
+1. 增加好友关系、社交
+
+#### 2017.6 v2.0 开发计划
+整合Blackboard，成为一个完成的教学体系
 
 
+
+### 如何申请加入珠峰课堂研发小组
+申请加入研发小组，您不但成为我们的一员，同时我们将共同推进教学产品并分享成果。
+请发邮件至 ramroll@gmail.com
+包括：
+* 您的自我介绍
+* 联系方式
+
+收到邮件后，小组成员会及时和您沟通。
