@@ -30,13 +30,18 @@ import {ZButton} from 'domain/component'
 
 export class CourseCardSmall extends Component{
 
+  static defaultProps = {
+    pay : true,
+    isLast : false
+  }
+
   render() {
     const W = Dimensions.get("window").width
 
-    const {image, title, start, hours, author, description, price, address, onPress} = this.props
+    const {isLast, image, title, start, hours, author, pay, description, price, address, onPress, containerStyle} = this.props
 
 
-    return <View elevation={1}>
+    return <View elevation={1} style={containerStyle}>
       <Title>{title}</Title>
 
       <View style={{flexDirection: 'row'}}>
@@ -49,18 +54,27 @@ export class CourseCardSmall extends Component{
         <View style={{paddingLeft : 10}}>
           <LabelValue label="开课时间">{start.substring(0, 10)}</LabelValue>
           <LabelValue label="上课地点">{address}</LabelValue>
-          <LabelValue label="时长">{hours}课时</LabelValue>
+          {hours ? <LabelValue label="时长">{hours}课时</LabelValue> : null}
+          {author ? <LabelValue label="讲师">{author}</LabelValue> : null}
         </View>
       </View>
 
+      {!isLast ? 
       <View style={{borderBottomWidth : 1, borderColor : '#ccc', margin: 20}}></View>
-      <View style={{alignItems : 'flex-end', paddingRight : 20}}>
-        <Price label="">{price}</Price>
-      </View>
+        : null}
+      {pay ?
+        <View style={{alignItems : 'flex-end', paddingRight : 20}}>
+          <Price label="">{price}</Price>
+        </View>
+        : null
+      }
 
+        
+      {pay ?
       <View style={{...flexCenter, marginTop : 20 }}>
         <ZButton onPress={onPress}>支付</ZButton>
       </View>
+        :null}
         
     </View>
   }

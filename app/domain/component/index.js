@@ -25,6 +25,7 @@
 export * from "./ZButton"
 export * from "./navbar/ZNavBar"
 export * from "./tabbar/Tabbar"
+export * from "./tabbar/TabbarItem"
 export * from "./ZBottomButton"
 export * from "./NetworkError"
 export * from "./CourseCardBig"

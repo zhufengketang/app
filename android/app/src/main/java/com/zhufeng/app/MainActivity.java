@@ -10,6 +10,8 @@ import com.facebook.react.ReactActivity;
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.WritableMap;
 
+import java.util.Map;
+
 public class MainActivity extends ReactActivity {
 
     public static MainActivity activity;
@@ -37,7 +39,9 @@ public class MainActivity extends ReactActivity {
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case 1: {
-                    PayResult payResult = new PayResult((String) msg.obj);
+                    @SuppressWarnings("unchecked")
+                    PayResult payResult = new PayResult((Map<String, String>) msg.obj);
+
                     /**
                      * 同步返回的结果必须放置到服务端进行验证（验证的规则请看https://doc.open.alipay.com/doc2/
                      * detail.htm?spm=0.0.0.0.xdvAU6&treeId=59&articleId=103665&
@@ -50,7 +54,6 @@ public class MainActivity extends ReactActivity {
                     map.putString("memo", payResult.getMemo());
                     map.putString("resultStatus", payResult.getResultStatus());
                     map.putString("result", payResult.getResult());
-
 
                     PayModule.promise.resolve(map);
 

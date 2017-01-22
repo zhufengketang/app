@@ -24,3 +24,4 @@
  */
 
 export const SERVICE_BASE = "https://ketang.zhufengpeixun.cn"
+// export const SERVICE_BASE = "http://127.0.0.1:2701"

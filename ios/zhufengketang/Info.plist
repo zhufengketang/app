@@ -8,6 +8,8 @@
 	<string>珠峰课堂</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleGetInfoString</key>
+	<string></string>
 	<key>CFBundleIdentifier</key>
 	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
@@ -20,16 +22,38 @@
 	<string>1.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string></string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>zhufengketang</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>LSApplicationCategoryType</key>
+	<string></string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
-		<true/>
+		<false/>
 		<key>NSExceptionDomains</key>
 		<dict>
+			<key>zhufengpeixun.cn</key>
+			<dict>
+				<key>NSTemporaryExceptionMinimumTLSVersion</key>
+				<string>TLSv1.1</string>
+				<key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+			</dict>
 			<key>localhost</key>
 			<dict>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>

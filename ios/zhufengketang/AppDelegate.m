@@ -16,6 +16,7 @@
 
 @implementation AppDelegate
 
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
   NSURL *jsCodeLocation;
@@ -36,5 +37,27 @@
   [SplashScreen show];
   return YES;
 }
+
+
+
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
+  
+  if ([url.host isEqualToString:@"safepay"]) {
+    // 支付跳转支付宝钱包进行支付，处理支付结果
+    [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
+       [[NSNotificationCenter defaultCenter] postNotificationName: @"AlipayUrlNotify" object:nil userInfo:resultDic];
+
+
+    }];
+    
+  }
+  return YES;
+}
+
+
+
 
 @end

@@ -62,7 +62,7 @@ class _UserCenter extends Component{
   render(){
     return (
       <ScrollView style={{backgroundColor : "white"}}>
-        <View>
+        <View style={{backgroundColor : "white"}}>
           <Image source={require("./images/usercenter.png")} style={sliderItemStyle} >
           </Image>
           <View style={{position : "absolute", top : sliderItemStyle.height * 0.7, backgroundColor: "rgba(0,0,0,0)", width : Dimensions.get("window").width, alignItems : 'center'}}>

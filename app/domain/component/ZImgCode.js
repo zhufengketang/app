@@ -76,7 +76,7 @@ export class ZImgCode extends Component{
 
     return  <View style={styles.container}>
 
-      <TextInput style={styles.input}  keyboardType="phone-pad" onChangeText={this._change.bind(this)} {...others} placeholder="图片验证码"
+      <TextInput style={styles.input}   onChangeText={this._change.bind(this)} {...others} placeholder="图片验证码"
                  underlineColorAndroid={"rgba(0,0,0,0)"}
 
       />

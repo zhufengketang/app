@@ -10,10 +10,11 @@
 #define RCTPay_h
 
 #import "RCTBridgeModule.h"
-#import <UIKit/UIKit.h>x
+#import <UIKit/UIKit.h>
 #import <AlipaySDK/AlipaySDK.h>
 
 @interface RCTPay : NSObject <RCTBridgeModule>
+- (void)sendPayResultToJs:(NSDictionary *)dict;
 @end
 
 #endif /* RCTPay_h */

@@ -8,9 +8,12 @@
  */
 
 #import <UIKit/UIKit.h>
-
+#import "RCTPay.h"
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (nonatomic, strong) UIWindow *window;
 
+@property (atomic) RCTPay * rctPay;
+
+- (void) setRctPay:(RCTPay *)rctPay;
 @end

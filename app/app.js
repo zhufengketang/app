@@ -53,12 +53,14 @@ class _App extends Component {
 
   constructor(){
     super()
+    setTimeout( () => {
+      SplashScreen.hide()
+    }, 300)
     
     this.nextTimeExit = false
   }
   componentDidMount(){
-    SplashScreen.hide()
-
+    
     BackAndroid.addEventListener('hardwareBackPress', (() => {
       const navigator = this.refs.navigator
       if(!navigator) {

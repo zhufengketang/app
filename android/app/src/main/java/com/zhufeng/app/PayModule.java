@@ -8,6 +8,8 @@ import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 
+import java.util.Map;
+
 /**
  * Created by weimeng on 2017/1/15.
  */
@@ -35,8 +37,9 @@ public class PayModule extends ReactContextBaseJavaModule {
             public void run() {
                 // 构造PayTask 对象
                 PayTask alipay = new PayTask(MainActivity.activity);
+
 //                // 调用支付接口，获取支付结果
-                String result = alipay.pay(payInfo, true);
+                Map<String, String> result = alipay.payV2(orderString, true);
 //
                 Message msg = new Message();
                 msg.what = 1;

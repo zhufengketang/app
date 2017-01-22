@@ -25,6 +25,7 @@
 import React, {Component} from 'react'
 
 import {Tabbar} from 'domain/component'
+import {TabbarItem} from 'domain/component'
 
 import {Home} from "./Home"
 import {MyCourse} from "./MyCourse"
@@ -35,22 +36,22 @@ export class Tabs extends Component{
   
   render(){
     return (
-      <Tabbar initialActive="home">
-        <Tabbar.Item 
+      <Tabbar>
+        <TabbarItem
           name="home"
           title="首页" activeIcon={require("./images/menu-index.png")} icon={require("./images/menu-index-gray.png")}>
           <Home navigator={this.props.navigator} route={this.props.route} />
-        </Tabbar.Item>
-        <Tabbar.Item 
+        </TabbarItem>
+        <TabbarItem
           name="mycourse"
           title="我的课程" activeIcon={require("./images/my-course.png")} icon={require("./images/my-course-gray.png")}>
           <MyCourse  navigator={this.props.navigator} route={this.props.route} />
-        </Tabbar.Item>
-        <Tabbar.Item 
+        </TabbarItem>
+        <TabbarItem
           name="usercenter"
           title="个人中心" activeIcon={require("./images/user-center.png")} icon={require("./images/user-center-gray.png")}>
           <UserCenter  navigator={this.props.navigator} route={this.props.route} />
-        </Tabbar.Item>
+        </TabbarItem>
       </Tabbar>
     )
   }

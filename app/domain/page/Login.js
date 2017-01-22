@@ -66,7 +66,10 @@ export class Login extends Component {
       busy : false // 处理中
     }
     
-    store.dispatch({type : "NETWORK_RETRY"})
+    
+    setTimeout( () => {
+      store.dispatch({type : "NETWORK_RETRY"})
+    })
     
   }
  

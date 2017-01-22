@@ -96,7 +96,6 @@ export class Home extends Component {
       this.setState({
         initialized : true
       }, (() => {
-
         this.refs.listView.append(data.data.courses)
       }).bind(this))
     }

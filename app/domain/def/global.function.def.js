@@ -45,7 +45,9 @@ async function login_check(json, navigator, route) {
   if(json.code === 201) {
     Toast.show("请登录")
     await get_token(true)
-    navigator.push({...Routes.Login, from : route})
+    setTimeout( () => {
+      navigator.push({...Routes.Login, from : route})
+    })
     return false
   } 
   return true
@@ -53,7 +55,10 @@ async function login_check(json, navigator, route) {
 
 
 function alert (text) {
-  Toast.show(text)
+  setTimeout( () => {
+
+    Toast.show(text)
+  }, 1)
 }
 
 global.assert_request = assert_request

@@ -1,5 +1,5 @@
 /***********************************************
- * 
+ *
  * MIT License
  *
  * Copyright (c) 2016 珠峰课堂,Ramroll
@@ -25,39 +25,46 @@
 
 
 import React, {Component} from 'react'
-import {View, Text, Image, ScrollView, Dimensions} from 'react-native'
+import {View, Text, Image, ScrollView, Dimensions, Alert} from 'react-native'
 import {CourseCardSmall} from "domain/component"
-import { NativeModules } from 'react-native';
+import { NativeModules, NativeAppEventEmitter } from 'react-native';
 import {get_sign_alipay} from "domain/api/apis"
+import {Routes} from "domain/page"
 
 export class Pay extends Component {
 
   constructor(props){
-    super()  
+    super()
   }
 
   componentDidMount(){
+
+    const _s = this
+    this.alipayListener = NativeAppEventEmitter.addListener("ALIPAY_RESULT", (obj) => {
+      console.log("@alipayListner", obj)
+      _s._dealingResult(obj.resultStatus)
+    })
+
+    // console.log("@Pay After alipay result", obj)
+
   }
-
   
-  async _press(){
-    // RCTPay
-
-    const result = await get_sign_alipay(this.props.route.orderId)
-
-    const {orderSpec, sign} = result.data
-    let orderString = `${orderSpec}&sign="${sign}"&sign_type="RSA"`
-    console.log(orderString)
-    const obj = await NativeModules.Pay.alipay(
-      orderString
-    )
-
-
-    switch(obj.resultStatus) {
+  _dealingResult(resultStatus) {
+    switch(resultStatus) {
       case "9000":
       case "8000":
       case "6004":
-        /// TODO
+
+        Alert.alert("提示", "您已经支付成功，我们的工作人员会与您取得联系，请按时来上课吧！",  [
+          {text: 'OK', onPress: () => {
+            _s.props.navigator.resetTo({...Routes.Tabs})
+            store.dispatch({
+              type : "SWITCH_TAB",
+              active : "mycourse"
+            })
+          }},
+
+        ])
         break;
 
       case "4000":
@@ -66,12 +73,40 @@ export class Pay extends Component {
         alert("支付没有成功")
         break;
 
+    } 
+  }
+
+  componentWillUnmount(){
+
+    this.alipayListener.remove()
+  }
+
+
+  async _press(){
+    // RCTPay
+
+    const result = await get_sign_alipay(this.props.route.orderId)
+
+    const {orderSpec, sign} = result.data
+    let orderString = `${orderSpec}&sign=${sign}`
+
+    const obj = await NativeModules.Pay.alipay(
+      orderString
+    )
+
+    if(obj && obj.resultStatus) {
+
+      this._dealingResult(obj.resultStatus)
+      
     }
-    console.log("@Pay After alipay result", obj)
+
+
+
+
   }
   render(){
     const {course} = this.props.route
-    
+
     return (
       <View>
         <CourseCardSmall {...course} onPress={this._press.bind(this)} />

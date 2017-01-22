@@ -29,19 +29,24 @@ import {
   Text,
   View,
   Image,
-  Dimensions
+  Dimensions,
+  ScrollView,
+  TouchableWithoutFeedback,
+  TouchableOpacity
 } from 'react-native'
 
 import {ZButton} from 'domain/component'
 import {get_orders} from "domain/api/apis"
 import {flexCenter} from "basic"
 
+import {CourseCardSmall} from "domain/component"
+
 export class MyCourse extends Component{
   
   constructor(){
     super()
     this.state = {
-      orders : []
+      orders : null 
     }
   }
   componentDidMount(){
@@ -52,10 +57,10 @@ export class MyCourse extends Component{
   
   async loading_data() {
     const data = await get_orders(0, 20)
-    if(data) {
-      // this.setState({
-      //   orders : data.orders
-      // })  
+    if(data && data.data && data.data.orderInfos) {
+      this.setState({
+        orders : data.data.orderInfos
+      })  
     }
     
   }
@@ -64,16 +69,39 @@ export class MyCourse extends Component{
     this.props.switch_to("home")
   }
   
+  _view(){
+    
+    alert("播放功能正在研发中,请按时上课")
+  }
+  
   render(){
+
+    if(!this.state.orders) {
+      return (
+        <View style={{height : Dimensions.get("window").height - 44, ...flexCenter}}>
+          <View style={{ ...flexCenter}}>
+            <Image source={require("./images/laugh_face.png")} style={{width : 84, height : 84}}/>
+            <Text style={{marginTop : 10, marginBottom : 10}}>您还没有选课,快去选课吧!</Text>
+            <ZButton onPress={this._switch_home.bind(this)}>去发现</ZButton>
+          </View>
+        </View>
+      )
+    }
+
     
     return (
-      <View style={{height : Dimensions.get("window").height - 64, ...flexCenter}}>
-        <View style={{ ...flexCenter}}>
-          <Image source={require("./images/laugh_face.png")} style={{width : 84, height : 84}} />
-          <Text style={{marginTop : 10, marginBottom : 10}}>您还没有选课,快去选课吧!</Text>
-          <ZButton onPress={this._switch_home.bind(this)}>去发现</ZButton>
-        </View>
-      </View>
+      <ScrollView style={{backgroundColor : "#f2f3f4", flex : 1}}>
+        {this.state.orders.map( (order, i) => {
+          return <TouchableOpacity key={i}
+                   onPress={this._view}>
+            <CourseCardSmall
+            containerStyle={{margin : 10, paddingBottom : 10, backgroundColor : "white"}}
+            key={i} {...order} pay={false} isLast={i === this.state.orders.length - 1} />
+          </TouchableOpacity>
+        })} 
+      </ScrollView>
     )
+    
+
   }
 }

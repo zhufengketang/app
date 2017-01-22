@@ -36,6 +36,7 @@ import {persistStore, autoRehydrate} from 'redux-persist'
 /** 引入 Reducer **/
 import {user} from "domain/redux/reducers/user"
 import {network} from "domain/redux/reducers/network"
+import {tab} from "domain/redux/reducers/tab"
 
 import {AsyncStorage} from "react-native"
 
@@ -52,7 +53,8 @@ export const init = async () => {
   // 合并Reducer
   const reducers = {
     user,
-    network
+    network,
+    tab
   }
   
   const reducer = combineReducers(reducers);

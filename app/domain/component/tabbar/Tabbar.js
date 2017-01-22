@@ -31,42 +31,41 @@ import {
   View,
   Text,
   Image,
-  TouchableOpacity
+  TouchableOpacity,
+  Dimensions
 } from 'react-native'
 
 import {flexCenter} from 'basic'
 
-export class Tabbar extends Component {
+import {connect} from 'react-redux'
+
+class _Tabbar extends Component {
   
   constructor(props){
     super()
-    this.state = {
-      active : props.initialActive
-    }
   }
 
   switch_to(name){
-    this.setState({
-      active : name
+    store.dispatch({
+      type : "SWITCH_TAB",
+      active : name 
     })
   }
 
   _press(name){
-    
     return (() => {
       this.switch_to(name)
     }).bind(this)
   }
 
   render() {
-    const {children } = this.props
-    const {active} = this.state
-    
+    const {children,active} = this.props
+    console.log("render @Tabbar active:" + active)
     return (
       <View style={{flex : 1}}>
         <View style={{flex : 1}}>
           {children.map((child, i) => {
-            return React.cloneElement(child, {active, key : i, switch_to : this.switch_to.bind(this)})
+            return React.cloneElement(child, {key : i, active, switch_to : this.switch_to.bind(this)})
           })}
         </View>
         <View style={{backgroundColor : "white", height : 48, flexDirection : "row", borderTopWidth : 1, borderColor : "#ccc" }}>
@@ -93,23 +92,13 @@ export class Tabbar extends Component {
 }
 
 
-class TabbarItem extends Component{
-
-  render(){
-
-    const {children, name, active, switch_to} = this.props
-    const style = {overflow : 'hidden'}
-    if(active != name) {
-      style.height = 0
-    }
-    return <View style={style}>
-      {React.cloneElement(children, {switch_to})}
-    </View>
-    
+const map = (state) => {
+  return {
+    active: state.tab.active
   }
 }
+export let Tabbar = connect(map)(_Tabbar)
 
-Tabbar.Item = TabbarItem
 
 
 
