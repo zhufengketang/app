@@ -23,7 +23,7 @@
  */
 
 export * from "./ZButton"
-export * from "./navbar/ZNavBar"
+export * from "./navbar/ZNavbar"
 export * from "./tabbar/Tabbar"
 export * from "./tabbar/TabbarItem"
 export * from "./ZBottomButton"

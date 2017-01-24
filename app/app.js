@@ -35,7 +35,7 @@ import {
 } from 'react-native'
 
 import {Button, flexCenter} from "basic"
-import {ZNavBar} from "domain/component"
+import {ZNavbar} from "domain/component"
 
 import {COLOR_NAV_DARK, COLOR_TITLE} from "domain/def"
 
@@ -120,7 +120,7 @@ class _App extends Component {
         if(index === 0) {
           return null
         }
-        return <ZNavBar.Back route={route} navigator={navigator} />
+        return <ZNavbar.Back route={route} navigator={navigator} />
       },
       RightButton: (route, navigator, index, navState) => {
         return null

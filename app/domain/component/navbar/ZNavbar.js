@@ -29,7 +29,7 @@ import React, {Component} from 'react'
 import {TouchableOpacity, Image} from "react-native"
 
 import {flexCenter} from 'basic'
-export class ZNavBar extends Component {
+export class ZNavbar extends Component {
   
   render(){
     return null
@@ -37,7 +37,7 @@ export class ZNavBar extends Component {
 }
 
 
-class ZNavBarBackButton extends Component {
+class ZNavbarBackButton extends Component {
   
   constructor(){
     super()
@@ -60,4 +60,4 @@ class ZNavBarBackButton extends Component {
 }
 
 
-ZNavBar.Back = ZNavBarBackButton
+ZNavbar.Back = ZNavbarBackButton
