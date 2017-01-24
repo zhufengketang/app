@@ -33,7 +33,8 @@ RCT_REMAP_METHOD(alipay,
     //Your main thread code goes in here
     
     [[AlipaySDK defaultService] payOrder:orderString fromScheme:@"zhufengketang" callback:^(NSDictionary *resultDic) {
-      
+      [self.bridge.eventDispatcher sendAppEventWithName:@"ALIPAY_RESULT"
+                                                   body: resultDic];
      
     }];
 

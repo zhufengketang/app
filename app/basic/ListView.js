@@ -36,14 +36,14 @@ import {flexCenter} from 'basic'
  * @param y
  */
 const nextReplaceScrollState = (cards, itemHeights, H,  S,  y ) => {
-  
+
   const sTop = Math.floor(S / 2)
   const sBottom = Math.floor(S / 2)
-  
+
   // p : 开始的卡片  第一个top大于(y - H)的卡片
   let sum = 0
-  let p = 0 
-  
+  let p = 0
+
   for(let i = 0; i < cards.length; i++) {
     if(sum > y - H ) {
       p = cards[i].id
@@ -55,27 +55,27 @@ const nextReplaceScrollState = (cards, itemHeights, H,  S,  y ) => {
   if(p < 0) {
     p = 0
   }
-  
+
   // 结束的卡片  (q = p + S)
   const q = p + S - 1
-  
-  
+
+
   // H1: 顶部替换盒子的高度 top(p)  sum (1 + ... + p-1)
   const lst1 = cards
     .filter(card => card.id < p)
     .map(card => itemHeights[card.id])
   const H1 =   lst1.length > 0 ? lst1.reduce((h1, h2) => h1 + h2) : 0
-  
+
   const lst3 = cards
-    .filter(card => card.id > q) 
+    .filter(card => card.id > q)
     .map(card => itemHeights[card.id])
 
-  const H3 = lst3.length > 0 ? 
+  const H3 = lst3.length > 0 ?
     lst3.reduce((h1, h2) => h1 + h2) : 0
 
 
   return {p, q, H1, H3}
-  
+
 }
 
 
@@ -87,7 +87,7 @@ const nextReplaceScrollState = (cards, itemHeights, H,  S,  y ) => {
 
 
 export class ListView extends Component {
-  
+
   static propTypes = {
   }
   static defaultProps = {
@@ -101,31 +101,31 @@ export class ListView extends Component {
       )
     }
   }
-  
+
   constructor(props) {
     super()
 
-    
+
     // 滚动距离
     this.y = 0
-    
+
     // 所有的卡片高度
     this.itemHeights = []
-    
-    
+
+
     // ID 计数器  
     this.id_counter = 0
-    
-    
-    
+
+
+
     const {height : H} = props
-    
+
     this.state = {
       data : [] // 数据
     }
-    
+
   }
-  
+
   componentDidMount() {
     this.append(this.props.initialData)
   }
@@ -136,7 +136,7 @@ export class ListView extends Component {
    * @param list
    */
   reset(list){
-    
+
     this.itemHeights = []
     this.id_counter = 0
     this.setState({
@@ -146,30 +146,30 @@ export class ListView extends Component {
       p : 0,
       q : 0
     }, (() => {
-      
+
       this.append(list)
     }).bind(this))
-    
-  }
-  
 
-  
+  }
+
+
+
   /**
    * 向ListView中添加项
    * @param list
    */
   append(list) {
-    
+
     //[{name : "ramroll", title : "teacher"}]
     // => [ {id : 1, item : {name : "ramroll", title : "teacher" }} ]
     // 分配ID
     const nList = list.map(((item, i) => {
       return {
         id : ++this.id_counter ,
-        item   
-      }  
+        item
+      }
     }).bind(this))
-    
+
     const I = setInterval( (() => {
       // 渲染完成
       if(this.itemHeights[this.id_counter]) {
@@ -179,10 +179,10 @@ export class ListView extends Component {
           // 新卡片都渲染完成后解锁滚动替换方法
           scrollLock : false,
           newlyAdded : []
-        }) 
+        })
       }
     }).bind(this), 100)
-    
+
     this.setState({
       // 将新卡片append在底部
       data : [...this.state.data, ...nList],
@@ -190,16 +190,16 @@ export class ListView extends Component {
       // 将滚动替换过程锁定
       scrollLock : true
     })
-    
+
   }
-  
- 
-  
+
+
+
   _scroll(e) {
     this.y = e.nativeEvent.contentOffset.y
 
     const atBottom = (this.y + this.height >= e.nativeEvent.contentSize.height)
-    
+
     if(atBottom) {
       this.props.onScrollToBottom(this.y + this.height - e.nativeEvent.contentSize.height)
     }
@@ -212,19 +212,19 @@ export class ListView extends Component {
 
   }
 
-  
+
   _itemLayout(i) {
     return ({nativeEvent : {layout}}) => {
       this.itemHeights[i] = layout.height
     }
   }
-  
+
   _layout({nativeEvent : {layout}}){
     this.height = layout.height
   }
-  
+
   _renderItem({item, id}){
-    
+
     return <View key={id} onLayout={this._itemLayout(id).bind(this)}>
       {this.props.renderItem(item, id)}
     </View>
@@ -239,9 +239,9 @@ export class ListView extends Component {
 
     console.log("refresh")
   }
-  
+
   render(){
-    
+
     const {p, q, H1, H3, newlyAdded, scrollLock, data} = this.state
 
     let visibleData = data.filter( ({item, id}) => {
@@ -254,22 +254,22 @@ export class ListView extends Component {
 
     if(newlyAdded && newlyAdded.length > 0) {
       visibleData = [
-        ...visibleData, 
+        ...visibleData,
         ...newlyAdded.filter(x => !visibleData.find(t => t.id === x.id))
       ]
     }
 
 
 
+    console.log("@listView" + this.props.height)
     return (
-      <ScrollView 
-        onResponderRelease={this._scrollRelease.bind(this)} 
-        onLayout={this._layout.bind(this)} 
-        onScroll={this._scroll.bind(this)} 
+      <ScrollView
+        onResponderRelease={this._scrollRelease.bind(this)}
+        onLayout={this._layout.bind(this)}
+        onScroll={this._scroll.bind(this)}
         scrollEventThrottle={15}
         refreshControl={this.props.refreshControl}
-        style={{height : this.props.height}}
-        
+
 
       >
         <View style={{height : H1}}></View>
@@ -281,5 +281,5 @@ export class ListView extends Component {
       </ScrollView>
     )
   }
-  
+
 }

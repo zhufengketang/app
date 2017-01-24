@@ -37,7 +37,7 @@ export class TabbarItem extends Component{
       style.height = 0
       style.width = 0
     } else {
-      style.height = Dimensions.get('window').height - 64
+      style.height = Dimensions.get('window').height - 48 
     }
     return <View style={style}>
       {React.cloneElement(children, {switch_to})}
