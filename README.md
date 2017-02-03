@@ -2,6 +2,8 @@
 
 由珠峰开源的一款React Native APP，目前正在内侧阶段，预计春节前发布。 一开始的目的是开发一款简单的APP供学员学习用， 后来开发小组变得兴趣浓厚决定继续开发下去，为珠峰课堂增加更多功能，将它做成一个先进的开源在线教育直播平台。 并配合[Blackboard](https://www.github.com/ramroll/blackboard) 一起作为新一代的教学工具。 
 
+首先参考React Native官方文档配置React native开发环境
+
 ### 运行方法
 
 1. 进入项目目录
