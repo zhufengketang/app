@@ -50,7 +50,6 @@
     [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
        [[NSNotificationCenter defaultCenter] postNotificationName: @"AlipayUrlNotify" object:nil userInfo:resultDic];
 
-
     }];
     
   }

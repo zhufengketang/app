@@ -89,10 +89,6 @@ export class Entry extends Component {
         }).bind(this))
 
     }).bind(this))
-
-    
-
-  
   }
 
  
