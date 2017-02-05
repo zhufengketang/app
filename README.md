@@ -6,22 +6,22 @@
 
 ### 运行方法
 
-1. 进入项目目录
+STEP 1 : 进入项目目录
 ```
 npm install
 ```
 
-2. Link原生库
+STEP 2 : Link原生库
 ```
 react-native link
 ```
 
-3. 如果是ios
+STEP 3 : 如果是ios
 用xcode打开ios/zhufengketang.xcodeproj或
 ```
 react-native run-ios
 ```
-4. 如果是android
+STEP 4 : 如果是android
 在android studio打开android目录作为一个工程
 或
 ```
