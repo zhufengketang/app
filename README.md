@@ -6,8 +6,10 @@
 
 ### 运行方法
 
-STEP 1 : 进入项目目录
+STEP 1 : 克隆并安装依赖
 ```
+git clone https://github.com/zhufengketang/app.git
+cd app
 npm install
 ```
 
