@@ -60,7 +60,6 @@ react-native run-android
 #### 2017.6 v2.0 开发计划
 整合Blackboard，成为一个完成的教学体系
 
-### 第一期课程目录
 珠峰课堂第一期 
 
 第1章 ： 环境和学习技巧
@@ -90,10 +89,9 @@ react-native run-android
 第4章 通过UIExplorer学习ReactNative组件和API
 
 1. 使用UIExplorer学习ReactNative组件
-2. 通过UIExplorer学习ReactNative所有的组件
-3. 通过UIExplorer学习ReactNative各种API
-4. 一起看UIExplorerflexbox的例子
-5. React Native长度单位
+2. 通过UIExplorer学习ReactNative各种API
+3. 一起看UIExplorerflexbox的例子
+4. React Native长度单位
 
 第5章 : 珠峰课堂基础组件开发实战 
 
@@ -125,7 +123,6 @@ react-native run-android
 
 1. IOS打包
 2. Android打包
-
 
 
 ### 如何申请加入珠峰课堂研发小组
