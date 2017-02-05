@@ -11,12 +11,17 @@
 npm install
 ```
 
-2. 如果是ios
+2. Link原生库
+```
+react-native link
+```
+
+3. 如果是ios
 用xcode打开ios/zhufengketang.xcodeproj或
 ```
 react-native run-ios
 ```
-3. 如果是android
+4. 如果是android
 在android studio打开android目录作为一个工程
 或
 ```
