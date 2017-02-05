@@ -63,10 +63,10 @@ react-native run-android
 
 第一章 ： 环境和学习技巧
 
-1. 为什么要学习React&ReactNative     why-rectn-and-native
-2. 实战《珠峰课堂》课程介绍和学习方法  zhufengketang
-3. React Native环境搭建              rn-env
-4. 使用Blackboard app看课件          blackboard
+1. 为什么要学习React&ReactNative     [why-react]
+2. 实战《珠峰课堂》课程介绍和学习方法  [zhufengketang]
+3. React Native环境搭建              [rn-env]
+4. 使用Blackboard app看课件          [blackboard]
 5. Hello world项目     
 6. 使用UIExplorer学习ReactNative组件
 7. 运行《珠峰课堂》项目 
@@ -76,17 +76,17 @@ react-native run-android
 
 第二章 : javascript&Es6/7重点选讲
 
-1. 对象/数组/函数的解构               destructure
-2. Promise & async/await            promise
-3. 所有的数据处理过程都是map/reduces  map-reduce
-4. Es6 class                        class
+1. 对象/数组/函数的解构               [destructure]
+2. Promise & async/await            [promise]
+3. 所有的数据处理过程都是map/reduces  [map-reduce]
+4. Es6 class                        [class]
 
 
 第三章 : React.js基本概念
 
-1. JSX和使用已经声明的react组件       react-create-element
-2. 属性、状态和组件声明               react-create-class
-3. React生命周期                     react-lifecycle
+1. JSX和使用已经声明的react组件       [react-create-element]
+2. 属性、状态和组件声明               [react-create-class]
+3. React生命周期                     [react-lifecycle]
 
 
 第四章 : React Native基础知识实战
