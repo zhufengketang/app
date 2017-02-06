@@ -1,3 +1,23 @@
+珠峰课堂第一期 
+
+第1章 ： 环境和学习技巧
+
+1. 为什么要学习React&ReactNative [why-react]
+2. 实战《珠峰课堂》课程介绍和学习方法 [zhufengketang] 
+3. React Native环境搭建         [rn-env]
+4. Hello world项目             [helloworld]
+5. 使用Blackboard app看课件     [blackboard]
+6. 运行《珠峰课堂》项目
+
+
+第2章 : javascript&Es6/7重点选讲
+
+1. 对象/数组/函数的解构  [destructure]
+2. Promise & async/await [promise]
+3. 所有的数据处理过程都是map/reduces [map-reduce]
+4. Es6 class [class]
+
+
 第3章 : React.js基本概念
 
 1. JSX和使用已经声明的react组件 [react-create-element]
@@ -5,11 +25,8 @@
 3. React生命周期 [react-lifecycle]
 
 第4章 通过UIExplorer学习ReactNative组件和API
-
 1. 使用UIExplorer学习ReactNative组件
-2. 通过UIExplorer学习ReactNative各种API
-3. 一起看UIExplorerflexbox的例子
-4. React Native长度单位
+2. 通过UIExplorer学习ReactNative API
 
 第5章 : 珠峰课堂基础组件开发实战 
 
