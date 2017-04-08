@@ -141,6 +141,9 @@ dependencies {
     compile fileTree(dir: "libs", include: ["*.jar"])
     compile "com.android.support:appcompat-v7:23.0.1"
     compile "com.facebook.react:react-native:+"  // From node_modules
+    compile 'tv.danmaku.ijk.media:ijkplayer-java:0.7.8.1'
+    compile 'tv.danmaku.ijk.media:ijkplayer-armv7a:0.7.8.1'
+    compile 'tv.danmaku.ijk.media:ijkplayer-exo:0.7.8.1'
 }
 
 // Run this once to be able to run the application with BUCK

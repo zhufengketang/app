@@ -10,7 +10,7 @@
     "@remobile/react-native-toast": "^1.0.5",
     "ramda": "^0.22.1",
     "react": "15.3.2",
-    "react-native": "^0.40.0",
+    "react-native": "^0.43.2",
     "react-native-fetch-blob": "^0.10.2-beta.3",
     "react-native-splash-screen": "^2.0.0",
     "react-native-swiper": "^1.5.4",
